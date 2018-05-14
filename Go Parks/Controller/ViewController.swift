@@ -34,7 +34,7 @@ class ViewController: UIViewController, ReceivePark {
       
       for park in parks {
         parksArray.append(park)
-        print(park.lat)
+//        print(park.lat)
       }
  
     } catch {
@@ -45,16 +45,17 @@ class ViewController: UIViewController, ReceivePark {
   
   @IBAction func testButton(_ sender: Any) {
     
-    parkToGo = Int(Double.random(min: 0, max: 82))
+
     print("RANDOM \(parkToGo)")
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "goAhead" {
-      
+      parkToGo = Int(Double.random(min: 0, max: 65))
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = parksArray[parkToGo]
+      print("PARK \(parksArray[parkToGo].fullName) ")
       destinationVC.delegate = self
     }
   }

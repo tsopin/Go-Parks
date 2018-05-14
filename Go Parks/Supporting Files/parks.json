@@ -240,21 +240,6 @@
   "name": "Congaree"
   },
   {
-  "states": "DC",
-  "lat": "38.8909354",
-  "long": "-77.04409306",
-  "description": "Officially established in 1965, National Mall and Memorial Parks actually protects some of the older parkland in the National Park System. Areas within this premier park provide visitors with ample opportunities to commemorate presidential legacies; honor the courage and sacrifice of war veterans; and celebrate the United States commitment to freedom and equality.",
-  "designation": "",
-  "parkCode": "coga",
-  "id": "B2F2941A-1BC1-42ED-B02F-541EBC80AEE4",
-  "directionsInfo": "Parking\nBecause of limited parking availability, public transportation is recommended. Street parking is available on Constitution Ave. during posted hours.\n\nBicycle\nSidewalks and paved paths are open to bicycles in the park. Please walk your bicycle across the footbridge to Signers Island.\n\nPublic Transportation\nConstitution Gardens is approximately 1 mile from three Metro stops: Foggy Bottom, Farragut West",
-  "directionsUrl": "http://www.nps.gov/coga/planyourvisit/directions.htm",
-  "fullName": "Constitution Gardens",
-  "url": "https://www.nps.gov/coga/index.htm",
-  "weatherInfo": "Washington DC gets to see all four seasons. Humidity will make the temps feel hotter in summer and colder in winter.\n\nSpring (March - May) Temp: Average high is 65.5 degrees with a low of 46.5 degrees\n\nSummer (June - August) Temp: Average high is 86 degrees with a low of 68.5 degrees\n\nFall (September - November) Temp: Average high is 68 degrees with a low of 51.5 degrees\n\nWinter (December - February) Temp: Average high is 45 degrees with a low of 30 degrees\n\n(Source: www.usclimatedata.com)",
-  "name": "Constitution Gardens"
-  },
-  {
   "states": "OR",
   "lat": "42.94065854",
   "long": "-122.1338414",
@@ -345,66 +330,6 @@
   "name": "Everglades"
   },
   {
-  "states": "OH",
-  "lat": "40.79689857",
-  "long": "-81.37579869",
-  "description": "Two properties, the home of First Lady Ida Saxton McKinley and the seven story 1895 City Bank Building, are preserved at this site, which honors the lives and accomplishment of our nation's First Ladies. The site is managed by the National Park Service and operated by the National First Ladies Library.",
-  "designation": "National Historic Site",
-  "parkCode": "fila",
-  "id": "35CB040E-765C-47D0-A594-05943E64EF3E",
-  "directionsInfo": "The First Ladies National Historic Site is located in downtown Canton, Ohio. Free parking is available behind the Saxton House or at our gated lot on the corner of Market Avenue South and 3rd Street SW (entrance from Market Avenue South).",
-  "directionsUrl": "http://www.nps.gov/fila/planyourvisit/directions.htm",
-  "fullName": "First Ladies National Historic Site",
-  "url": "https://www.nps.gov/fila/index.htm",
-  "weatherInfo": "The weather at First Ladies National Historic Site is typical of Northeastern Ohio: four distinct seasons. \n\nSpring's rain and warming temperatures bring new leaves on trees and blooming wildflowers.\n\nSummer temperatures range from 49 to 95 degrees F and can be humid. \n\nFall temperatures can range from low 70s during the day to freezing during the night. Fallcolor peaks mid-October.\n\nWinter weather conditions can rapidly change. Temperatures vary from mid-30s to below zero.",
-  "name": "First Ladies"
-  },
-  {
-  "states": "DC",
-  "lat": "38.89668819",
-  "long": "-77.02577944",
-  "description": "Explore Ford's Theatre NHS, discover Abraham Lincoln's life in Washington, D.C., the struggle for a united country, and the motivation behind Lincoln's assassination. The National Park Service and the Ford's Theatre Society present a variety of programs year round.",
-  "designation": "",
-  "parkCode": "foth",
-  "id": "C1D82E29-1291-415B-9834-5A0480D2732C",
-  "directionsInfo": "Ford's Theatre National Historic Site is located on 10th Street between E and F streets. The site is within walking distance of the Metro stops at Metro Center and Gallery Place. Parking garages and metered street parking are located nearby.",
-  "directionsUrl": "http://www.nps.gov/foth/planyourvisit/directions.htm",
-  "fullName": "Ford's Theatre",
-  "url": "https://www.nps.gov/foth/index.htm",
-  "weatherInfo": "Washington DC gets to see all four seasons. Humidity will make the temps feel hotter in summer and colder in winter.\n\nSpring (March - May) Temp: Average high is 65.5 degrees with a low of 46.5 degrees\n\nSummer (June - August) Temp: Average high is 86 degrees with a low of 68.5 degrees\n\nFall (September - November) Temp: Average high is 68 degrees with a low of 51.5 degrees\n\nWinter (December - February) Temp: Average high is 45 degrees with a low of 30 degrees\n\n(Source: www.usclimatedata.com)",
-  "name": "Ford's Theatre"
-  },
-  {
-  "states": "GA",
-  "lat": "31.2214699",
-  "long": "-81.39452014",
-  "description": "Georgia's fate was decided in 1742 when Spanish and British forces clashed on St. Simons Island. Fort Frederica's troops defeated the Spanish, ensuring Georgia's future as a British colony. Today, the archeological remnants of Frederica are protected by the National Park Service.",
-  "designation": "National Monument",
-  "parkCode": "fofr",
-  "id": "4301F6E9-750B-489D-B8E4-4204165894A1",
-  "directionsInfo": "South on I 95 to U.S. 17:\nExit 38 and Left onto Spur 25. Follow Spur 25 until U.S. 17. Take a right on U.S. 17 (south).\n\nNorth on I 95 to U.S. 17:\nExit 29 and Right onto U.S. 17.\n\nFrom US 17:\nTake Causeway to St. Simons Island. Take first left onto Sea Island Rd. Go 1.5 miles to third traffic light, and Left onto Frederica Road. Follow Frederica Road for two miles (take second right off roundabout). The park entrance 300 yards past Christ Church.",
-  "directionsUrl": "http://www.nps.gov/fofr/planyourvisit/directions.htm",
-  "fullName": "Fort Frederica National Monument",
-  "url": "https://www.nps.gov/fofr/index.htm",
-  "weatherInfo": "The site enjoys mild climate from fall through early summer, followed by hot, humid summers.",
-  "name": "Fort Frederica"
-  },
-  {
-  "states": "MD",
-  "lat": "38.70875364",
-  "long": "-77.02174195",
-  "description": "Built to defend the river approach to  Washington, DC, Fort Washington has stood as silent sentry for over 200 years. As technologies advanced so did Fort Washington, from the brick and stone of the 19th century to the concrete and steel of the 20th century.  Joining the National Park Service in 1946, the park continues to protect the Potomac River.",
-  "designation": "Park",
-  "parkCode": "fowa",
-  "id": "E49B3D75-8676-4417-BFAD-8B3E23B1418B",
-  "directionsInfo": "From I-95/495 take exit 3, Indian Head Highway South/MD 210. Travel about 4 miles to Fort Washington Road, turn right. The park is located at the end of the road.\n\nFrom Waldorf, MD: MD228 to Indian Head Highway/MD210 North. Turn left onto Old Fort Road. Continue to end of road, at the stop sign turn left onto Fort Washington Road, continue to park entrance.",
-  "directionsUrl": "http://www.nps.gov/fowa/planyourvisit/directions.htm",
-  "fullName": "Fort Washington Park",
-  "url": "https://www.nps.gov/fowa/index.htm",
-  "weatherInfo": "Summers are generally hot and humid, with daytime highs frequently above 90 degrees Fahrenheit and scattered afternoon thunderstorms. Please carry water while participating in physical activity and be prepared to take shelter from lightning.\nWinters are generally cold, with nighttime lows frequently near freezing and occasional snowfall. \nWeather during spring and fall is generally moderate, but can change quickly.",
-  "name": "Fort Washington"
-  },
-  {
   "states": "AK",
   "lat": "67.783333",
   "long": "-153.3",
@@ -435,21 +360,6 @@
   "name": "Gateway Arch"
   },
   {
-  "states": "New York, New Jersey",
-  "lat": "40.56536246",
-  "long": "-73.9171087",
-  "description": "There are three geographic units: Sandy Hook, New Jersey; Jamaica Bay and Staten Island, New York City. The NYC units include Jamaica Bay Wildlife Refuge, Fort Tilden, Riis Park in Queens, Floyd Bennett Field and Canarsie Pier in Brooklyn. Staten Island has Great Kills Park, Miller Field and Fort Wadsworth. These sites and others make up the 27,000 acres of Gateway, one national park.",
-  "designation": "National Recreation Area",
-  "parkCode": "gate",
-  "id": "BBC5BE3F-E921-40B5-A850-F259D9FAF88C",
-  "directionsInfo": "Gateway is located in two states; NJ and NY, and has three units:  Jamaica Bay, Sandy Hook and Staten Island.  You can access most of our park by car and public transportation.   Please visit our website for specific directions to all of our units",
-  "directionsUrl": "http://www.nps.gov/gate/planyourvisit/directions.htm",
-  "fullName": "Gateway National Recreation Area",
-  "url": "https://www.nps.gov/gate/index.htm",
-  "weatherInfo": "Gateway National Recreation Area includes several separate land areas spread throughout the New York metropolitan area. The New York area experiences four distinct seasons. Temperatures are moderate in the spring and fall, but range from the high 90's during the summer to snow and sleet in winter.",
-  "name": "Gateway"
-  },
-  {
   "states": "AK",
   "lat": "58.80086718",
   "long": "-136.8407579",
@@ -478,21 +388,6 @@
   "url": "https://www.nps.gov/glac/index.htm",
   "weatherInfo": "Glacier's weather is highly variable and can be extreme. Expect warm sunny summer days and in the winter the temperatures can fall well below freezing. Glacier's geography, straddling the Continental Divide, sets the stage for clashes of two very different climates. Warm, wet Pacific air moves in from the west, and cold dry Arctic air from the northeast. They meet at the Divide.",
   "name": "Glacier"
-  },
-  {
-  "states": "MD",
-  "lat": "38.96912315",
-  "long": "-77.14012206",
-  "description": "Glen Echo Park began in 1891 as a National Chautauqua Assembly \"to promote liberal and practical education.\" By 1911, it transformed into DC's premier amusement park until it closed in 1968. Since 1971, the National Park Service has owned and operated the site and today, with the help of the Glen Echo Park Partnership for Arts and Culture, offers year-round cultural and recreational activities.",
-  "designation": "Park",
-  "parkCode": "glec",
-  "id": "3FBC6D2D-C61B-4399-BC35-1B00C92C406A",
-  "directionsInfo": "By Car: Capital Beltway (I-495), Maryland outer loop exit 40 Cabin John Parkway to Clara Barton Parkway; Virginia inner loop exit 41 Clara Barton Parkway East; follow Clara Barton Parkway to MacArthur Boulevard and Glen Echo exit, left onto MacArthur Boulevard, straight across traffic circle at Goldsboro Road, next left onto Oxford Road, end of street, parking lots on the left.\n\nBy Metro: Red Line to Bethesda or Friendship Heights Station, transfer to Montgomery County Ride-On Bus # 29, Glen Echo stop.",
-  "directionsUrl": "http://www.nps.gov/glec/planyourvisit/directions.htm",
-  "fullName": "Glen Echo Park",
-  "url": "https://www.nps.gov/glec/index.htm",
-  "weatherInfo": "Weather for Washington, D.C. and Bethesda, Maryland areas.",
-  "name": "Glen Echo"
   },
   {
   "states": "AZ",
@@ -538,21 +433,6 @@
   "url": "https://www.nps.gov/grba/index.htm",
   "weatherInfo": "There is almost an 8,000 ft (2,400 m) difference in elevation between Wheeler Peak and the valley floor. Weather conditions in the park vary with elevation. In late spring and early summer, days in the valley may be hot, yet the snow pack may not have melted in the higher elevations. The Great Basin is a desert, with low relative humidity and sharp drops in temperature at night. In the summer, fierce afternoon thunderstorms are common. It can snow any time of the year at high elevations.",
   "name": "Great Basin"
-  },
-  {
-  "states": "NJ",
-  "lat": "39.30421499",
-  "long": "-74.64969521",
-  "description": "The River gradually widens as it picks up the waters of 17 tributaries on its way to Great Egg Harbor and the Atlantic Ocean. Established by Congress in 1992, nearly all of this 129-mile river system rests within the Pinelands National Reserve. This National Park Service unit is unusual in that local jurisdictions continue to administer the lands.",
-  "designation": "",
-  "parkCode": "greg",
-  "id": "5B1021C9-5F48-4747-B0E4-6F508FDF96AE",
-  "directionsInfo": "Estell Manor Park, where visitors can see the Great Egg Harbor National Scenic and Recreational River, is located 3.5 miles South of Mays Landing, New Jersey, off of Route 50. It is approximately 17 miles west of Atlantic City. There is a stamper for Passport Stamp Books at the Fox Nature Center, and a stamp can be obtained at the mailing address provided below.",
-  "directionsUrl": "http://www.aclink.org/PARKS/mainpages/estell.asp",
-  "fullName": "Great Egg Harbor River",
-  "url": "https://www.nps.gov/greg/index.htm",
-  "weatherInfo": "Temperate, with a moderating influence of the Atlantic Ocean.",
-  "name": "Great Egg Harbor River"
   },
   {
   "states": "CO",
@@ -765,36 +645,6 @@
   "name": "Lassen Volcanic"
   },
   {
-  "states": "Pennsylvania, New Jersey",
-  "lat": "40.670331",
-  "long": "-75.153839",
-  "description": "The largest free-flowing river in the eastern United States, the Delaware River runs past forests, farmlands, and villages, and it also links some of the most densely populated regions in America.\n\nIn 2000, the National Wild and Scenic River System incorporated key segments of the lower Delaware River to form this unit of the National Park System.",
-  "designation": "National Wild and Scenic River",
-  "parkCode": "lode",
-  "id": "64FF65B7-0847-4495-9464-667CAFBF4D16",
-  "directionsInfo": "The Lower Delaware National Wild and Scenic River is located between Interstate 80 (at Portland, Pennsylvania and Columbia, New Jersey) and Interstate 95 (at exit 51 in Washington Crossing, Pennsylvania and exit 1 in Washington Crossing, New Jersey).\n\nIn Pennsylvania, follow PA-611 and PA-32 to drive along the river.\n\nIn New Jersey, follow NJ-29 south of Frenchtown for a drive along the river.",
-  "directionsUrl": "http://www.nps.gov/lode/planyourvisit/directions.htm",
-  "fullName": "Lower Delaware National Wild and Scenic River",
-  "url": "https://www.nps.gov/lode/index.htm",
-  "weatherInfo": "Spring: Temperatures usually range from lows of 26 F to highs of 80 F with average rainfall of 5 inches.\n\nSummer: Temperatures usually range from lows of 55 F to highs of 85 F with average rainfall of 4 inches. \n\nFall: Temperatures usually range from lows of 30 F to highs of 83F. Fall foliage is at its peak sometime in October as daily mountain temperatures vary frequently and influence the change.\n\nWinter: Temperatures usually range from lows of 15 F to highs of 49 F.",
-  "name": "Lower Delaware"
-  },
-  {
-  "states": "ME",
-  "lat": "47.2831115723",
-  "long": "-68.4110870361",
-  "description": "Maine Acadians share beliefs and experiences tying them to a common religion, languages, and history. The St. John River, land, and family are essential to their culture. The National Park Service supports the Maine Acadian Heritage Council, an association of historical societies, cultural clubs, towns, and museums that work together to support Maine Acadian culture in the St. John Valley.",
-  "designation": "",
-  "parkCode": "maac",
-  "id": "A609887A-BB48-47AA-A6F6-4C7F77346FC6",
-  "directionsInfo": "The Saint John Valley is located in northern Aroostook County, Maine, 200 miles north of Bangor at the northern terminus of ME 1. It is best reached by private vehicle. From Interstate 95, use exits at Sherman or Smyrna Mills for Route 11 to Fort Kent, or the exit at Houlton for U.S. Route 1 North.",
-  "directionsUrl": "http://www.nps.gov/maac/planyourvisit/directions.htm",
-  "fullName": "Maine Acadian Culture",
-  "url": "https://www.nps.gov/maac/index.htm",
-  "weatherInfo": "Located in remote northern Maine, Aroostook County experiences all four seasons. Summers temperatures average highs near 75° F (23° C) while winter temperatures average lows often below 0° F (-17° C). Snow falls typically from November through April and averages well over 100 inches of snow per winter.",
-  "name": "Maine Acadian Culture"
-  },
-  {
   "states": "KY",
   "lat": "37.19760458",
   "long": "-86.13090198",
@@ -855,21 +705,6 @@
   "name": "Mount Rainier"
   },
   {
-  "states": "AS",
-  "lat": "14.22865935",
-  "long": "-169.8503777",
-  "description": "The National Park of American Samoa welcomes you into the heart of the South Pacific, to a world of sights, sounds, and experiences that you will find in no other national park in the United States. \n\nEnjoy this unique national park and the welcoming people of American Samoa. We are here to protect its rich culture and natural resources. Come explore them with us!",
-  "designation": "",
-  "parkCode": "npsa",
-  "id": "6E71B72E-4F2F-495D-9225-A6634E6C2EB1",
-  "directionsInfo": "The visitor center is located in the village of Pago Pago, across from the Pago Way Service Station. The national park is located in the villages of Vatia, Pago Pago, Fagasa, Afono (on Tutuila Island), Fitiuta, Faleasao (on Ta'u Island), and Ofu Island",
-  "directionsUrl": "http://www.nps.gov/npsa/planyourvisit/upload/NPSA-Visitor-Guide_web-January-2015.pdf",
-  "fullName": "National Park of American Samoa",
-  "url": "https://www.nps.gov/npsa/index.htm",
-  "weatherInfo": "American Samoa is in the South Pacific Ocean, between the Equator and the Tropic of Capricorn. A tropical climate prevails with warm or hot temperatures year-round and high humidity. Rain showers are frequent and can last only for a few minutes or all-day.\n\nThe average annual rainfall is 125-inches in the dryer areas to as much as 300-inches in the highest mountains. Tropical storms are more prevalent during the long, wet summer season (October -May) and a slightly cooler and drier season (June-September)",
-  "name": "National Park of American Samoa"
-  },
-  {
   "states": "NY",
   "lat": "40.707323",
   "long": "-74.010256",
@@ -883,21 +718,6 @@
   "url": "https://www.nps.gov/npnh/index.htm",
   "weatherInfo": "Look up weather for New York City for most of the national parks in New York Harbor:\nhttp://forecast.weather.gov/MapClick.php?lat=40.7142&lon=-74.0059#.VqfYL_krKUk. Gateway National Recreation Area's Sandy Hook Unit in central New Jersey  can be found here: http://forecast.weather.gov/MapClick.php?lat=40.7142&lon=-74.0059#.VqfYL_krKUk.",
   "name": "National Parks of New York Harbor"
-  },
-  {
-  "states": "LA",
-  "lat": "29.96303129",
-  "long": "-90.06749669",
-  "description": "Only in New Orleans could there be a National Park for jazz! Drop by our visitor center at the New Orleans Jazz Museum at 400 Esplanade Ave. or 916 North Peters St. to inquire about musical events around town. In the mood for a world class musical experience? Attend a jazz concert or ranger performance at the new state of the art performance venue on the 3rd floor of the New Orleans Jazz Museum.",
-  "designation": "National Historical Park",
-  "parkCode": "jazz",
-  "id": "CB014DE3-3483-4E36-BC35-3CC7E9F60529",
-  "directionsInfo": "The park's main visitor center is in New Orleans' French Quarter, near the Mississippi River levee on North Peters Street between Dumaine Street and St. Phillip Street. A second visitor center is located in the Old US Mint at 400 Esplanade Avenue.",
-  "directionsUrl": "http://www.nps.gov/jazz/planyourvisit/directions.htm",
-  "fullName": "New Orleans Jazz National Historical Park",
-  "url": "https://www.nps.gov/jazz/index.htm",
-  "weatherInfo": "All temperatures in degrees Fahrenheit. Note that relative humidity, especially in summer months, can reach 90%, so temperatures can feel 10-20 degrees hotter than actual temperature.\nSpring (March, April, May) average high 77, low 61\nSummer (June, July, August) average high 89, low 75\nFall (September, October, November) average high 78, low 64\nWinter (December, January, February) average high 64, low 48",
-  "name": "New Orleans Jazz"
   },
   {
   "states": "WA",
@@ -928,21 +748,6 @@
   "url": "https://www.nps.gov/olym/index.htm",
   "weatherInfo": "Summers tend to be fair and warm, with high temperatures between 65 and 75 degrees F. July, August and September are the driest months, with heavier precipitation during the rest of the year. While winters are mild at lower elevation, snowfall can be heavy in the mountains. It is common for different weather conditions to exist within the park at the same time.  At any time of year, visitors should come prepared for a variety of conditions.",
   "name": "Olympic"
-  },
-  {
-  "states": "MO",
-  "lat": "37.13968894",
-  "long": "-91.25709817",
-  "description": "Ozark National Scenic Riverways is the first national park area to protect a river system. The Current and Jacks Fork Rivers are two of the finest floating rivers you'll find anywhere. Spring-fed, cold and clear they are a delight to canoe, swim, boat or fish. Besides these two famous rivers, the park is home to hundreds of freshwater springs, caves, trails and historic sites such as Alley Mill.",
-  "designation": "National Scenic Riverways",
-  "parkCode": "ozar",
-  "id": "CEC2A157-CDDC-4F11-BBE5-0AA2CEA35ADB",
-  "directionsInfo": "The Headquarters for Ozark National Scenic Riverways is located at 404 Watercress Drive in Van Buren, Missouri.  It's located at the corner of Watercress Drive and Main Street, across the street from the Van Buren Public School complex.",
-  "directionsUrl": "http://www.nps.gov/ozar/planyourvisit/directions.htm",
-  "fullName": "Ozark National Scenic Riverways",
-  "url": "https://www.nps.gov/ozar/index.htm",
-  "weatherInfo": "Ozark National Scenic Riverways is located in southeastern Missouri.  Summer temperatures generally range from 75-100 degrees with high humidity.  Winter temperatures generally range from 0-50 degrees with periods of intermittent freezing and snow.",
-  "name": "Ozark"
   },
   {
   "states": "AZ",
@@ -1020,21 +825,6 @@
   "name": "Rocky Mountain"
   },
   {
-  "states": "ME",
-  "lat": "44.87357167",
-  "long": "-66.96209908",
-  "description": "For many years, Franklin D. Roosevelt summered on Campobello Island. As an adult, he shared with his family the same active pursuits he enjoyed on the island as child. Although he visited less frequently after contracting polio, Campobello remained important to FDR. Today Roosevelt Campobello International Park serves as a memorial to FDR and a symbol of cooperation between the U.S. and Canada.",
-  "designation": "International Park",
-  "parkCode": "roca",
-  "id": "05106DE8-D6F2-4088-9834-79462FBDDA21",
-  "directionsInfo": "The park is located on Campobello Island in New Brunswick, Canada. The customs station is located at the southern end of the island. Car is the best way to travel to the park; there is no public transportation available. From Boston take I-95 north to Bangor, Maine. Take Route 1A east to Ellsworth, then follow Route 1 east to Whiting Village. Take Route 189 to Lubec and cross the FDR Memorial Bridge to Campobello Island. The visitor center is located approximately two miles from the bridge.",
-  "directionsUrl": "http://www.nps.gov/roca/planyourvisit/directions.htm",
-  "fullName": "Roosevelt Campobello International Park",
-  "url": "https://www.nps.gov/roca/index.htm",
-  "weatherInfo": "Roosevelt Campobello experiences all four seasons. Summer temperatures range from 50-80F (10-27C). Fall temperatures range from 25-70F (-4-21C). Typically the first is in frost mid-October and first snowfall begins in November and can continue through April with an average accumulation of 67 inches (170 cm). Winter temperatures range from 5-30F (-15 - -1C). Spring temperatures range from 20-60F (-6-16C).",
-  "name": "Roosevelt Campobello"
-  },
-  {
   "states": "AZ",
   "lat": "32.20909636",
   "long": "-110.7574974",
@@ -1078,21 +868,6 @@
   "url": "https://www.nps.gov/shen/index.htm",
   "weatherInfo": "Shenandoah experiences four distinct seasons. Best known for its fall foliage, the park is also spectacular in spring when the wildflowers and trees are in full bloom. Summer brings lush greens and relief from the hot valleys. The park's elevation encourages as much as a 10 degree temperature difference. In winter, this means that when surrounding lowlands are experiencing rain, the the park can be blanketed in snow and ice. It's always a good idea to be prepared for varying weather.",
   "name": "Shenandoah"
-  },
-  {
-  "states": "NY",
-  "lat": "40.69572149",
-  "long": "-74.04232397",
-  "description": "\"The Statue of Liberty Enlightening the World\" was a gift of friendship from the people of France to the United States and is recognized as a universal symbol of freedom and democracy. The Statue of Liberty was dedicated on October 28, 1886.  It was designated as a National Monument in 1924.  Employees of the National Park Service have been caring for the colossal copper statue since 1933.",
-  "designation": "National Monument",
-  "parkCode": "stli",
-  "id": "6E3608BE-63AA-4379-A543-97D2FCBF12F1",
-  "directionsInfo": "Liberty Island is located in New York Harbor, and can only be reached by boat. Ferries operated by Statue Cruises depart from Battery Park in Lower Manhattan in New York City, New York and Liberty State Park in Jersey City, New Jersey.",
-  "directionsUrl": "http://www.nps.gov/elis/planyourvisit/directions.htm",
-  "fullName": "Statue Of Liberty National Monument",
-  "url": "https://www.nps.gov/stli/index.htm",
-  "weatherInfo": "It is typically colder and more windy in New York Harbor than in elsewhere in the New York City metropolitan area. Winters are cold and damp. Spring and Fall can range from chilly to warm. Summers are warm to hot and humid.",
-  "name": "Statue Of Liberty"
   },
   {
   "states": "ND",
@@ -1140,21 +915,6 @@
   "name": "Voyageurs"
   },
   {
-  "states": "TX",
-  "lat": "31.60465887",
-  "long": "-97.17606143",
-  "description": "On July 10, 2015, President Barack Obama issued a Presidential Proclamation making the Waco Mammoth Site a new unit of the National Park System. This paleontological site represents the nation’s only recorded discovery of a nursery herd of Columbian mammoths. Visitors can view \"in situ\" fossils including female mammoths, a bull mammoth, and a camel that lived approximately 67,000 years ago.",
-  "designation": "National Monument",
-  "parkCode": "waco",
-  "id": "46CA5FAF-2AEE-4795-B609-8CB81F9FBBEC",
-  "directionsInfo": "From I-35 North, take exit 339 and head west on Lake Shore Drive. Turn right on Steinbeck Bend Drive and travel 1.5 miles to the Monument.\n\nFrom I-35 South, take exit 335C and head northwest on Martin Luther King, Jr. Boulevard. Continue straight onto Steinbeck Bend Drive and travel 1.5 miles to the Monument.\n\nThe Monument is easily accessible via personal vehicle, bus, or motor home.",
-  "directionsUrl": "http://www.nps.gov/waco/planyourvisit/directions.htm",
-  "fullName": "Waco Mammoth National Monument",
-  "url": "https://www.nps.gov/waco/index.htm",
-  "weatherInfo": "Overall, the monume enjoys a sunny, mild climate during three seasons of the year.\n\nSpring: Temperatures range from 45 F to 85 F (7 C/29 C). Rain is common in April and May.\n\nSummer: Temperatures range from 70 F to 95 F (21 C/35 C). Temperatures can exceed 100 F (38 C) in July and August. Lightweight clothing and sunscreen are advisable. Be prepared with plenty of water.\n\nFall: Temperatures range from 45 F to 85 F (7 C/29 C).\n\nWinter: Temperatures range from 35 F to 65 F (2 C/18 C) . Snow and ice are rare.",
-  "name": "Waco Mammoth"
-  },
-  {
   "states": "SD",
   "lat": "43.58012365",
   "long": "-103.4394709",
@@ -1168,21 +928,6 @@
   "url": "https://www.nps.gov/wica/index.htm",
   "weatherInfo": "Spring:  Highs range from 50 - 70 F with highly variable weather. Spring is the park's wettest season.\n\nSummer:  Warm and generally dry with highs in the 80s F. Thunderstorms are common and can produce large hail and severe lightning. \n\nFall:  Generally dry with warm days and cool nights. Highs in the 50s - 60s F. Lows below freezing are common.\n\nWinter: Highs in the upper 30s F with lows in the 10s F. Snowfall averages 30 inches annually, periodically closing park roads.",
   "name": "Wind Cave"
-  },
-  {
-  "states": "VA",
-  "lat": "38.93854526",
-  "long": "-77.265089",
-  "description": "No matter what your age or taste in shows, you'll find something you like onstage at Wolf Trap. From May through September, multiple amphitheaters in the park present performances such as musicals, dance, opera, jazz, and popular and country music.\n\nA good time to explore the beauty  and history of the park without the crowds is October - April.",
-  "designation": "",
-  "parkCode": "wotr",
-  "id": "72F41D84-A8ED-47FC-935A-2FD28C3C582E",
-  "directionsInfo": "Wolf Trap National Park for the Performing Arts is located in Vienna, Virginia. The park can be accessed by traveling from Route 7, the Dulles Toll Road (Route 267), Beulah Road or Old Courthouse Road. For more detailed information visit the park's directions page.",
-  "directionsUrl": "http://www.nps.gov/wotr/planyourvisit/directions.htm",
-  "fullName": "Wolf Trap National Park for the Performing Arts",
-  "url": "https://www.nps.gov/wotr/index.htm",
-  "weatherInfo": "The weather at Wolf Trap National Park for the Performing Arts is typical for the mid-Atlantic area. There are four seasons. The majority of visitation is during the summers, which can be hot and humid during the day and cooler at night.",
-  "name": "Wolf Trap National Park for the Performing Arts"
   },
   {
   "states": "AK",

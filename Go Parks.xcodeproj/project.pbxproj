@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FD5F6DA53EDBC663A7B97CA /* Pods_Go_Parks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9EE93B53CD1F9288EC71C0 /* Pods_Go_Parks.framework */; };
 		741A48C72097E0DB00B4688F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A48C62097E0DB00B4688F /* AppDelegate.swift */; };
 		741A48C92097E0DB00B4688F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A48C82097E0DB00B4688F /* ViewController.swift */; };
 		741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CA2097E0DB00B4688F /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6EF61FC8A78D20142D540FEE /* Pods-Go Parks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Go Parks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks.release.xcconfig"; sourceTree = "<group>"; };
 		741A48C32097E0DB00B4688F /* Go Parks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go Parks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		741A48C62097E0DB00B4688F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		741A48C82097E0DB00B4688F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +32,8 @@
 		74A813E020A8DAC000CAD469 /* ParksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParksData.swift; sourceTree = "<group>"; };
 		74A813E620A8FA7000CAD469 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		74A813E820A90DF000CAD469 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7B9EE93B53CD1F9288EC71C0 /* Pods_Go_Parks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Go_Parks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C539A13E005A44208A15B864 /* Pods-Go Parks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Go Parks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD5F6DA53EDBC663A7B97CA /* Pods_Go_Parks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08987BCA2E2A88F8408072CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C539A13E005A44208A15B864 /* Pods-Go Parks.debug.xcconfig */,
+				6EF61FC8A78D20142D540FEE /* Pods-Go Parks.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1A3AF9A8C90B63519962FEA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B9EE93B53CD1F9288EC71C0 /* Pods_Go_Parks.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		741A48BA2097E0DB00B4688F = {
 			isa = PBXGroup;
 			children = (
 				741A48C52097E0DB00B4688F /* Go Parks */,
 				741A48C42097E0DB00B4688F /* Products */,
+				08987BCA2E2A88F8408072CF /* Pods */,
+				1A3AF9A8C90B63519962FEA8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,9 +91,7 @@
 				74A813DD20A8DAA600CAD469 /* Model */,
 				74A813DA20A8D7CA00CAD469 /* Supporting Files */,
 				741A48C62097E0DB00B4688F /* AppDelegate.swift */,
-				741A48CA2097E0DB00B4688F /* Main.storyboard */,
 				741A48CD2097E0DC00B4688F /* Assets.xcassets */,
-				741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */,
 				741A48D22097E0DC00B4688F /* Info.plist */,
 			);
 			path = "Go Parks";
@@ -95,6 +117,8 @@
 		74A813DE20A8DAAD00CAD469 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				741A48CA2097E0DB00B4688F /* Main.storyboard */,
+				741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 741A48D52097E0DC00B4688F /* Build configuration list for PBXNativeTarget "Go Parks" */;
 			buildPhases = (
+				AE6F08AE3E968E6DFC29F937 /* [CP] Check Pods Manifest.lock */,
 				741A48BF2097E0DB00B4688F /* Sources */,
 				741A48C02097E0DB00B4688F /* Frameworks */,
 				741A48C12097E0DB00B4688F /* Resources */,
+				0876E48392F52B33D4A576DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +200,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0876E48392F52B33D4A576DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SimpleImageViewer/SimpleImageViewer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleImageViewer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE6F08AE3E968E6DFC29F937 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Go Parks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		741A48BF2097E0DB00B4688F /* Sources */ = {
@@ -326,6 +391,7 @@
 		};
 		741A48D62097E0DC00B4688F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C539A13E005A44208A15B864 /* Pods-Go Parks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -344,6 +410,7 @@
 		};
 		741A48D72097E0DC00B4688F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EF61FC8A78D20142D540FEE /* Pods-Go Parks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
