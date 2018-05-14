@@ -12,6 +12,10 @@
 		741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CA2097E0DB00B4688F /* Main.storyboard */; };
 		741A48CE2097E0DC00B4688F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CD2097E0DC00B4688F /* Assets.xcassets */; };
 		741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */; };
+		74A813DC20A8D7DA00CAD469 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = 74A813DB20A8D7DA00CAD469 /* parks.json */; };
+		74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* ParksData.swift */; };
+		74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E620A8FA7000CAD469 /* MapVC.swift */; };
+		74A813E920A90DF000CAD469 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E820A90DF000CAD469 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		741A48CD2097E0DC00B4688F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		741A48D02097E0DC00B4688F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741A48D22097E0DC00B4688F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74A813DB20A8D7DA00CAD469 /* parks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
+		74A813E020A8DAC000CAD469 /* ParksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParksData.swift; sourceTree = "<group>"; };
+		74A813E620A8FA7000CAD469 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		74A813E820A90DF000CAD469 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,50 @@
 		741A48C52097E0DB00B4688F /* Go Parks */ = {
 			isa = PBXGroup;
 			children = (
+				74A813E520A8FA5600CAD469 /* Controller */,
+				74A813DE20A8DAAD00CAD469 /* View */,
+				74A813DD20A8DAA600CAD469 /* Model */,
+				74A813DA20A8D7CA00CAD469 /* Supporting Files */,
 				741A48C62097E0DB00B4688F /* AppDelegate.swift */,
-				741A48C82097E0DB00B4688F /* ViewController.swift */,
 				741A48CA2097E0DB00B4688F /* Main.storyboard */,
 				741A48CD2097E0DC00B4688F /* Assets.xcassets */,
 				741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */,
 				741A48D22097E0DC00B4688F /* Info.plist */,
 			);
 			path = "Go Parks";
+			sourceTree = "<group>";
+		};
+		74A813DA20A8D7CA00CAD469 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				74A813DB20A8D7DA00CAD469 /* parks.json */,
+				74A813E820A90DF000CAD469 /* Extensions.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		74A813DD20A8DAA600CAD469 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				74A813E020A8DAC000CAD469 /* ParksData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		74A813DE20A8DAAD00CAD469 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74A813E520A8FA5600CAD469 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				741A48C82097E0DB00B4688F /* ViewController.swift */,
+				74A813E620A8FA7000CAD469 /* MapVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +169,7 @@
 				741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */,
 				741A48CE2097E0DC00B4688F /* Assets.xcassets in Resources */,
 				741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */,
+				74A813DC20A8D7DA00CAD469 /* parks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +180,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A813E920A90DF000CAD469 /* Extensions.swift in Sources */,
 				741A48C92097E0DB00B4688F /* ViewController.swift in Sources */,
+				74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */,
 				741A48C72097E0DB00B4688F /* AppDelegate.swift in Sources */,
+				74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
