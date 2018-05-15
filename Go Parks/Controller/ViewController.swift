@@ -34,7 +34,7 @@ class ViewController: UIViewController, ReceivePark {
       
       for park in parks {
         parksArray.append(park)
-//        print(park.lat)
+        print(park.states)
       }
  
     } catch {
@@ -42,6 +42,10 @@ class ViewController: UIViewController, ReceivePark {
     }
   }
 
+  @IBAction func goSwipe(_ sender: Any) {
+    performSegue(withIdentifier: "goAhead", sender: Any?.self)
+    
+  }
   
   @IBAction func testButton(_ sender: Any) {
     
@@ -52,7 +56,7 @@ class ViewController: UIViewController, ReceivePark {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "goAhead" {
-      parkToGo = Int(Double.random(min: 0, max: 65))
+      parkToGo = Int(Double.random(min: 0, max: 64))
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = parksArray[parkToGo]
       print("PARK \(parksArray[parkToGo].fullName) ")

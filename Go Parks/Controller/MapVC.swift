@@ -23,7 +23,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   @IBOutlet weak var parkDescription: UITextView!
   @IBOutlet var gestureRecognizer: UIScreenEdgePanGestureRecognizer!
   
-
+  
   @IBAction func backGesture(_ sender: Any) {
     
     dismiss(animated: true, completion: nil)
@@ -33,34 +33,46 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   var data : ParksData?
   
   var manager = CLLocationManager()
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      parkName.text = data?.fullName
-      parkDescription.text = data?.description
-      stateName.text = data?.states.longStateName()
-      photoImageView.image = UIImage(named: (data?.name)!)
-      
-      guard let lat = data?.lat else { return }
-      guard let long = data?.long else { return }
-      
-      let goLat = Double(lat)
-      let goLong = Double(long)
-      
-      let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-      photoImageView.isUserInteractionEnabled = true
-      photoImageView.addGestureRecognizer(tapGestureRecognizer)
-
-      
-      
-      getLocatin(forLatitude: goLat!, forLongitude: goLong!)
-
-        // Do any additional setup after loading the view.
+  
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    parkName.text = data?.fullName
+    parkDescription.text = data?.description
+    stateName.text = ""
+    let states = data?.states
+    var statesString = String()
+    
+    if states?.count == 1 {
+      stateName.text? = states![0].longStateName()
+    } else {
+      for i in states! {
+        statesString.append("\(i.longStateName()), ")
+      }
+      statesString.removeLast(2)
+      stateName.text? = statesString
     }
+    photoImageView.image = UIImage(named: (data?.name)!)
+    
+    guard let lat = data?.lat else { return }
+    guard let long = data?.long else { return }
+    
+    let goLat = Double(lat)
+    let goLong = Double(long)
+    
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+    photoImageView.isUserInteractionEnabled = true
+    photoImageView.addGestureRecognizer(tapGestureRecognizer)
+    
+    
+    
+    getLocatin(forLatitude: goLat!, forLongitude: goLong!)
+    
+    // Do any additional setup after loading the view.
+  }
   @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
     
-//    let tappedImage = tapGestureRecognizer.view as! UIImageView
+    //    let tappedImage = tapGestureRecognizer.view as! UIImageView
     
     let configuration = ImageViewerConfiguration { config in
       config.imageView = photoImageView
@@ -78,8 +90,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     let pinObject = MKPointAnnotation()
     
     pinObject.coordinate = pinLocation
-        pinObject.title = data?.fullName
-//        pinObject.subtitle = "This Location"
+    pinObject.title = data?.fullName
+    //        pinObject.subtitle = "This Location"
     
     self.mapView.addAnnotation(pinObject)
   }

@@ -10,7 +10,7 @@ import UIKit
 
 struct ParksData : Codable {
   
-  let states : String
+  let states : [String]
   let lat : String
   let long: String
   let description : String
