@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		1FD5F6DA53EDBC663A7B97CA /* Pods_Go_Parks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9EE93B53CD1F9288EC71C0 /* Pods_Go_Parks.framework */; };
 		741A48C72097E0DB00B4688F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A48C62097E0DB00B4688F /* AppDelegate.swift */; };
-		741A48C92097E0DB00B4688F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A48C82097E0DB00B4688F /* ViewController.swift */; };
+		741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A48C82097E0DB00B4688F /* WelcomeVC.swift */; };
 		741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CA2097E0DB00B4688F /* Main.storyboard */; };
 		741A48CE2097E0DC00B4688F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CD2097E0DC00B4688F /* Assets.xcassets */; };
 		741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */; };
+		746EF43120AA7A600087169A /* ParkByStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43020AA7A600087169A /* ParkByStateVC.swift */; };
+		746EF43320AA7B7B0087169A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43220AA7B7B0087169A /* Service.swift */; };
+		746EF43820AA7DA10087169A /* ExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43620AA7DA10087169A /* ExpandableCell.swift */; };
+		746EF43920AA7DA10087169A /* StateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746EF43720AA7DA10087169A /* StateCell.xib */; };
+		746EF43D20AA7DD00087169A /* ParkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746EF43B20AA7DD00087169A /* ParkCell.xib */; };
 		74A813DC20A8D7DA00CAD469 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = 74A813DB20A8D7DA00CAD469 /* parks.json */; };
-		74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* ParksData.swift */; };
+		74A813E220A8DAC000CAD469 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* Data.swift */; };
 		74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E620A8FA7000CAD469 /* MapVC.swift */; };
 		74A813E920A90DF000CAD469 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E820A90DF000CAD469 /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -23,13 +28,18 @@
 		6EF61FC8A78D20142D540FEE /* Pods-Go Parks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Go Parks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks.release.xcconfig"; sourceTree = "<group>"; };
 		741A48C32097E0DB00B4688F /* Go Parks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go Parks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		741A48C62097E0DB00B4688F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		741A48C82097E0DB00B4688F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		741A48C82097E0DB00B4688F /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		741A48CB2097E0DB00B4688F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		741A48CD2097E0DC00B4688F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		741A48D02097E0DC00B4688F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741A48D22097E0DC00B4688F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		746EF43020AA7A600087169A /* ParkByStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateVC.swift; sourceTree = "<group>"; };
+		746EF43220AA7B7B0087169A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		746EF43620AA7DA10087169A /* ExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCell.swift; sourceTree = "<group>"; };
+		746EF43720AA7DA10087169A /* StateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StateCell.xib; sourceTree = "<group>"; };
+		746EF43B20AA7DD00087169A /* ParkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkCell.xib; sourceTree = "<group>"; };
 		74A813DB20A8D7DA00CAD469 /* parks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
-		74A813E020A8DAC000CAD469 /* ParksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParksData.swift; sourceTree = "<group>"; };
+		74A813E020A8DAC000CAD469 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		74A813E620A8FA7000CAD469 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		74A813E820A90DF000CAD469 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7B9EE93B53CD1F9288EC71C0 /* Pods_Go_Parks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Go_Parks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,22 +96,32 @@
 		741A48C52097E0DB00B4688F /* Go Parks */ = {
 			isa = PBXGroup;
 			children = (
-				74A813E520A8FA5600CAD469 /* Controller */,
-				74A813DE20A8DAAD00CAD469 /* View */,
-				74A813DD20A8DAA600CAD469 /* Model */,
 				74A813DA20A8D7CA00CAD469 /* Supporting Files */,
-				741A48C62097E0DB00B4688F /* AppDelegate.swift */,
-				741A48CD2097E0DC00B4688F /* Assets.xcassets */,
+				74A813DD20A8DAA600CAD469 /* Model */,
+				74A813DE20A8DAAD00CAD469 /* View */,
+				74A813E520A8FA5600CAD469 /* Controller */,
 				741A48D22097E0DC00B4688F /* Info.plist */,
 			);
 			path = "Go Parks";
 			sourceTree = "<group>";
 		};
+		746EF43520AA7D7C0087169A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				746EF43620AA7DA10087169A /* ExpandableCell.swift */,
+				746EF43720AA7DA10087169A /* StateCell.xib */,
+				746EF43B20AA7DD00087169A /* ParkCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		74A813DA20A8D7CA00CAD469 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				74A813DB20A8D7DA00CAD469 /* parks.json */,
+				741A48C62097E0DB00B4688F /* AppDelegate.swift */,
 				74A813E820A90DF000CAD469 /* Extensions.swift */,
+				746EF43220AA7B7B0087169A /* Service.swift */,
+				74A813DB20A8D7DA00CAD469 /* parks.json */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -109,7 +129,7 @@
 		74A813DD20A8DAA600CAD469 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				74A813E020A8DAC000CAD469 /* ParksData.swift */,
+				74A813E020A8DAC000CAD469 /* Data.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -117,6 +137,8 @@
 		74A813DE20A8DAAD00CAD469 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				746EF43520AA7D7C0087169A /* Cells */,
+				741A48CD2097E0DC00B4688F /* Assets.xcassets */,
 				741A48CA2097E0DB00B4688F /* Main.storyboard */,
 				741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */,
 			);
@@ -126,8 +148,9 @@
 		74A813E520A8FA5600CAD469 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				741A48C82097E0DB00B4688F /* ViewController.swift */,
+				741A48C82097E0DB00B4688F /* WelcomeVC.swift */,
 				74A813E620A8FA7000CAD469 /* MapVC.swift */,
+				746EF43020AA7A600087169A /* ParkByStateVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,7 +217,9 @@
 			files = (
 				741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */,
 				741A48CE2097E0DC00B4688F /* Assets.xcassets in Resources */,
+				746EF43D20AA7DD00087169A /* ParkCell.xib in Resources */,
 				741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */,
+				746EF43920AA7DA10087169A /* StateCell.xib in Resources */,
 				74A813DC20A8D7DA00CAD469 /* parks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,12 +235,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/ExpandableCell/ExpandableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/SimpleImageViewer/SimpleImageViewer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpandableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleImageViewer.framework",
 			);
@@ -250,10 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A813E920A90DF000CAD469 /* Extensions.swift in Sources */,
-				741A48C92097E0DB00B4688F /* ViewController.swift in Sources */,
+				746EF43320AA7B7B0087169A /* Service.swift in Sources */,
+				741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */,
+				746EF43820AA7DA10087169A /* ExpandableCell.swift in Sources */,
 				74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */,
 				741A48C72097E0DB00B4688F /* AppDelegate.swift in Sources */,
-				74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */,
+				74A813E220A8DAC000CAD469 /* Data.swift in Sources */,
+				746EF43120AA7A600087169A /* ParkByStateVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
