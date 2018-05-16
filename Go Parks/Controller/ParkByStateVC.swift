@@ -18,13 +18,16 @@ class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
   var statesArray = [State]()
   var selectedRow = Int()
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     statesTableView.delegate = self
     statesTableView.dataSource = self
     
+  
+    
     for i in Service.instance.stateNamesArray {
-      statesArray.append(State.init(name: i.longStateName(), flag: UIImage(named: i)!))
+      statesArray.append(State.init(name: i, flag: UIImage(named: i)!))
     }
     
   }
@@ -37,8 +40,20 @@ class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     let cell = statesTableView.dequeueReusableCell(withIdentifier: StateCell.ID) as! StateCell
     
     let state = statesArray[indexPath.row]
+    var count = Int()
+    var parksCount = String()
     
-    cell.configeureCell(stateName: state.stateName, stateFlag: state.stateFlag)
+    for _ in Service.instance.parksArray.filter({ $0.states.contains(state.stateName) }) {
+      count = count + 1
+    }
+    
+    if count == 1 {
+      parksCount = "\(count) park"
+    } else {
+      parksCount = "\(count) parks"
+    }
+    
+    cell.configeureCell(stateName: state.stateName.longStateName(), stateFlag: state.stateFlag, parksCount: parksCount )
     
     return cell
   }

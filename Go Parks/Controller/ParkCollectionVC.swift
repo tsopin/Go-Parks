@@ -12,7 +12,11 @@ protocol ReceiveParksForState {
   func parksForStatesRecieved(data: String)
 }
 
-class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ReceivePark {
+  func parkReceived(data: ParksData) {
+    //
+  }
+  
   
   
   @IBOutlet weak var parksCollectionView: UICollectionView!
@@ -20,6 +24,7 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
   var parkByStateArray = [ParksData]()
   var delegate : ReceiveParksForState?
   var chosenState : String?
+  var selectedItem = Int()
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return parkByStateArray.count
@@ -29,14 +34,18 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
     let cell = parksCollectionView.dequeueReusableCell(withReuseIdentifier: ParkCollectionCell.ID, for: indexPath) as! ParkCollectionCell
     let park = parkByStateArray[indexPath.row]
     
-    cell.configeureCell(name: park.fullName, photo: UIImage(named: park.name)!)
+    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!)
     
     return cell
   }
-  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    selectedItem = indexPath.row
+    performSegue(withIdentifier: "parkDetails", sender: Any?.self)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    parkByStateArray.removeAll()
     parksCollectionView.dataSource = self
     parksCollectionView.delegate = self
     
@@ -46,6 +55,18 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
       print("Parsk for state \(i.name)")
     }
     
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    if segue.identifier == "parkDetails" {
+      let destinationVC = segue.destination as! MapVC
+      destinationVC.data = parkByStateArray[selectedItem]
+      destinationVC.delegate = self
+      
+      print("Chosen Park \(parkByStateArray[selectedItem].fullName)")
+      
+    }
   }
 }
 
