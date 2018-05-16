@@ -7,57 +7,59 @@
 //
 
 import UIKit
-import ExpandableCell
 
-class ParkByStateVC: UIViewController, ExpandableDelegate {
+class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ReceiveParksForState {
+  func parksForStatesRecieved(data: String) {
+    //
+  }
   
-  @IBOutlet weak var statesTableView: ExpandableTableView!
+  @IBOutlet weak var statesTableView: UITableView!
   
   var statesArray = [State]()
+  var selectedRow = Int()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    statesTableView.expandableDelegate = self
-    statesTableView.animation = .automatic
+    statesTableView.delegate = self
+    statesTableView.dataSource = self
     
-    statesTableView.register(UINib(nibName: "StateCell", bundle: nil), forCellReuseIdentifier: StateCell.ID)
-    statesTableView.register(UINib(nibName: "ParkState", bundle: nil), forCellReuseIdentifier: ParkCell.ID)
-
     for i in Service.instance.stateNamesArray {
       statesArray.append(State.init(name: i.longStateName(), flag: UIImage(named: i)!))
     }
-
-  }
-  
-  func expandableTableView(_ expandableTableView: ExpandableTableView, expandedCellsForRowAt indexPath: IndexPath) -> [UITableViewCell]? {
-    
-    let cell = statesTableView.dequeueReusableCell(withIdentifier: ParkCell.ID) as! ParkCell
-    
-    return [cell]
     
   }
   
-  func expandableTableView(_ expandableTableView: ExpandableTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 80
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return Service.instance.stateNamesArray.count
   }
   
-  func expandableTableView(_ expandableTableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
-    return Service.instance.stateNamesArray.count  }
-  
-  func expandableTableView(_ expandableTableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = statesTableView.dequeueReusableCell(withIdentifier: StateCell.ID) as! StateCell
     
-   
+    let state = statesArray[indexPath.row]
     
-    cell.configeureCell(stateName: statesArray[indexPath.row].stateName, stateFlag: statesArray[indexPath.row].stateFlag)
+    cell.configeureCell(stateName: state.stateName, stateFlag: state.stateFlag)
     
     return cell
   }
   
-  func expandableTableView(_ expandableTableView: ExpandableTableView, heightsForExpandedRowAt indexPath: IndexPath) -> [CGFloat]? {
-    return [65]
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    selectedRow = indexPath.row
+    performSegue(withIdentifier: "parkByState", sender: Any?.self)
   }
   
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    if segue.identifier == "parkByState" {
+      let destinationVC = segue.destination as! ParkCollectionVC
+      destinationVC.chosenState = Service.instance.stateNamesArray[selectedRow]
+      destinationVC.delegate = self
+      
+      print("Chosen State \(Service.instance.stateNamesArray[selectedRow].longStateName())")
+    }
+  }
+
 }
 
 

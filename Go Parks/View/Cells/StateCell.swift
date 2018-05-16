@@ -1,5 +1,5 @@
 //
-//  ExpandableCell.swift
+//  StateCell.swift
 //  Go Parks
 //
 //  Created by Timofei Sopin on 2018-05-14.
@@ -7,29 +7,21 @@
 //
 
 import UIKit
-import ExpandableCell
 
-class StateCell: ExpandableCell {
+class StateCell: UITableViewCell {
   static let ID = "StateCell"
   
   @IBOutlet weak var stateNameLabel: UILabel!
   @IBOutlet weak var stateFlagImage: UIImageView!
   
   func configeureCell(stateName: String, stateFlag: UIImage) {
+    
+    self.stateFlagImage.layer.cornerRadius = 10
+    self.stateFlagImage.layer.masksToBounds = true
     self.stateNameLabel.text = stateName
     self.stateFlagImage.image = stateFlag
   }
   
 }
 
-class ParkCell: UITableViewCell {
-  static let ID = "ParkCell"
-  
-  @IBOutlet weak var parkNameLabel: UILabel!
-  
-  func configeureCell(parkName: String) {
-    self.parkNameLabel.text = parkName
-  }
-  
-}
 
