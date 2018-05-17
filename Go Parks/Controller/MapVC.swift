@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import SimpleImageViewer
+import Alamofire
+import SwiftyJSON
 
 protocol ReceivePark {
   func parkReceived(data: ParksData)
@@ -22,22 +24,26 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   @IBOutlet weak var photoImageView: UIImageView!
   @IBOutlet weak var parkDescription: UITextView!
   @IBOutlet var gestureRecognizer: UIScreenEdgePanGestureRecognizer!
-  
-  
   @IBAction func backGesture(_ sender: Any) {
     
     dismiss(animated: true, completion: nil)
   }
+  @IBOutlet weak var weatherIcon: UIImageView!
+  @IBOutlet weak var temperatureLabel: UILabel!
   
   var delegate : ReceivePark?
   var data : ParksData?
+  let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+  let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
+  let weatherDataModel = WeatherDataModel()
+  
   
   var manager = CLLocationManager()
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    parkName.text = data?.fullName
+    parkName.text = data?.name
     parkDescription.text = data?.description
     stateName.text = ""
     let states = data?.states
@@ -64,8 +70,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     photoImageView.isUserInteractionEnabled = true
     photoImageView.addGestureRecognizer(tapGestureRecognizer)
     
-    
-    
+    let params : [String : String] = ["lat" : lat, "lon" : long, "appid" : API_KEY]
+    getWeatherData(url: WEATHER_URL, parametrs: params)
     getLocatin(forLatitude: goLat!, forLongitude: goLong!)
     
     // Do any additional setup after loading the view.
@@ -104,5 +110,43 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   @IBAction func directionsButton(_ sender: Any) {
     UIApplication.shared.open(URL(string: (data?.directionsUrl)!)!, options: [:], completionHandler: nil)
   }
+  
+  func getWeatherData(url: String, parametrs: [String: String]) {
+    
+    Alamofire.request(url, method: .get, parameters: parametrs).responseJSON {
+      
+      response in
+      if response.result.isSuccess {
+        print("Sucess! Got the weather data!")
+        
+        let weatherJSON : JSON = JSON(response.result.value!)
+        self.updateWeatherData(json: weatherJSON)
+      } else {
+        print("Error \(String(describing: response.result.error))")
+      }
+      
+    }
+    
+  }
+  
+  func updateWeatherData (json: JSON) {
+    
+    if let tempResults = json["main"]["temp"].double {
+      weatherDataModel.temperatupre = Int(tempResults - 273.15)
+      weatherDataModel.city = json["name"].stringValue
+      weatherDataModel.condition = json["weather"][0]["id"].intValue
+      weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+      
+      updateUIwithWeatherData()
+    } else {
+    }
+  }
+  
+  func updateUIwithWeatherData() {
+    temperatureLabel.text = String(weatherDataModel.temperatupre) + "°C"
+    weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+  }
+  
+  
 }
 

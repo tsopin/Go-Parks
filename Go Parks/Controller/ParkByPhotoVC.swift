@@ -27,6 +27,8 @@ class ParkByPhotoVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     let cell = photosCollectionView.dequeueReusableCell(withReuseIdentifier: ParkByPhotoCell.ID, for: indexPath) as! ParkByPhotoCell
     let park = Service.instance.parksArray[indexPath.row]
     
+    cell.dropShadow()
+    
     cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!)
     
     return cell

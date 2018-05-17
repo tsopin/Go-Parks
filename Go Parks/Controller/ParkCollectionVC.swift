@@ -17,6 +17,7 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
     //
   }
   
+
   
   
   @IBOutlet weak var parksCollectionView: UICollectionView!
@@ -34,6 +35,7 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
     let cell = parksCollectionView.dequeueReusableCell(withReuseIdentifier: ParkCollectionCell.ID, for: indexPath) as! ParkCollectionCell
     let park = parkByStateArray[indexPath.row]
     
+    cell.dropShadow()
     cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!)
     
     return cell
@@ -54,8 +56,9 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
       parkByStateArray.append(i)
       print("Parsk for state \(i.name)")
     }
-    
   }
+  
+
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     

@@ -27,7 +27,6 @@ class Service {
       
       for park in parks {
         parksArray.append(park)
-        print(park.states)
       }
       
     } catch {
@@ -84,7 +83,7 @@ class Service {
                  "VI",
 //                 "VT",
                  "WA",
-                 "WI",
+//                 "WI",
 //                 "WV",
                  "WY"]
 
