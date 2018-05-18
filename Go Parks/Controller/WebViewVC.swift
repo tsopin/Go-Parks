@@ -19,6 +19,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
   @IBOutlet weak var webView: WKWebView!
   var delegate : ReceiveURL?
   var receivedUrl : String?
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +48,15 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
   }
 
   @IBAction func dismissButton(_ sender: Any) {
-    
-    
-    navigationController?.popViewController(animated: true)
-    
-    dismiss(animated: true, completion: nil)
-    
-    
+    dismissVC()
   }
   
+  @IBAction func edgeGesture(_ sender: Any) {
+    dismissVC()
+  }
+  
+  func dismissVC() {
+    navigationController?.popViewController(animated: true)
+    dismiss(animated: true, completion: nil)
+  }
 }
