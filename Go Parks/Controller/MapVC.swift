@@ -16,7 +16,12 @@ protocol ReceivePark {
   func parkReceived(data: ParksData)
 }
 
-class MapVC: UIViewController, CLLocationManagerDelegate {
+class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
+  func urlRecieved(data: String) {
+//
+  }
+
+  
   
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var parkName: UILabel!
@@ -30,6 +35,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   }
   @IBOutlet weak var weatherIcon: UIImageView!
   @IBOutlet weak var temperatureLabel: UILabel!
+  @IBOutlet weak var weatherActivity: UIActivityIndicatorView!
   
   var delegate : ReceivePark?
   var data : ParksData?
@@ -37,6 +43,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
   let weatherDataModel = WeatherDataModel()
   
+  
+  var goLat = Double()
+  var goLong = Double()
+  var sentUrl = String()
   
   var manager = CLLocationManager()
   
@@ -48,6 +58,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     stateName.text = ""
     let states = data?.states
     var statesString = String()
+    weatherActivity.hidesWhenStopped = true
+    mapView.layer.cornerRadius = 20
+    mapView.layer.borderWidth = 1
+    mapView.layer.borderColor = UIColor.lightGray.cgColor
+//    photoImageView.layer.cornerRadius = 20
     
     if states?.count == 1 {
       stateName.text? = states![0].longStateName()
@@ -63,8 +78,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }
     
-    let goLat = Double(lat)
-    let goLong = Double(long)
+    goLat = Double(lat)!
+    goLong = Double(long)!
     
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
     photoImageView.isUserInteractionEnabled = true
@@ -72,7 +87,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     let params : [String : String] = ["lat" : lat, "lon" : long, "appid" : API_KEY]
     getWeatherData(url: WEATHER_URL, parametrs: params)
-    getLocatin(forLatitude: goLat!, forLongitude: goLong!)
+    getLocatin(forLatitude: goLat, forLongitude: goLong)
     
     // Do any additional setup after loading the view.
   }
@@ -103,15 +118,20 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   }
   @IBAction func infoButton(_ sender: Any) {
     
-    UIApplication.shared.open(URL(string: (data?.url)!)!, options: [:], completionHandler: nil)
+    sentUrl = (data?.url)!
+//    UIApplication.shared.open(URL(string: (data?.url)!)!, options: [:], completionHandler: nil)
+    performSegue(withIdentifier: "openUrl", sender: Any?.self)
     
   }
   
   @IBAction func directionsButton(_ sender: Any) {
-    UIApplication.shared.open(URL(string: (data?.directionsUrl)!)!, options: [:], completionHandler: nil)
+//    UIApplication.shared.open(URL(string: (data?.directionsUrl)!)!, options: [:], completionHandler: nil)
+    sentUrl = (data?.directionsUrl)!
+    performSegue(withIdentifier: "openUrl", sender: Any?.self)
   }
   
   func getWeatherData(url: String, parametrs: [String: String]) {
+    weatherActivity.startAnimating()
     
     Alamofire.request(url, method: .get, parameters: parametrs).responseJSON {
       
@@ -121,6 +141,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         
         let weatherJSON : JSON = JSON(response.result.value!)
         self.updateWeatherData(json: weatherJSON)
+        self.weatherActivity.stopAnimating()
       } else {
         print("Error \(String(describing: response.result.error))")
       }
@@ -147,6 +168,22 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
   }
   
+  @IBAction func directionButton(_ sender: Any) {
+    
+            UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
+    
+    
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    if segue.identifier == "openUrl" {
+      let destinationVC = segue.destination as! WebViewVC
+      destinationVC.receivedUrl = sentUrl
+      destinationVC.delegate = self
+      
+    }
+  }
   
 }
 
