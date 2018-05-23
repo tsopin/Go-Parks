@@ -14,7 +14,6 @@ class ParkCollectionCell: UICollectionViewCell {
   @IBOutlet weak var parkPhoto: UIImageView!
   @IBOutlet weak var parkName: UILabel!
   
-  
   func dropShadow() {
     self.contentView.layer.cornerRadius = 20.0
     self.contentView.layer.borderWidth = 1.0
@@ -35,6 +34,4 @@ class ParkCollectionCell: UICollectionViewCell {
     self.parkName.text = name
     self.parkPhoto.image = photo
   }
-  
-  
 }

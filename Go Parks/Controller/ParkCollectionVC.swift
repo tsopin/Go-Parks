@@ -8,22 +8,11 @@
 
 import UIKit
 
-protocol ReceiveParksForState {
-  func parksForStatesRecieved(data: String)
-}
-
-class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ReceivePark {
-  func parkReceived(data: ParksData) {
-    //
-  }
-  
-
-  
+class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
   
   @IBOutlet weak var parksCollectionView: UICollectionView!
   
   var parkByStateArray = [ParksData]()
-  var delegate : ReceiveParksForState?
   var chosenState : String?
   var selectedItem = Int()
   
@@ -40,6 +29,7 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
     
     return cell
   }
+  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedItem = indexPath.row
     performSegue(withIdentifier: "parkDetails", sender: Any?.self)
@@ -58,14 +48,11 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
     }
   }
   
-
-  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "parkDetails" {
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = parkByStateArray[selectedItem]
-      destinationVC.delegate = self
       
       print("Chosen Park \(parkByStateArray[selectedItem].fullName)")
       

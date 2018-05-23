@@ -23,7 +23,6 @@ class StateCell: UITableViewCell {
     self.stateFlagImage.image = stateFlag
     self.numberOfParks.text = parksCount
   }
-  
 }
 
 

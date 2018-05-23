@@ -8,10 +8,7 @@
 
 import UIKit
 
-class WelcomeVC: UIViewController, ReceivePark {
-  func parkReceived(data: ParksData) {
-    //
-  }
+class WelcomeVC: UIViewController {
   
   var parkToGo = Int()
   
@@ -19,30 +16,18 @@ class WelcomeVC: UIViewController, ReceivePark {
     super.viewDidLoad()
     Service.instance.getCountryList()
   }
-
-
-
+  
   @IBAction func goSwipe(_ sender: Any) {
     performSegue(withIdentifier: "goAhead", sender: Any?.self)
-    
-  }
-  
-  @IBAction func testButton(_ sender: Any) {
-    
-
-    print("RANDOM \(parkToGo)")
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
     if segue.identifier == "goAhead" {
       parkToGo = Int(Double.random(min: 0, max: 64))
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = Service.instance.parksArray[parkToGo]
-//      print("PARK \(parksArray[parkToGo].fullName) ")
-      destinationVC.delegate = self
     }
   }
 }
 
-    
+

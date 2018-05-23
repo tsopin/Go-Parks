@@ -9,18 +9,14 @@
 import UIKit
 import WebKit
 
-protocol ReceiveURL {
-  func urlRecieved(data: String)
-}
 class WebViewVC: UIViewController, UIWebViewDelegate {
   
   @IBOutlet weak var progressBar: UIProgressView!
   @IBOutlet weak var loadingPage: UIActivityIndicatorView!
   @IBOutlet weak var webView: WKWebView!
-  var delegate : ReceiveURL?
+  
   var receivedUrl : String?
   
-
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -33,9 +29,8 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
       let request = URLRequest(url: url!)
       
       webView.load(request)
-      
-
     }
+  
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     if keyPath == "estimatedProgress" {
       print(self.webView.estimatedProgress)

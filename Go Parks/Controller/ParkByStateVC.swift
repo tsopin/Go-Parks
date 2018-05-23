@@ -8,28 +8,24 @@
 
 import UIKit
 
-class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ReceiveParksForState {
-  func parksForStatesRecieved(data: String) {
-    //
-  }
+class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  //  func parksForStatesRecieved(data: String) {
+  //    //
+  //  }
   
   @IBOutlet weak var statesTableView: UITableView!
   
   var statesArray = [State]()
   var selectedRow = Int()
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     statesTableView.delegate = self
     statesTableView.dataSource = self
     
-  
-    
     for i in Service.instance.stateNamesArray {
       statesArray.append(State.init(name: i, flag: UIImage(named: i)!))
     }
-    
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,9 +48,7 @@ class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     } else {
       parksCount = "\(count) parks"
     }
-    
     cell.configeureCell(stateName: state.stateName.longStateName(), stateFlag: state.stateFlag, parksCount: parksCount )
-    
     return cell
   }
   
@@ -63,18 +57,13 @@ class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     performSegue(withIdentifier: "parkByState", sender: Any?.self)
   }
   
-  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
     if segue.identifier == "parkByState" {
       let destinationVC = segue.destination as! ParkCollectionVC
       destinationVC.chosenState = Service.instance.stateNamesArray[selectedRow]
-      destinationVC.delegate = self
-      
       print("Chosen State \(Service.instance.stateNamesArray[selectedRow].longStateName())")
     }
   }
-
 }
 
 

@@ -8,16 +8,12 @@
 
 import UIKit
 
-class ParkByPhotoVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ReceivePark {
-  func parkReceived(data: ParksData) {
-    //
-  }
-  
-  
+class ParkByPhotoVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
   @IBOutlet weak var photosCollectionView: UICollectionView!
+  
   var selectedItem = Int()
-  
-  
+
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return Service.instance.parksArray.count
   }
@@ -33,11 +29,11 @@ class ParkByPhotoVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     return cell
   }
+  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedItem = indexPath.row
     performSegue(withIdentifier: "parkDetailFromPhoto", sender: Any?.self)
   }
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,11 +49,8 @@ class ParkByPhotoVC: UIViewController, UICollectionViewDelegate, UICollectionVie
       
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = park[selectedItem]
-      destinationVC.delegate = self
       
       print("Chosen Park \(park[selectedItem].fullName)")
-      
     }
   }
-  
 }

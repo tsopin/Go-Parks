@@ -12,16 +12,7 @@ import SimpleImageViewer
 import Alamofire
 import SwiftyJSON
 
-protocol ReceivePark {
-  func parkReceived(data: ParksData)
-}
-
-class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
-  func urlRecieved(data: String) {
-//
-  }
-
-  
+class MapVC: UIViewController, CLLocationManagerDelegate {
   
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var parkName: UILabel!
@@ -30,26 +21,21 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
   @IBOutlet weak var parkDescription: UITextView!
   @IBOutlet var gestureRecognizer: UIScreenEdgePanGestureRecognizer!
   @IBAction func backGesture(_ sender: Any) {
-    
     dismiss(animated: true, completion: nil)
   }
   @IBOutlet weak var weatherIcon: UIImageView!
   @IBOutlet weak var temperatureLabel: UILabel!
   @IBOutlet weak var weatherActivity: UIActivityIndicatorView!
   
-  var delegate : ReceivePark?
   var data : ParksData?
   let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
   let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
   let weatherDataModel = WeatherDataModel()
   
-  
   var goLat = Double()
   var goLong = Double()
   var sentUrl = String()
-  
   var manager = CLLocationManager()
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -62,7 +48,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
     mapView.layer.cornerRadius = 20
     mapView.layer.borderWidth = 1
     mapView.layer.borderColor = UIColor.lightGray.cgColor
-//    photoImageView.layer.cornerRadius = 20
+    //    photoImageView.layer.cornerRadius = 20
     
     if states?.count == 1 {
       stateName.text? = states![0].longStateName()
@@ -88,12 +74,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
     let params : [String : String] = ["lat" : lat, "lon" : long, "appid" : API_KEY]
     getWeatherData(url: WEATHER_URL, parametrs: params)
     getLocatin(forLatitude: goLat, forLongitude: goLong)
-    
-    // Do any additional setup after loading the view.
   }
+  
   @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-    
-    //    let tappedImage = tapGestureRecognizer.view as! UIImageView
     
     let configuration = ImageViewerConfiguration { config in
       config.imageView = photoImageView
@@ -112,20 +95,16 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
     
     pinObject.coordinate = pinLocation
     pinObject.title = data?.fullName
-    //        pinObject.subtitle = "This Location"
     
     self.mapView.addAnnotation(pinObject)
   }
+  
   @IBAction func infoButton(_ sender: Any) {
-    
     sentUrl = (data?.url)!
-//    UIApplication.shared.open(URL(string: (data?.url)!)!, options: [:], completionHandler: nil)
     performSegue(withIdentifier: "openUrl", sender: Any?.self)
-    
   }
   
   @IBAction func directionsButton(_ sender: Any) {
-//    UIApplication.shared.open(URL(string: (data?.directionsUrl)!)!, options: [:], completionHandler: nil)
     sentUrl = (data?.directionsUrl)!
     performSegue(withIdentifier: "openUrl", sender: Any?.self)
   }
@@ -137,7 +116,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
       
       response in
       if response.result.isSuccess {
-        print("Sucess! Got the weather data!")
+        print("Sucess")
         
         let weatherJSON : JSON = JSON(response.result.value!)
         self.updateWeatherData(json: weatherJSON)
@@ -145,9 +124,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
       } else {
         print("Error \(String(describing: response.result.error))")
       }
-      
     }
-    
   }
   
   func updateWeatherData (json: JSON) {
@@ -157,7 +134,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
       weatherDataModel.city = json["name"].stringValue
       weatherDataModel.condition = json["weather"][0]["id"].intValue
       weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
-      
       updateUIwithWeatherData()
     } else {
     }
@@ -170,9 +146,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
   
   @IBAction func directionButton(_ sender: Any) {
     
-            UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
-    
-    
+    UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -180,10 +154,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, ReceiveURL {
     if segue.identifier == "openUrl" {
       let destinationVC = segue.destination as! WebViewVC
       destinationVC.receivedUrl = sentUrl
-      destinationVC.delegate = self
-      
     }
   }
-  
 }
 
