@@ -15,10 +15,26 @@ class WelcomeVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     Service.instance.getCountryList()
+    
+  }
+  override func viewWillAppear(_ animated: Bool) {
+    self.navigationController?.isNavigationBarHidden = true
+  }
+  override func viewWillDisappear(_ animated: Bool) {
+    self.navigationController?.isNavigationBarHidden = false
   }
   
   @IBAction func goSwipe(_ sender: Any) {
-    performSegue(withIdentifier: "goAhead", sender: Any?.self)
+  goAhead()
+  }
+  override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    goAhead()
+  }
+  
+  func goAhead() {
+    DispatchQueue.main.async {
+      self.performSegue(withIdentifier: "goAhead", sender: Any?.self)
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

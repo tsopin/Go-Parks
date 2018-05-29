@@ -14,14 +14,14 @@ import SwiftyJSON
 
 class MapVC: UIViewController, CLLocationManagerDelegate {
   
+  @IBOutlet weak var favorite: UIButton!
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var parkName: UILabel!
-  @IBOutlet weak var stateName: UILabel!
   @IBOutlet weak var photoImageView: UIImageView!
   @IBOutlet weak var parkDescription: UITextView!
   @IBOutlet var gestureRecognizer: UIScreenEdgePanGestureRecognizer!
   @IBAction func backGesture(_ sender: Any) {
-    dismiss(animated: true, completion: nil)
+    dismissVC()
   }
   @IBOutlet weak var weatherIcon: UIImageView!
   @IBOutlet weak var temperatureLabel: UILabel!
@@ -41,24 +41,31 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     super.viewDidLoad()
     parkName.text = data?.name
     parkDescription.text = data?.description
-    stateName.text = ""
-    let states = data?.states
-    var statesString = String()
+    
+    //    if (data?.isFavorite)! {
+    //      favorite.setImage(UIImage(named: "heartGrey"), for: .normal)
+    //    } else {
+    //      favorite.setImage(UIImage(named: "heartGreen"), for: .normal)
+    //    }
+    
+    //    stateName.text = ""
+    //    let states = data?.states
+    //    var statesString = String()
     weatherActivity.hidesWhenStopped = true
-    mapView.layer.cornerRadius = 20
-    mapView.layer.borderWidth = 1
-    mapView.layer.borderColor = UIColor.lightGray.cgColor
+    //    mapView.layer.cornerRadius = 20
+    //    mapView.layer.borderWidth = 1
+    //    mapView.layer.borderColor = UIColor.lightGray.cgColor
     //    photoImageView.layer.cornerRadius = 20
     
-    if states?.count == 1 {
-      stateName.text? = states![0].longStateName()
-    } else {
-      for i in states! {
-        statesString.append("\(i.longStateName()), ")
-      }
-      statesString.removeLast(2)
-      stateName.text? = statesString
-    }
+    //    if states?.count == 1 {
+    //      stateName.text? = states![0].longStateName()
+    //    } else {
+    //      for i in states! {
+    //        statesString.append("\(i.longStateName()), ")
+    //      }
+    //      statesString.removeLast(2)
+    //      stateName.text? = statesString
+    //    }
     photoImageView.image = UIImage(named: (data?.name)!)
     
     guard let lat = data?.lat else { return }
@@ -101,12 +108,16 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   
   @IBAction func infoButton(_ sender: Any) {
     sentUrl = (data?.url)!
-    performSegue(withIdentifier: "openUrl", sender: Any?.self)
+    DispatchQueue.main.async {
+    self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
+    }
   }
   
   @IBAction func directionsButton(_ sender: Any) {
     sentUrl = (data?.directionsUrl)!
-    performSegue(withIdentifier: "openUrl", sender: Any?.self)
+    DispatchQueue.main.async {
+      self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
+    }
   }
   
   func getWeatherData(url: String, parametrs: [String: String]) {
@@ -126,6 +137,22 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
       }
     }
   }
+  
+  @IBAction func backButton(_ sender: Any) {
+    dismissVC()
+  }
+  
+  @IBAction func favoriteButton(_ sender: Any) {
+    if (data?.isFavorite)! {
+      
+      favorite.setImage(UIImage(named: "heartGrey"), for: .normal)
+    } else {
+      
+      favorite.setImage(UIImage(named: "heartGreen"), for: .normal)
+    }
+  }
+  
+  
   
   func updateWeatherData (json: JSON) {
     
@@ -148,6 +175,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
   }
+  
+  func dismissVC() {
+    DispatchQueue.main.async{
+      self.dismiss(animated: true, completion: nil)
+    }
+  }
+  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     

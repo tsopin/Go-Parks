@@ -17,19 +17,19 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
   
   var receivedUrl : String?
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-      self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
-      progressBar.isHidden = false
-      loadingPage.hidesWhenStopped = true
-      loadingPage.startAnimating()
-      
-      let url = URL(string: receivedUrl!)
-      let request = URLRequest(url: url!)
-      
-      webView.load(request)
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+    progressBar.isHidden = false
+    loadingPage.hidesWhenStopped = true
+    loadingPage.startAnimating()
+    
+    let url = URL(string: receivedUrl!)
+    let request = URLRequest(url: url!)
+    
+    webView.load(request)
+  }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     if keyPath == "estimatedProgress" {
@@ -41,7 +41,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
       progressBar.isHidden = true
     }
   }
-
+  
   @IBAction func dismissButton(_ sender: Any) {
     dismissVC()
   }
@@ -51,7 +51,9 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
   }
   
   func dismissVC() {
-    navigationController?.popViewController(animated: true)
-    dismiss(animated: true, completion: nil)
+    DispatchQueue.main.async {
+    self.navigationController?.popViewController(animated: true)
+    self.dismiss(animated: true, completion: nil)
+    }
   }
 }
