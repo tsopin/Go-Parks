@@ -16,11 +16,9 @@ class WelcomeVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     service.getListOfParks()
-//    if service.parksFilePath != nil {
-      service.loadParks()
-//    } else {
+    service.loadParks()
     
-//    }
+    print(service.parksArray.filter({ $0.isFavorite == true }).count)
     
   }
   override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +39,11 @@ class WelcomeVC: UIViewController {
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "goAhead", sender: Any?.self)
     }
+  }
+  @IBAction func favoriteButton(_ sender: Any) {
+    //    for i in service.parksArray {
+    //      i.isFavorite = false
+    //    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

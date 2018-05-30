@@ -27,7 +27,7 @@ class Service {
       for park in parks {
         parksArray.append(park)
       }
-    
+      
     } catch {
       print("eerrro")
     }

@@ -8,55 +8,95 @@
 
 import UIKit
 
-class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ParkByStateCellDelegate {
   
-//  @IBOutlet weak var parksCollectionView: UICollectionView!
   @IBOutlet weak var stateNameLabel: UILabel!
-  @IBOutlet weak var isFavoriteImage: UIImageView!
+  @IBOutlet weak var parkByStateCollectionView: UICollectionView!
   
-  var parkByStateArray = [ParksData]()
   var chosenState : String?
   var selectedItem = Int()
+  let service = Service.instance
+  var chosenPark = Int()
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return parkByStateArray.count
+    return service.parksArray.filter({ $0.states.contains("\(chosenState!)") }).count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkByStateCell.ID, for: indexPath) as! ParkByStateCell
-    let park = parkByStateArray[indexPath.row]
+    let park = service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[indexPath.row]
     
     cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
     
+    cell.delegate = self
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedItem = indexPath.row
+    
+    for i in 0..<service.parksArray.count {
+      if service.parksArray[i].name == service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[selectedItem].name {
+        chosenPark = i
+        print("\(service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[selectedItem].name) = \(service.parksArray[i].name) number \(i)")
+      }
+    }
+    
+    
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "parkDetails", sender: Any?.self)
     }
   }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    parkByStateArray.removeAll()
+  
+  func favoritePressed(cell: ParkByStateCell) {
+    guard let indexPath = self.parkByStateCollectionView.indexPath(for: cell) else {
+      return
+    }
     
-//    if (data?.isFavorite)! {
-//      isFavoriteImage.image = UIImage(named: "heartGreen")
-//    } else {
-//      isFavoriteImage.image = UIImage(named: "heartGrey")
+    var parkInCell = service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[indexPath.row]
+    
+    for i in 0..<service.parksArray.count {
+      
+      if service.parksArray[i].name == parkInCell.name {
+        
+        if parkInCell.isFavorite == false {
+          self.service.parksArray[i].isFavorite = true
+          parkInCell.isFavorite = true
+          print("\(self.service.parksArray[i].name) \(self.service.parksArray[i].isFavorite)")
+          
+        } else if parkInCell.isFavorite == true {
+          self.service.parksArray[i].isFavorite = false
+          parkInCell.isFavorite = false
+          print("\(self.service.parksArray[i].name) \(self.service.parksArray[i].isFavorite)")
+        }
+        
+        self.service.saveParks()
+        self.parkByStateCollectionView.reloadData()
+        //        print("Tapped \(parkInCell.name) in array \(self.service.parksArray[i].name)")
+      }
+    }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+//    for i in Service.instance.parksArray.filter({ $0.states.contains("\(chosenState!)") }) {
+//      
+//      //      parkByStateArray.append(i)
+//      //      print("Parsk for state \(i.name)")
 //    }
     
-//    parksCollectionView.dataSource = self
-//    parksCollectionView.delegate = self
+    DispatchQueue.main.async {
+      self.parkByStateCollectionView.reloadData()
+    }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    //    parkByStateArray.removeAll()
+    
     stateNameLabel.text = chosenState?.longStateName()
     
-    for i in Service.instance.parksArray.filter({ $0.states.contains("\(chosenState!)") }) {
-      
-      parkByStateArray.append(i)
-      print("Parsk for state \(i.name)")
-    }
+    
   }
   
   @IBAction func backButton(_ sender: Any) {
@@ -118,10 +158,11 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "parkDetails" {
-      let destinationVC = segue.destination as! MapVC
-      destinationVC.data = parkByStateArray[selectedItem]
       
-      print("Chosen Park \(parkByStateArray[selectedItem].fullName)")
+      let destinationVC = segue.destination as! MapVC
+      destinationVC.data = service.parksArray[chosenPark]
+      
+      print("Chosen Park \(service.parksArray[chosenPark].fullName)")
       
     }
   }

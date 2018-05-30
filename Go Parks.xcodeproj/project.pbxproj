@@ -12,6 +12,8 @@
 		741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A48C82097E0DB00B4688F /* WelcomeVC.swift */; };
 		741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CA2097E0DB00B4688F /* Main.storyboard */; };
 		741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */; };
+		7426E28F20BF29DB005A1900 /* FavoriteParksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */; };
+		7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */; };
 		7436E7BC20ADE70A00FC4F5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7436E7BB20ADE70A00FC4F5B /* Weather.swift */; };
 		745FB7C820BC864A00EC3B47 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C720BC60D700EC3B47 /* OpenSans-Bold.ttf */; };
 		745FB7C920BC864A00EC3B47 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C220BC60D200EC3B47 /* OpenSans-BoldItalic.ttf */; };
@@ -54,6 +56,8 @@
 		741A48CB2097E0DB00B4688F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		741A48D02097E0DC00B4688F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741A48D22097E0DC00B4688F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteParksVC.swift; sourceTree = "<group>"; };
+		7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteParksCell.swift; sourceTree = "<group>"; };
 		7436E7BB20ADE70A00FC4F5B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		745FB7BE20BC60CE00EC3B47 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		745FB7BF20BC60CF00EC3B47 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				746EF43620AA7DA10087169A /* StateCell.swift */,
 				749F8BFC20AB625A0023354F /* ParkByStateCell.swift */,
 				749F8C0220ABD2080023354F /* AllParksCell.swift */,
+				7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				746EF43020AA7A600087169A /* ListOfStatesVC.swift */,
 				749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */,
 				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
+				7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -371,6 +377,7 @@
 				749F8BFB20AB618B0023354F /* ParkCollectionVC.swift in Sources */,
 				74A813E920A90DF000CAD469 /* Extensions.swift in Sources */,
 				746EF43320AA7B7B0087169A /* Service.swift in Sources */,
+				7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */,
 				741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */,
 				746EF43820AA7DA10087169A /* StateCell.swift in Sources */,
 				74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */,
@@ -378,6 +385,7 @@
 				749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */,
 				745FB7E320BDF87700EC3B47 /* AllParksVC.swift in Sources */,
 				7436E7BC20ADE70A00FC4F5B /* Weather.swift in Sources */,
+				7426E28F20BF29DB005A1900 /* FavoriteParksVC.swift in Sources */,
 				74A813E220A8DAC000CAD469 /* Data.swift in Sources */,
 				7470F31720AE0B540005FFF1 /* WebViewVC.swift in Sources */,
 				746EF43120AA7A600087169A /* ListOfStatesVC.swift in Sources */,

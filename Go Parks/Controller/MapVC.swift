@@ -39,37 +39,26 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   var sentUrl = String()
   var manager = CLLocationManager()
   
-  
+  override func viewWillAppear(_ animated: Bool) {
+    if (data?.isFavorite)! {
+      favoriteImage.image = UIImage(named: "heartGreen")
+    } else {
+      favoriteImage.image = UIImage(named: "heartGrey")
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     parkName.text = data?.name
     parkDescription.text = data?.description
     
-    if (data?.isFavorite)! {
-      favoriteImage.image = UIImage(named: "heartGreen")
-    } else {
-      favoriteImage.image = UIImage(named: "heartGrey")
-    }
-    //    stateName.text = ""
-    //    let states = data?.states
-    //    var statesString = String()
+ 
+
     weatherActivity.hidesWhenStopped = true
-    //    mapView.layer.cornerRadius = 20
-    //    mapView.layer.borderWidth = 1
-    //    mapView.layer.borderColor = UIColor.lightGray.cgColor
-    //    photoImageView.layer.cornerRadius = 20
-    
-    //    if states?.count == 1 {
-    //      stateName.text? = states![0].longStateName()
-    //    } else {
-    //      for i in states! {
-    //        statesString.append("\(i.longStateName()), ")
-    //      }
-    //      statesString.removeLast(2)
-    //      stateName.text? = statesString
-    //    }
+
     photoImageView.image = UIImage(named: (data?.name)!)
+    
+    print("\(data?.name) is favorite \(data?.isFavorite)")
     
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }

@@ -1,29 +1,33 @@
 //
-//  ParkByStateCell.swift
+//  FavoriteParksCell.swift
 //  Go Parks
 //
-//  Created by Timofei Sopin on 2018-05-15.
+//  Created by Timofei Sopin on 2018-05-30.
 //  Copyright © 2018 Timofei Sopin. All rights reserved.
 //
 
 import UIKit
 
-protocol ParkByStateCellDelegate: class {
-  func favoritePressed(cell: ParkByStateCell)
+protocol FavoriteParksCellDelegate: class {
+  func favoritePressed(cell: FavoriteParksCell)
 }
 
-class ParkByStateCell: UICollectionViewCell {
-  static let ID = "ParkCollectionCell"
-  var delegate: ParkByStateCellDelegate?
-  
+class FavoriteParksCell: UICollectionViewCell {
+  static let ID = "FavoriteParksCell"
+  var delegate: FavoriteParksCellDelegate?
+
   @IBOutlet weak var parkPhoto: UIImageView!
   @IBOutlet weak var parkName: UILabel!
   @IBOutlet weak var favoriteImage: UIImageView!
+  
   @IBOutlet weak var favoriteButton: UIButton!
+  
   
   @IBAction func favoritePressed(_ sender: Any) {
     self.delegate?.favoritePressed(cell: self)
   }
+  
+  
   
   func configeureCell(name: String, photo: UIImage, isFavorite: Bool) {
     self.parkName.text = name
