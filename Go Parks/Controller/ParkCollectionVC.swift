@@ -12,6 +12,7 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
   
 //  @IBOutlet weak var parksCollectionView: UICollectionView!
   @IBOutlet weak var stateNameLabel: UILabel!
+  @IBOutlet weak var isFavoriteImage: UIImageView!
   
   var parkByStateArray = [ParksData]()
   var chosenState : String?
@@ -22,11 +23,10 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkCollectionCell.ID, for: indexPath) as! ParkCollectionCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkByStateCell.ID, for: indexPath) as! ParkByStateCell
     let park = parkByStateArray[indexPath.row]
     
-    cell.dropShadow()
-    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!)
+    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
     
     return cell
   }
@@ -41,6 +41,13 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
   override func viewDidLoad() {
     super.viewDidLoad()
     parkByStateArray.removeAll()
+    
+//    if (data?.isFavorite)! {
+//      isFavoriteImage.image = UIImage(named: "heartGreen")
+//    } else {
+//      isFavoriteImage.image = UIImage(named: "heartGrey")
+//    }
+    
 //    parksCollectionView.dataSource = self
 //    parksCollectionView.delegate = self
     stateNameLabel.text = chosenState?.longStateName()

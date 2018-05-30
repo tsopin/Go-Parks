@@ -11,10 +11,12 @@ import UIKit
 class Service {
   
   static let instance = Service()
-
-  var parksArray = [ParksData]()
+  let defaults = UserDefaults()
   
-  func getCountryList(){
+  var parksArray = [ParksData]()
+  let parksFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Parks.plist")
+  
+  func getListOfParks(){
     let decoder = JSONDecoder()
     let file = Bundle.main.url(forResource: "parks", withExtension: "json")
     
@@ -25,12 +27,39 @@ class Service {
       for park in parks {
         parksArray.append(park)
       }
+    
     } catch {
       print("eerrro")
     }
   }
   
-
+  
+  //Save User Currencies using PropertyListEncoder
+  func saveParks() {
+    
+    let encoder = PropertyListEncoder()
+    
+    do {
+      
+      let data = try encoder.encode(parksArray)
+      try data.write(to: parksFilePath!)
+      
+    } catch {
+      print("error \(error)")
+    }
+  }
+  
+  func loadParks() {
+    
+    if let data = try? Data(contentsOf: parksFilePath!) {
+      let decoder = PropertyListDecoder()
+      do {
+        parksArray = try decoder.decode([ParksData].self, from: data)
+      } catch {
+        print("Error \(error)")
+      }
+    }
+  }
   
   let stateNamesArray = [
     "AK",

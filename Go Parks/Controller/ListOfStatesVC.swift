@@ -1,5 +1,5 @@
 //
-//  ParkByStateVC.swift
+//  ListOfStatesVC.swift
 //  Go Parks
 //
 //  Created by Timofei Sopin on 2018-05-14.
@@ -8,11 +8,8 @@
 
 import UIKit
 
-class ParkByStateVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-  //  func parksForStatesRecieved(data: String) {
-  //    //
-  //  }
-  
+class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
   @IBOutlet weak var statesTableView: UITableView!
   
   var statesArray = [State]()

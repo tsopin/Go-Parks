@@ -26,28 +26,31 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   @IBOutlet weak var weatherIcon: UIImageView!
   @IBOutlet weak var temperatureLabel: UILabel!
   @IBOutlet weak var weatherActivity: UIActivityIndicatorView!
+  @IBOutlet weak var favoriteImage: UIImageView!
   
   var data : ParksData?
   let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
   let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
   let weatherDataModel = WeatherDataModel()
+  let service = Service.instance
   
   var goLat = Double()
   var goLong = Double()
   var sentUrl = String()
   var manager = CLLocationManager()
   
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     parkName.text = data?.name
     parkDescription.text = data?.description
     
-    //    if (data?.isFavorite)! {
-    //      favorite.setImage(UIImage(named: "heartGrey"), for: .normal)
-    //    } else {
-    //      favorite.setImage(UIImage(named: "heartGreen"), for: .normal)
-    //    }
-    
+    if (data?.isFavorite)! {
+      favoriteImage.image = UIImage(named: "heartGreen")
+    } else {
+      favoriteImage.image = UIImage(named: "heartGrey")
+    }
     //    stateName.text = ""
     //    let states = data?.states
     //    var statesString = String()
@@ -109,7 +112,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   @IBAction func infoButton(_ sender: Any) {
     sentUrl = (data?.url)!
     DispatchQueue.main.async {
-    self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
+      self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
     }
   }
   
@@ -140,18 +143,34 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   
   @IBAction func backButton(_ sender: Any) {
     dismissVC()
+    print("Back Pressed")
   }
   
   @IBAction func favoriteButton(_ sender: Any) {
-    if (data?.isFavorite)! {
-      
-      favorite.setImage(UIImage(named: "heartGrey"), for: .normal)
-    } else {
-      
-      favorite.setImage(UIImage(named: "heartGreen"), for: .normal)
-    }
+    
+    addToFavorite()
+    
   }
   
+  func addToFavorite() {
+    for i in 0..<service.parksArray.count {
+      
+      if service.parksArray[i].name == data?.name {
+        
+        if service.parksArray[i].isFavorite == false {
+          service.parksArray[i].isFavorite = true
+          favoriteImage.image = UIImage(named: "heartGreen")
+          print(service.parksArray[i].isFavorite)
+          
+        } else if service.parksArray[i].isFavorite == true {
+          service.parksArray[i].isFavorite = false
+          favoriteImage.image = UIImage(named: "heartGrey")
+          print(service.parksArray[i].isFavorite)
+        }
+        service.saveParks()
+      }
+    }
+  }
   
   
   func updateWeatherData (json: JSON) {

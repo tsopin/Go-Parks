@@ -15,8 +15,12 @@ class StateCell: UITableViewCell {
   @IBOutlet weak var stateFlagImage: UIImageView!
   @IBOutlet weak var numberOfParks: UILabel!
   
+ 
+  
   func configeureCell(stateName: String, stateFlag: UIImage, parksCount: String) {
     
+    self.stateFlagImage.layer.borderColor = UIColor(rgb: 0xEBEBEB).cgColor
+    self.stateFlagImage.layer.borderWidth = 1
     self.stateFlagImage.layer.cornerRadius = 10
     self.stateFlagImage.layer.masksToBounds = true
     self.stateNameLabel.text = stateName

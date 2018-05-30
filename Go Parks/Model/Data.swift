@@ -23,7 +23,7 @@ struct ParksData : Codable {
   let url : String
   let weatherInfo : String
   let name : String
-  let isFavorite : Bool
+  var isFavorite : Bool
 
 }
 

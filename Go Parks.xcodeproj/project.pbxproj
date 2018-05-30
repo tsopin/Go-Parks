@@ -31,15 +31,15 @@
 		745FB7DF20BCC3E200EC3B47 /* Ubuntu-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D720BCC3DF00EC3B47 /* Ubuntu-Medium.ttf */; };
 		745FB7E020BCC3E200EC3B47 /* Ubuntu-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D820BCC3E000EC3B47 /* Ubuntu-MediumItalic.ttf */; };
 		745FB7E120BCC3E200EC3B47 /* Ubuntu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D920BCC3E100EC3B47 /* Ubuntu-Light.ttf */; };
-		746EF43120AA7A600087169A /* ParkByStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43020AA7A600087169A /* ParkByStateVC.swift */; };
+		745FB7E320BDF87700EC3B47 /* AllParksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB7E220BDF87700EC3B47 /* AllParksVC.swift */; };
+		746EF43120AA7A600087169A /* ListOfStatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43020AA7A600087169A /* ListOfStatesVC.swift */; };
 		746EF43320AA7B7B0087169A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43220AA7B7B0087169A /* Service.swift */; };
 		746EF43820AA7DA10087169A /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43620AA7DA10087169A /* StateCell.swift */; };
 		7470F31720AE0B540005FFF1 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7470F31620AE0B540005FFF1 /* WebViewVC.swift */; };
 		749F8BFB20AB618B0023354F /* ParkCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */; };
-		749F8BFD20AB625A0023354F /* ParkCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFC20AB625A0023354F /* ParkCollectionCell.swift */; };
+		749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFC20AB625A0023354F /* ParkByStateCell.swift */; };
 		749F8BFF20ABBB530023354F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749F8BFE20ABBB530023354F /* Assets.xcassets */; };
-		749F8C0120ABD1E90023354F /* ParkByPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8C0020ABD1E90023354F /* ParkByPhotoVC.swift */; };
-		749F8C0320ABD2080023354F /* ParkByPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8C0220ABD2080023354F /* ParkByPhotoCell.swift */; };
+		749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8C0220ABD2080023354F /* AllParksCell.swift */; };
 		74A813DC20A8D7DA00CAD469 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = 74A813DB20A8D7DA00CAD469 /* parks.json */; };
 		74A813E220A8DAC000CAD469 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* Data.swift */; };
 		74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E620A8FA7000CAD469 /* MapVC.swift */; };
@@ -73,15 +73,15 @@
 		745FB7D720BCC3DF00EC3B47 /* Ubuntu-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Medium.ttf"; sourceTree = "<group>"; };
 		745FB7D820BCC3E000EC3B47 /* Ubuntu-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-MediumItalic.ttf"; sourceTree = "<group>"; };
 		745FB7D920BCC3E100EC3B47 /* Ubuntu-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Light.ttf"; sourceTree = "<group>"; };
-		746EF43020AA7A600087169A /* ParkByStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateVC.swift; sourceTree = "<group>"; };
+		745FB7E220BDF87700EC3B47 /* AllParksVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllParksVC.swift; sourceTree = "<group>"; };
+		746EF43020AA7A600087169A /* ListOfStatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfStatesVC.swift; sourceTree = "<group>"; };
 		746EF43220AA7B7B0087169A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		746EF43620AA7DA10087169A /* StateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
 		7470F31620AE0B540005FFF1 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCollectionVC.swift; sourceTree = "<group>"; };
-		749F8BFC20AB625A0023354F /* ParkCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCollectionCell.swift; sourceTree = "<group>"; };
+		749F8BFC20AB625A0023354F /* ParkByStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateCell.swift; sourceTree = "<group>"; };
 		749F8BFE20ABBB530023354F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		749F8C0020ABD1E90023354F /* ParkByPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByPhotoVC.swift; sourceTree = "<group>"; };
-		749F8C0220ABD2080023354F /* ParkByPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByPhotoCell.swift; sourceTree = "<group>"; };
+		749F8C0220ABD2080023354F /* AllParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParksCell.swift; sourceTree = "<group>"; };
 		74A813DB20A8D7DA00CAD469 /* parks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
 		74A813E020A8DAC000CAD469 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		74A813E620A8FA7000CAD469 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				746EF43620AA7DA10087169A /* StateCell.swift */,
-				749F8BFC20AB625A0023354F /* ParkCollectionCell.swift */,
-				749F8C0220ABD2080023354F /* ParkByPhotoCell.swift */,
+				749F8BFC20AB625A0023354F /* ParkByStateCell.swift */,
+				749F8C0220ABD2080023354F /* AllParksCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -219,11 +219,11 @@
 		74A813E520A8FA5600CAD469 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				745FB7E220BDF87700EC3B47 /* AllParksVC.swift */,
 				741A48C82097E0DB00B4688F /* WelcomeVC.swift */,
 				74A813E620A8FA7000CAD469 /* MapVC.swift */,
-				746EF43020AA7A600087169A /* ParkByStateVC.swift */,
+				746EF43020AA7A600087169A /* ListOfStatesVC.swift */,
 				749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */,
-				749F8C0020ABD1E90023354F /* ParkByPhotoVC.swift */,
 				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
 			);
 			path = Controller;
@@ -375,13 +375,13 @@
 				746EF43820AA7DA10087169A /* StateCell.swift in Sources */,
 				74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */,
 				741A48C72097E0DB00B4688F /* AppDelegate.swift in Sources */,
-				749F8C0320ABD2080023354F /* ParkByPhotoCell.swift in Sources */,
+				749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */,
+				745FB7E320BDF87700EC3B47 /* AllParksVC.swift in Sources */,
 				7436E7BC20ADE70A00FC4F5B /* Weather.swift in Sources */,
 				74A813E220A8DAC000CAD469 /* Data.swift in Sources */,
 				7470F31720AE0B540005FFF1 /* WebViewVC.swift in Sources */,
-				746EF43120AA7A600087169A /* ParkByStateVC.swift in Sources */,
-				749F8BFD20AB625A0023354F /* ParkCollectionCell.swift in Sources */,
-				749F8C0120ABD1E90023354F /* ParkByPhotoVC.swift in Sources */,
+				746EF43120AA7A600087169A /* ListOfStatesVC.swift in Sources */,
+				749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

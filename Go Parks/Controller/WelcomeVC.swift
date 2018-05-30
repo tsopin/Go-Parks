@@ -11,10 +11,16 @@ import UIKit
 class WelcomeVC: UIViewController {
   
   var parkToGo = Int()
+  let service = Service.instance
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    Service.instance.getCountryList()
+    service.getListOfParks()
+//    if service.parksFilePath != nil {
+      service.loadParks()
+//    } else {
+    
+//    }
     
   }
   override func viewWillAppear(_ animated: Bool) {
@@ -25,7 +31,7 @@ class WelcomeVC: UIViewController {
   }
   
   @IBAction func goSwipe(_ sender: Any) {
-  goAhead()
+    goAhead()
   }
   override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
     goAhead()
