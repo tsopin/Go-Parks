@@ -150,6 +150,13 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
       heightCell = 185
       
     }
+   //iPadPro 12
+    if screenSize.width == 1024 {
+      
+      widthCell = 1002
+      heightCell = 460
+      
+    }
     return CGSize(width: widthCell, height: heightCell)
     
   }

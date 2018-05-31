@@ -14,6 +14,8 @@ class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
   let service = Service.instance
   
   override func viewWillAppear(_ animated: Bool) {
+//        self.navigationController?.isNavigationBarHidden = false
+
     DispatchQueue.main.async {
       self.allParksCollectionView.reloadData()
     }

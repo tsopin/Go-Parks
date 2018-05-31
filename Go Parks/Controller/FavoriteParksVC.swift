@@ -9,16 +9,17 @@
 import UIKit
 
 class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FavoriteParksCellDelegate {
-
-
+  
+  
   @IBOutlet weak var favoriteParksCollectionView: UICollectionView!
   let service = Service.instance
   var selectedItem = Int()
+  var chosenPark = Int()
   
   override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+    super.viewDidLoad()
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     DispatchQueue.main.async {
       self.favoriteParksCollectionView.reloadData()
@@ -37,7 +38,6 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
     cell.delegate = self
     
     cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
-    print("\(park.name) is favorite - \(park.isFavorite)")
     
     return cell
   }
@@ -66,13 +66,19 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
         
         self.service.saveParks()
         self.favoriteParksCollectionView.reloadData()
-        //        print("Tapped \(parkInCell.name) in array \(self.service.parksArray[i].name)")
       }
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedItem = indexPath.row
+    
+    for i in 0..<service.parksArray.count {
+      if service.parksArray[i].name == service.parksArray.filter({ $0.isFavorite == true })[selectedItem].name {
+        chosenPark = i
+      }
+    }
+    
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "parkDetailsFromFavorites", sender: Any?.self)
     }
@@ -90,19 +96,19 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
       heightCell = 185
     }
     
-    //iPhone SE 5
+    //iPhone SE, 5s
     if screenSize.width == 320 {
       widthCell = 300
       heightCell = 185
     }
     
-    //iPhone 6 7
+    //iPhone 7,8
     if screenSize.width == 375 {
       widthCell = 350
       heightCell = 185
     }
     
-    //iPhone 6+ 7+
+    //iPhone 7+, 8+
     if screenSize.width == 414 {
       widthCell = 390
       heightCell = 185
@@ -126,10 +132,10 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
       
       let park = Service.instance.parksArray
       let destinationVC = segue.destination as! MapVC
-      destinationVC.data = park[selectedItem]
+      destinationVC.data = park[chosenPark]
       
-      print("Chosen Park \(park[selectedItem].fullName)")
+      print("Chosen Park \(park[chosenPark].fullName)")
     }
   }
-
+  
 }

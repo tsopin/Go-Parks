@@ -224,13 +224,13 @@
 		74A813E520A8FA5600CAD469 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				745FB7E220BDF87700EC3B47 /* AllParksVC.swift */,
 				741A48C82097E0DB00B4688F /* WelcomeVC.swift */,
-				74A813E620A8FA7000CAD469 /* MapVC.swift */,
+				745FB7E220BDF87700EC3B47 /* AllParksVC.swift */,
 				746EF43020AA7A600087169A /* ListOfStatesVC.swift */,
-				749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */,
-				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
 				7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */,
+				749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */,
+				74A813E620A8FA7000CAD469 /* MapVC.swift */,
+				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -331,17 +331,11 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
-				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleImageViewer/SimpleImageViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleImageViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
