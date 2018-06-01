@@ -11,21 +11,17 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 
-class MapVC: UIViewController, CLLocationManagerDelegate {
+class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   
   @IBOutlet weak var favorite: UIButton!
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var parkName: UILabel!
   @IBOutlet weak var photoImageView: UIImageView!
   @IBOutlet weak var parkDescription: UITextView!
-  @IBOutlet var gestureRecognizer: UIScreenEdgePanGestureRecognizer!
-  @IBAction func backGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
-    dismissVC()
-  }
   @IBOutlet weak var weatherIcon: UIImageView!
+  @IBOutlet weak var favoriteBtn: UIButton!
   @IBOutlet weak var temperatureLabel: UILabel!
   @IBOutlet weak var weatherActivity: UIActivityIndicatorView!
-  @IBOutlet weak var favoriteImage: UIImageView!
   @IBOutlet weak var weatherInfoButton: UIButton!
   @IBOutlet weak var descriptionButton: UIButton!
   
@@ -34,24 +30,25 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
   let weatherDataModel = WeatherDataModel()
   let service = Service.instance
+  let defaults = UserDefaults()
   
+  var isCelsius = false
   var goLat = Double()
   var goLong = Double()
   var sentUrl = String()
   var manager = CLLocationManager()
   
   override func viewWillAppear(_ animated: Bool) {
+    
     if (data?.isFavorite)! {
-      favoriteImage.image = UIImage(named: "heartGreen")
+      favoriteBtn.setBackgroundImage(UIImage(named: "heartGreen"), for: .normal)
     } else {
-      favoriteImage.image = UIImage(named: "heartGrey")
+      favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
     }
     
     parkName.text = data?.name
     parkDescription.text = data?.description
-//    parkDescription.setContentOffset(CGPoint.zero, animated: false)
     weatherInfoButton.isEnabled = true
-//    directionInfoBtn.isEnabled = true
     descriptionButton.isEnabled = false
   }
   override func viewDidLayoutSubviews() {
@@ -62,12 +59,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
- 
-
     weatherActivity.hidesWhenStopped = true
-
     photoImageView.image = UIImage(named: (data?.name)!)
+    descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
+    isCelsius = defaults.bool(forKey: "isCelsius")
+
+    
+    self.parkDescription.delegate = self
+    parkDescription.dataDetectorTypes = .all
     
     
     guard let lat = data?.lat else { return }
@@ -75,7 +74,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     goLat = Double(lat)!
     goLong = Double(long)!
-        
+    
     let params : [String : String] = ["lat" : lat, "lon" : long, "appid" : API_KEY]
     getWeatherData(url: WEATHER_URL, parametrs: params)
     getLocatin(forLatitude: goLat, forLongitude: goLong)
@@ -103,24 +102,29 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
   }
   
-
-  @IBAction func weatherInfoBtnPressed(_ sender: Any) {
+  
+  @IBAction func weatherInfoBtnPressed(_ sender: UIButton) {
     
     parkDescription.text = data?.weatherInfo
+    weatherInfoButton.setBackgroundImage(UIImage(named: "cloudyGrey"), for: .normal)
+    descriptionButton.setBackgroundImage(UIImage(named: "info"), for: .normal)
     weatherInfoButton.isEnabled = false
-//    directionInfoBtn.isEnabled = true
     descriptionButton.isEnabled = true
     
   }
   
-  
-  @IBAction func descriptionButtonPressed(_ sender: Any) {
+  @IBAction func descriptionButtonPressed(_ sender: UIButton) {
     
     parkDescription.text = data?.description
     weatherInfoButton.isEnabled = true
-//    directionInfoBtn.isEnabled = true
+    descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
+    weatherInfoButton.setBackgroundImage(UIImage(named: "cloudy"), for: .normal)
     descriptionButton.isEnabled = false
     
+  }
+  
+  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    return true
   }
   
   func getWeatherData(url: String, parametrs: [String: String]) {
@@ -141,15 +145,27 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
   }
   
-  @IBAction func backButton(_ sender: Any) {
-    dismissVC()
-    print("Back Pressed")
-  }
-  
-  @IBAction func favoriteButton(_ sender: Any) {
+  @IBAction func favoriteButton(_ sender: UIButton) {
     
+    service.animateButton(sender)
     addToFavorite()
     
+  }
+  
+  @IBAction func changeTempUnits(_ sender: Any) {
+    let k = Double(weatherDataModel.temperatupre)
+    let f = Int( 1.8 * (k - 273) + 32 )
+    
+    print(f)
+    
+    if (temperatureLabel.text?.contains("°C"))! {
+      temperatureLabel.text = "\(f)°F"
+      isCelsius = false
+    } else if (temperatureLabel.text?.contains("°F"))! {
+      temperatureLabel.text = String(weatherDataModel.temperatupre - 273) + "°C"
+      isCelsius = true
+    }
+    defaults.set(isCelsius, forKey: "isCelsius")
   }
   
   func addToFavorite() {
@@ -159,11 +175,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         
         if service.parksArray[i].isFavorite == false {
           service.parksArray[i].isFavorite = true
-          favoriteImage.image = UIImage(named: "heartGreen")
+          favoriteBtn.setBackgroundImage(UIImage(named: "heartGreen"), for: .normal)
+          //          favoriteImage.image = UIImage(named: "heartGreen")
           
         } else if service.parksArray[i].isFavorite == true {
           service.parksArray[i].isFavorite = false
-          favoriteImage.image = UIImage(named: "heartGrey")
+          favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
+          //          favoriteImage.image = UIImage(named: "heartGrey")
         }
         service.saveParks()
       }
@@ -174,7 +192,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   func updateWeatherData (json: JSON) {
     
     if let tempResults = json["main"]["temp"].double {
-      weatherDataModel.temperatupre = Int(tempResults - 273.15)
+      weatherDataModel.temperatupre = Int(tempResults)
       weatherDataModel.city = json["name"].stringValue
       weatherDataModel.condition = json["weather"][0]["id"].intValue
       weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
@@ -184,7 +202,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
   }
   
   func updateUIwithWeatherData() {
-    temperatureLabel.text = String(weatherDataModel.temperatupre) + "°C"
+    let k = Double(weatherDataModel.temperatupre)
+    let f = Int( 1.8 * (k - 273) + 32 )
+    
+    if isCelsius {
+    temperatureLabel.text = String(weatherDataModel.temperatupre - 273) + "°C"
+    } else {
+      temperatureLabel.text = "\(f)°F"
+    }
     weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
   }
   
@@ -192,14 +217,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
   }
-  
-  func dismissVC() {
-    DispatchQueue.main.async{
-      self.dismiss(animated: true, completion: nil)
-    }
-  }
-  
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "openUrl" {

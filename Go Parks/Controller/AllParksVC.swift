@@ -11,17 +11,20 @@ import UIKit
 class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, AllParksCellDelegate {
   
   @IBOutlet weak var allParksCollectionView: UICollectionView!
+  
   let service = Service.instance
+  var selectedItem = Int()
   
   override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.isNavigationBarHidden = false
-
     DispatchQueue.main.async {
       self.allParksCollectionView.reloadData()
     }
   }
   
-  var selectedItem = Int()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.allParksCollectionView.delaysContentTouches = false
+  }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return service.parksArray.count
@@ -35,27 +38,9 @@ class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     cell.delegate = self
     
     cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
-    print("\(park.name) is favorite - \(park.isFavorite)")
+//    print("\(park.name) is favorite - \(park.isFavorite)")
     
     return cell
-  }
-  
-  func favoritePressed(cell: AllParksCell) {
-    guard let indexPath = self.allParksCollectionView.indexPath(for: cell) else {
-      return
-    }
-    
-    if self.service.parksArray[indexPath.row].isFavorite == false {
-      self.service.parksArray[indexPath.row].isFavorite = true
-      print(self.service.parksArray[indexPath.row].isFavorite)
-      
-    } else if self.service.parksArray[indexPath.row].isFavorite == true {
-      self.service.parksArray[indexPath.row].isFavorite = false
-      print(self.service.parksArray[indexPath.row].isFavorite)
-    }
-    self.service.saveParks()
-      self.allParksCollectionView.reloadData()
-    print("Button tapped on row \(indexPath.row)")
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -74,49 +59,48 @@ class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     //iPhone X
     if screenSize.width == 750 {
       widthCell = 355
-      heightCell = 185
+      heightCell = 215
     }
     
     //iPhone SE 5
     if screenSize.width == 320 {
       widthCell = 300
-      heightCell = 185
+      heightCell = 215
     }
     
     //iPhone 6 7
     if screenSize.width == 375 {
       widthCell = 350
-      heightCell = 185
+      heightCell = 215
     }
     
     //iPhone 6+ 7+
     if screenSize.width == 414 {
       widthCell = 390
-      heightCell = 185
+      heightCell = 215
     }
     return CGSize(width: widthCell, height: heightCell)
   }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  func favoritePressed(cell: AllParksCell) {
+    guard let indexPath = self.allParksCollectionView.indexPath(for: cell) else {
+      return
+    }
     
-  }
-  
-  
-  
-  @IBAction func backGesture(_ sender: Any) {
-    dismissVC()
-  }
-  @IBAction func backButton(_ sender: Any) {
-    dismissVC()
-  }
-  
-  func dismissVC() {
+    if self.service.parksArray[indexPath.row].isFavorite == false {
+      self.service.parksArray[indexPath.row].isFavorite = true
+      
+    } else if self.service.parksArray[indexPath.row].isFavorite == true {
+      self.service.parksArray[indexPath.row].isFavorite = false
+    }
+    
+    self.service.saveParks()
     DispatchQueue.main.async {
-      self.dismiss(animated: true, completion: nil)
+      self.allParksCollectionView.reloadItems(at: [indexPath])
     }
   }
-
+  
+  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
@@ -126,7 +110,6 @@ class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = park[selectedItem]
       
-      print("Chosen Park \(park[selectedItem].fullName)")
     }
   }
 }

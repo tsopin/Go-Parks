@@ -15,14 +15,15 @@ protocol ParkByStateCellDelegate: class {
 class ParkByStateCell: UICollectionViewCell {
   static let ID = "ParkCollectionCell"
   var delegate: ParkByStateCellDelegate?
+  let service = Service()
   
   @IBOutlet weak var parkPhoto: UIImageView!
   @IBOutlet weak var parkName: UILabel!
-  @IBOutlet weak var favoriteImage: UIImageView!
   @IBOutlet weak var favoriteButton: UIButton!
-  
-  @IBAction func favoritePressed(_ sender: Any) {
+    
+  @IBAction func favoritePressed(_ sender: UIButton) {
     self.delegate?.favoritePressed(cell: self)
+    service.animateButton(sender)
   }
   
   func configeureCell(name: String, photo: UIImage, isFavorite: Bool) {
@@ -30,9 +31,9 @@ class ParkByStateCell: UICollectionViewCell {
     self.parkPhoto.image = photo
     
     if isFavorite {
-      favoriteImage.image = UIImage(named: "heartGreen")
+      favoriteButton.setBackgroundImage(UIImage(named: "heartGreen"), for: .normal)
     } else {
-      favoriteImage.image = UIImage(named: "heartGrey")
+      favoriteButton.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
     }
   }
 }

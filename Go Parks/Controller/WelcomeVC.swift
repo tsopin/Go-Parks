@@ -40,10 +40,8 @@ class WelcomeVC: UIViewController {
       self.performSegue(withIdentifier: "goAhead", sender: Any?.self)
     }
   }
-  @IBAction func favoriteButton(_ sender: Any) {
-    //    for i in service.parksArray {
-    //      i.isFavorite = false
-    //    }
+  @IBAction func favoriteButton(_ sender: UIButton) {
+    
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -61,6 +61,18 @@ class Service {
     }
   }
   
+  func animateButton(_ sender: UIButton) {
+    
+    sender.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+    
+    UIView.animate(withDuration: 0.70,
+                   delay: 0,
+                   usingSpringWithDamping: CGFloat(0.30),
+                   initialSpringVelocity: CGFloat(6.0),
+                   options: UIViewAnimationOptions.allowUserInteraction,
+                   animations: { sender.transform = CGAffineTransform.identity}, completion: { Void in() })
+  }
+  
   let stateNamesArray = [
     "AK",
     "AR",

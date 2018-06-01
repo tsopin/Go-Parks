@@ -10,6 +10,7 @@ import UIKit
 
 class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FavoriteParksCellDelegate {
   
+  @IBOutlet weak var favoriteLabel: UILabel!
   
   @IBOutlet weak var favoriteParksCollectionView: UICollectionView!
   let service = Service.instance
@@ -18,9 +19,17 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.favoriteParksCollectionView.delaysContentTouches = false
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    
+    if service.parksArray.filter({ $0.isFavorite == true }).count < 1 {
+      favoriteLabel.text = "List is Empty"
+    } else {
+      favoriteLabel.text = "Favorites"
+    }
+    
     DispatchQueue.main.async {
       self.favoriteParksCollectionView.reloadData()
     }
@@ -65,7 +74,9 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
         }
         
         self.service.saveParks()
-        self.favoriteParksCollectionView.reloadData()
+        DispatchQueue.main.async {
+          self.favoriteParksCollectionView.reloadData()
+        }
       }
     }
   }
@@ -93,25 +104,25 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
     //iPhone X
     if screenSize.width == 750 {
       widthCell = 355
-      heightCell = 185
+      heightCell = 215
     }
     
     //iPhone SE, 5s
     if screenSize.width == 320 {
       widthCell = 300
-      heightCell = 185
+      heightCell = 215
     }
     
     //iPhone 7,8
     if screenSize.width == 375 {
       widthCell = 350
-      heightCell = 185
+      heightCell = 215
     }
     
     //iPhone 7+, 8+
     if screenSize.width == 414 {
       widthCell = 390
-      heightCell = 185
+      heightCell = 215
     }
     return CGSize(width: widthCell, height: heightCell)
   }

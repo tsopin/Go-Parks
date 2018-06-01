@@ -57,20 +57,7 @@ class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
   }
-  
-  @IBAction func backButton(_ sender: Any) {
-    dismissVC()
-  }
-  
-  @IBAction func backGerture(_ sender: Any) {
-    dismissVC()
-  }
-  
-  func dismissVC() {
-    DispatchQueue.main.async{
-      self.dismiss(animated: true, completion: nil)
-    }
-  }
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "parkByState" {
       let destinationVC = segue.destination as! ParkCollectionVC
