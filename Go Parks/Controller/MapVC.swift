@@ -24,13 +24,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   @IBOutlet weak var weatherActivity: UIActivityIndicatorView!
   @IBOutlet weak var weatherInfoButton: UIButton!
   @IBOutlet weak var descriptionButton: UIButton!
-  
+  @IBOutlet weak var unitsLabel: UILabel!
+  @IBOutlet weak var mapMaxConstraint: NSLayoutConstraint!
+  @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var parkPhotoHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var parkNametoPhotoConstraint: NSLayoutConstraint!
+
   var data : ParksData?
   let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
   let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
   let weatherDataModel = WeatherDataModel()
   let service = Service.instance
   let defaults = UserDefaults()
+  let screenSize : CGRect = UIScreen.main.bounds
   
   var isCelsius = false
   var goLat = Double()
@@ -59,12 +65,37 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    //X = 375
+    //iPad 5th Gen = 768
+    //AIR = 768
+    //PRO 9.7 = 768
+    //PRO 10.5 = 834
+    //PRO 12.9 = 1024
+    
+    
+    if screenSize.width == 1024 { //PRO 12
+   
+      parkNametoPhotoConstraint.constant = 30
+      mapMaxConstraint.constant = 250
+      //      parkPhotoHeightConstraint.constant = 390
+      descriptionViewHeightConstraint.constant = 300
+      parkName.font = UIFont(name: "Ubuntu-Bold", size: 50)
+      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 24)
+    }
+    if screenSize.width == 375 {
+      
+      mapMaxConstraint.constant = 200
+      parkPhotoHeightConstraint.constant = 270
+      descriptionViewHeightConstraint.constant = -70
+      
+    }
+    
     weatherActivity.hidesWhenStopped = true
     photoImageView.image = UIImage(named: (data?.name)!)
     descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
     isCelsius = defaults.bool(forKey: "isCelsius")
-
     
+    //    resize()
     self.parkDescription.delegate = self
     parkDescription.dataDetectorTypes = .all
     
@@ -158,14 +189,25 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     
     print(f)
     
-    if (temperatureLabel.text?.contains("°C"))! {
-      temperatureLabel.text = "\(f)°F"
+    if (unitsLabel.text?.contains("C"))! {
+      temperatureLabel.text = "\(f)"
+      unitsLabel.text = "F"
       isCelsius = false
-    } else if (temperatureLabel.text?.contains("°F"))! {
-      temperatureLabel.text = String(weatherDataModel.temperatupre - 273) + "°C"
+    } else if (unitsLabel.text?.contains("F"))! {
+      temperatureLabel.text = String(weatherDataModel.temperatupre - 273)
+      unitsLabel.text = "C"
       isCelsius = true
     }
+    //    resize()
+    
+    
     defaults.set(isCelsius, forKey: "isCelsius")
+  }
+  
+  func resize() {
+    weatherIcon.contentMode = UIViewContentMode.scaleAspectFit
+    weatherIcon.clipsToBounds = true
+    weatherIcon.sizeToFit()
   }
   
   func addToFavorite() {
@@ -206,9 +248,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     let f = Int( 1.8 * (k - 273) + 32 )
     
     if isCelsius {
-    temperatureLabel.text = String(weatherDataModel.temperatupre - 273) + "°C"
+      temperatureLabel.text = String(weatherDataModel.temperatupre - 273)
+      unitsLabel.text = "C"
     } else {
-      temperatureLabel.text = "\(f)°F"
+      unitsLabel.text = "F"
+      temperatureLabel.text = "\(f)"
     }
     weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
   }
@@ -217,7 +261,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     
     UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
   }
-
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "openUrl" {

@@ -11,8 +11,9 @@ import UIKit
 class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FavoriteParksCellDelegate {
   
   @IBOutlet weak var favoriteLabel: UILabel!
-  
   @IBOutlet weak var favoriteParksCollectionView: UICollectionView!
+  
+  
   let service = Service.instance
   var selectedItem = Int()
   var chosenPark = Int()
@@ -72,7 +73,9 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
           parkInCell.isFavorite = false
           print("\(self.service.parksArray[i].name) \(self.service.parksArray[i].isFavorite)")
         }
-        
+        if service.parksArray.filter({ $0.isFavorite == true }).count < 1 {
+          favoriteLabel.text = "List is Empty"
+        }
         self.service.saveParks()
         DispatchQueue.main.async {
           self.favoriteParksCollectionView.reloadData()

@@ -25,6 +25,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     loadingPage.hidesWhenStopped = true
     loadingPage.startAnimating()
     
+    
     let url = URL(string: receivedUrl!)
     let request = URLRequest(url: url!)
     

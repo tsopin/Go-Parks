@@ -13,10 +13,26 @@ class WelcomeVC: UIViewController {
   var parkToGo = Int()
   let service = Service.instance
   
+  @IBOutlet weak var logoConstraint: NSLayoutConstraint!
+ 
+  @IBOutlet weak var bottomFavoriteConstraint: NSLayoutConstraint!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     service.getListOfParks()
     service.loadParks()
+    
+    let screenSize : CGRect = UIScreen.main.bounds
+    print(screenSize.width)
+    if screenSize.width == 320 {
+     logoConstraint.constant = 15
+    } else if screenSize.width == 1024 {
+      logoConstraint.constant = 130
+      bottomFavoriteConstraint.constant = 100
+    } else if screenSize.width == 375 {
+      logoConstraint.constant = 70
+      bottomFavoriteConstraint.constant = 60
+    } 
     
     print(service.parksArray.filter({ $0.isFavorite == true }).count)
     
@@ -40,6 +56,7 @@ class WelcomeVC: UIViewController {
       self.performSegue(withIdentifier: "goAhead", sender: Any?.self)
     }
   }
+  
   @IBAction func favoriteButton(_ sender: UIButton) {
     
   }

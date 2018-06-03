@@ -65,11 +65,11 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
     var widthCell = 100
     var heightCell = 100
     
-    //iPhone X
-    if screenSize.width == 750 {
-      widthCell = 355
-      heightCell = 215
-    }
+//    //iPhone X
+//    if screenSize.width == 750 {
+//      widthCell = 355
+//      heightCell = 215
+//    }
     
     //iPhone SE 5
     if screenSize.width == 320 {
