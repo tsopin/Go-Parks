@@ -14,39 +14,35 @@ class WelcomeVC: UIViewController {
   let service = Service.instance
   
   @IBOutlet weak var logoConstraint: NSLayoutConstraint!
- 
   @IBOutlet weak var bottomFavoriteConstraint: NSLayoutConstraint!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     service.getListOfParks()
     service.loadParks()
+    adjustMainScreen()
     
-    let screenSize : CGRect = UIScreen.main.bounds
-    print(screenSize.width)
-    if screenSize.width == 320 {
-     logoConstraint.constant = 15
-    } else if screenSize.width == 1024 {
-      logoConstraint.constant = 130
-      bottomFavoriteConstraint.constant = 100
-    } else if screenSize.width == 375 {
-      logoConstraint.constant = 70
-      bottomFavoriteConstraint.constant = 60
-    } 
-    
-    print(service.parksArray.filter({ $0.isFavorite == true }).count)
-    
+//    let screenSize : CGRect = UIScreen.main.bounds
+//
+//    if screenSize.width == 320 {
+//      logoConstraint.constant = 15
+//    } else if screenSize.width == 1024 {
+//      logoConstraint.constant = 130
+//      bottomFavoriteConstraint.constant = 100
+//    } else if screenSize.width == 375 && screenSize.height == 812 {
+//      logoConstraint.constant = 70
+//      bottomFavoriteConstraint.constant = 60
+//    }
   }
+  
   override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = true
   }
+  
   override func viewWillDisappear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = false
   }
   
-  @IBAction func goSwipe(_ sender: Any) {
-    goAhead()
-  }
   override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
     goAhead()
   }
@@ -57,8 +53,18 @@ class WelcomeVC: UIViewController {
     }
   }
   
-  @IBAction func favoriteButton(_ sender: UIButton) {
+  func adjustMainScreen() {
+    let screenSize : CGRect = UIScreen.main.bounds
     
+    if screenSize.width == 320 {
+      logoConstraint.constant = 15
+    } else if screenSize.width == 1024 {
+      logoConstraint.constant = 130
+      bottomFavoriteConstraint.constant = 100
+    } else if screenSize.width == 375 && screenSize.height == 812 {
+      logoConstraint.constant = 70
+      bottomFavoriteConstraint.constant = 60
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

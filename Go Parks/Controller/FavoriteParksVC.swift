@@ -13,7 +13,6 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
   @IBOutlet weak var favoriteLabel: UILabel!
   @IBOutlet weak var favoriteParksCollectionView: UICollectionView!
   
-  
   let service = Service.instance
   var selectedItem = Int()
   var chosenPark = Int()
@@ -37,7 +36,9 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
     return service.parksArray.filter({ $0.isFavorite == true }).count
+    
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,43 +102,11 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     let screenSize : CGRect = UIScreen.main.bounds
-    var widthCell = 100
-    var heightCell = 100
     
-    //iPhone X
-    if screenSize.width == 750 {
-      widthCell = 355
-      heightCell = 215
-    }
+    let width = service.collectionItemsResize(screenWidth: screenSize.width).0
+    let height = service.collectionItemsResize(screenWidth: screenSize.width).1
     
-    //iPhone SE, 5s
-    if screenSize.width == 320 {
-      widthCell = 300
-      heightCell = 215
-    }
-    
-    //iPhone 7,8
-    if screenSize.width == 375 {
-      widthCell = 350
-      heightCell = 215
-    }
-    
-    //iPhone 7+, 8+
-    if screenSize.width == 414 {
-      widthCell = 390
-      heightCell = 215
-    }
-    return CGSize(width: widthCell, height: heightCell)
-  }
-  
-  func dismissVC() {
-    DispatchQueue.main.async {
-      self.dismiss(animated: true, completion: nil)
-    }
-  }
-  
-  @IBAction func backButton(_ sender: Any) {
-    dismissVC()
+    return CGSize(width: width, height: height)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -151,5 +120,4 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
       print("Chosen Park \(park[chosenPark].fullName)")
     }
   }
-  
 }

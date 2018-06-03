@@ -33,6 +33,50 @@ class Service {
     }
   }
   
+  func collectionItemsResize(screenWidth: CGFloat) -> (CGFloat,CGFloat) {
+    
+    var cellWidth = CGFloat()
+    var cellHeight = CGFloat()
+    
+    //X = 375
+    //iPad 5th Gen = 768 x 1024
+    //AIR = 768 x 1024
+    //PRO 9.7 = 768
+    //PRO 10.5 = 834
+    //PRO 12.9 = 1024
+    
+    // iPhone SE, 5s
+    if screenWidth == 320 {
+      cellWidth = 300
+      cellHeight = 215
+    }
+    // iPhone 6, 7, 8
+    if screenWidth == 375 {
+      cellWidth = 350
+      cellHeight = 215
+    }
+    //iPhone 6+, 7+, 8+
+    if screenWidth == 414 {
+      cellWidth = 390
+      cellHeight = 215
+    }
+    //iPad, AIR, Pro 9.7
+    if screenWidth == 768 {
+      cellWidth = 746
+      cellHeight = 460
+    }
+    //iPadPro 10.5
+    if screenWidth == 834 {
+      cellWidth = 812
+      cellHeight = 460
+    }
+    //iPadPro 12
+    if screenWidth == 1024 {
+      cellWidth = 1002
+      cellHeight = 460
+    }
+    return (cellWidth, cellHeight)
+  }
   
   //Save User Currencies using PropertyListEncoder
   func saveParks() {
@@ -125,8 +169,5 @@ class Service {
     //                 "WI",
     //                 "WV",
     "WY"]
-  
-  
-  
   
 }

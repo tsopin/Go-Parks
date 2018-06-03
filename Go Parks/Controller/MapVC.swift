@@ -21,15 +21,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   @IBOutlet weak var weatherIcon: UIImageView!
   @IBOutlet weak var favoriteBtn: UIButton!
   @IBOutlet weak var temperatureLabel: UILabel!
+  @IBOutlet weak var changeUnitsBtn: UIButton!
   @IBOutlet weak var weatherActivity: UIActivityIndicatorView!
   @IBOutlet weak var weatherInfoButton: UIButton!
   @IBOutlet weak var descriptionButton: UIButton!
   @IBOutlet weak var unitsLabel: UILabel!
+  
+  //Constraints
   @IBOutlet weak var mapMaxConstraint: NSLayoutConstraint!
   @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var parkPhotoHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var parkNametoPhotoConstraint: NSLayoutConstraint!
-
+  @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
+  
   var data : ParksData?
   let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
   let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
@@ -57,6 +61,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     weatherInfoButton.isEnabled = true
     descriptionButton.isEnabled = false
   }
+  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     parkDescription.setContentOffset(CGPoint.zero, animated: false)
@@ -65,40 +70,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    //X = 375
-    //iPad 5th Gen = 768
-    //AIR = 768
-    //PRO 9.7 = 768
-    //PRO 10.5 = 834
-    //PRO 12.9 = 1024
-    
-    
-    if screenSize.width == 1024 { //PRO 12
-   
-      parkNametoPhotoConstraint.constant = 30
-      mapMaxConstraint.constant = 250
-      //      parkPhotoHeightConstraint.constant = 390
-      descriptionViewHeightConstraint.constant = 300
-      parkName.font = UIFont(name: "Ubuntu-Bold", size: 50)
-      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 24)
-    }
-    if screenSize.width == 375 {
-      
-      mapMaxConstraint.constant = 200
-      parkPhotoHeightConstraint.constant = 270
-      descriptionViewHeightConstraint.constant = -70
-      
-    }
-    
+    self.parkDescription.delegate = self
+    parkDescription.textContainer.lineFragmentPadding = 0
+    parkDescription.textContainerInset = .zero
     weatherActivity.hidesWhenStopped = true
     photoImageView.image = UIImage(named: (data?.name)!)
     descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
     isCelsius = defaults.bool(forKey: "isCelsius")
-    
-    //    resize()
-    self.parkDescription.delegate = self
     parkDescription.dataDetectorTypes = .all
-    
     
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }
@@ -109,6 +88,40 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     let params : [String : String] = ["lat" : lat, "lon" : long, "appid" : API_KEY]
     getWeatherData(url: WEATHER_URL, parametrs: params)
     getLocatin(forLatitude: goLat, forLongitude: goLong)
+    
+    if screenSize.width == 834  { // iPadPro 10.5
+      
+      parkNametoPhotoConstraint.constant = 30
+      toolbarBottomConstraint.constant = 30
+      mapMaxConstraint.constant = 250
+      descriptionViewHeightConstraint.constant = 300
+      parkName.font = UIFont(name: "Ubuntu-Bold", size: 42)
+      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 18)
+      
+    } else if screenSize.width == 768 { // iPad 5th Gen, Air, PRO 9.7
+      
+      parkNametoPhotoConstraint.constant = 30
+      toolbarBottomConstraint.constant = 30
+      descriptionViewHeightConstraint.constant = 200
+      parkName.font = UIFont(name: "Ubuntu-Bold", size: 36)
+      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 16)
+      
+    } else if screenSize.width == 1024 { //iPadPro 12.9
+      
+      parkNametoPhotoConstraint.constant = 30
+      toolbarBottomConstraint.constant = 30
+      mapMaxConstraint.constant = 250
+      descriptionViewHeightConstraint.constant = 300
+      parkName.font = UIFont(name: "Ubuntu-Bold", size: 50)
+      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 24)
+      
+    } else if screenSize.width == 375 { // iPhone X
+      
+      mapMaxConstraint.constant = 200
+      parkPhotoHeightConstraint.constant = 270
+      descriptionViewHeightConstraint.constant = -70
+      
+    }
   }
   
   func getLocatin(forLatitude: Double, forLongitude: Double) {
@@ -132,7 +145,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
     }
   }
-  
   
   @IBAction func weatherInfoBtnPressed(_ sender: UIButton) {
     
@@ -160,6 +172,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   
   func getWeatherData(url: String, parametrs: [String: String]) {
     weatherActivity.startAnimating()
+    changeUnitsBtn.isEnabled = false
     
     Alamofire.request(url, method: .get, parameters: parametrs).responseJSON {
       
@@ -170,6 +183,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
         let weatherJSON : JSON = JSON(response.result.value!)
         self.updateWeatherData(json: weatherJSON)
         self.weatherActivity.stopAnimating()
+        self.changeUnitsBtn.isEnabled = true
       } else {
         print("Error \(String(describing: response.result.error))")
       }
@@ -184,11 +198,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   }
   
   @IBAction func changeTempUnits(_ sender: Any) {
+    
     let k = Double(weatherDataModel.temperatupre)
-    let f = Int( 1.8 * (k - 273) + 32 )
-    
-    print(f)
-    
+    let f = Int( 1.8 * (k - 273) + 32)
+
     if (unitsLabel.text?.contains("C"))! {
       temperatureLabel.text = "\(f)"
       unitsLabel.text = "F"
@@ -198,16 +211,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       unitsLabel.text = "C"
       isCelsius = true
     }
-    //    resize()
-    
     
     defaults.set(isCelsius, forKey: "isCelsius")
-  }
-  
-  func resize() {
-    weatherIcon.contentMode = UIViewContentMode.scaleAspectFit
-    weatherIcon.clipsToBounds = true
-    weatherIcon.sizeToFit()
   }
   
   func addToFavorite() {
@@ -218,18 +223,15 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
         if service.parksArray[i].isFavorite == false {
           service.parksArray[i].isFavorite = true
           favoriteBtn.setBackgroundImage(UIImage(named: "heartGreen"), for: .normal)
-          //          favoriteImage.image = UIImage(named: "heartGreen")
           
         } else if service.parksArray[i].isFavorite == true {
           service.parksArray[i].isFavorite = false
           favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
-          //          favoriteImage.image = UIImage(named: "heartGrey")
         }
         service.saveParks()
       }
     }
   }
-  
   
   func updateWeatherData (json: JSON) {
     
@@ -263,11 +265,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
     if segue.identifier == "openUrl" {
       let destinationVC = segue.destination as! WebViewVC
       destinationVC.receivedUrl = sentUrl
     }
   }
 }
+
 

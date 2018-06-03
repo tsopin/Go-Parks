@@ -9,7 +9,7 @@
 import UIKit
 
 class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+  
   @IBOutlet weak var statesTableView: UITableView!
   
   var statesArray = [State]()
@@ -45,19 +45,20 @@ class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     } else {
       parksCount = "\(count) parks"
     }
+    
     cell.configeureCell(stateName: state.stateName.longStateName(), stateFlag: state.stateFlag, parksCount: parksCount )
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
     selectedRow = indexPath.row
     
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "parkByState", sender: Any?.self)
     }
-    
   }
-
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "parkByState" {
       let destinationVC = segue.destination as! ParkCollectionVC

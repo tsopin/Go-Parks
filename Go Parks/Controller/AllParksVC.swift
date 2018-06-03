@@ -38,7 +38,6 @@ class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     cell.delegate = self
     
     cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
-//    print("\(park.name) is favorite - \(park.isFavorite)")
     
     return cell
   }
@@ -53,39 +52,12 @@ class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     let screenSize : CGRect = UIScreen.main.bounds
-    var widthCell = 100
-    var heightCell = 100
     
-    //iPhone X
-    if screenSize.width == 750 {
-      widthCell = 355
-      heightCell = 215
-    }
+    let width = service.collectionItemsResize(screenWidth: screenSize.width).0
+    let height = service.collectionItemsResize(screenWidth: screenSize.width).1
     
-    //iPhone SE 5
-    if screenSize.width == 320 {
-      widthCell = 300
-      heightCell = 215
-    }
+    return CGSize(width: width, height: height)
     
-    //iPhone 6 7
-    if screenSize.width == 375 {
-      widthCell = 350
-      heightCell = 215
-    }
-    
-    //iPhone 6+ 7+
-    if screenSize.width == 414 {
-      widthCell = 390
-      heightCell = 215
-    }
-    //iPadPro 12
-    if screenSize.width == 1024 {
-      widthCell = 1002
-      heightCell = 460
-    }
-    
-    return CGSize(width: widthCell, height: heightCell)
   }
   
   func favoritePressed(cell: AllParksCell) {
@@ -105,8 +77,6 @@ class AllParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
       self.allParksCollectionView.reloadItems(at: [indexPath])
     }
   }
-  
-  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
