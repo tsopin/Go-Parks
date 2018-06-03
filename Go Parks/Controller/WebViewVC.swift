@@ -14,8 +14,10 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
   @IBOutlet weak var progressBar: UIProgressView!
   @IBOutlet weak var loadingPage: UIActivityIndicatorView!
   @IBOutlet weak var webView: WKWebView!
+  @IBOutlet weak var refreshBtn: UIBarButtonItem!
   
   var receivedUrl : String?
+ 
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,6 +26,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     progressBar.isHidden = false
     loadingPage.hidesWhenStopped = true
     loadingPage.startAnimating()
+    refreshBtn.isEnabled = false
     
     let url = URL(string: receivedUrl!)
     let request = URLRequest(url: url!)
@@ -38,8 +41,13 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     }
     if self.webView.estimatedProgress == 1.0 {
       loadingPage.stopAnimating()
+      refreshBtn.isEnabled = true
       progressBar.isHidden = true
     }
+  }
+  
+  @IBAction func refreshPressed(_ sender: Any) {
+    webView.reload()
   }
   
   @IBAction func dismissButton(_ sender: Any) {

@@ -21,26 +21,19 @@ class WelcomeVC: UIViewController {
     service.getListOfParks()
     service.loadParks()
     adjustMainScreen()
-    
-//    let screenSize : CGRect = UIScreen.main.bounds
-//
-//    if screenSize.width == 320 {
-//      logoConstraint.constant = 15
-//    } else if screenSize.width == 1024 {
-//      logoConstraint.constant = 130
-//      bottomFavoriteConstraint.constant = 100
-//    } else if screenSize.width == 375 && screenSize.height == 812 {
-//      logoConstraint.constant = 70
-//      bottomFavoriteConstraint.constant = 60
-//    }
   }
+
   
   override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = true
+    UIApplication.shared.statusBarStyle = .lightContent
+
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = false
+    UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+
   }
   
   override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {

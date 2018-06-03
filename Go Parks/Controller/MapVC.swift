@@ -96,7 +96,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       mapMaxConstraint.constant = 250
       descriptionViewHeightConstraint.constant = 300
       parkName.font = UIFont(name: "Ubuntu-Bold", size: 42)
-      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 18)
+      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 20)
       
     } else if screenSize.width == 768 { // iPad 5th Gen, Air, PRO 9.7
       
@@ -104,7 +104,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       toolbarBottomConstraint.constant = 30
       descriptionViewHeightConstraint.constant = 200
       parkName.font = UIFont(name: "Ubuntu-Bold", size: 36)
-      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 16)
+      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 18)
       
     } else if screenSize.width == 1024 { //iPadPro 12.9
       
@@ -115,13 +115,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       parkName.font = UIFont(name: "Ubuntu-Bold", size: 50)
       parkDescription.font = UIFont(name: "OpenSans-Regular", size: 24)
       
-    } else if screenSize.width == 375 { // iPhone X
+    } else if screenSize.width == 375 && screenSize.height == 812 { // iPhone X
       
       mapMaxConstraint.constant = 200
       parkPhotoHeightConstraint.constant = 270
       descriptionViewHeightConstraint.constant = -70
       
-    }
+    } else if screenSize.width == 375 { // iPhone 6, 7, 8
+      
+      mapMaxConstraint.constant = 200
+      parkPhotoHeightConstraint.constant = 270
+      descriptionViewHeightConstraint.constant = 0
+      
+    } 
   }
   
   func getLocatin(forLatitude: Double, forLongitude: Double) {

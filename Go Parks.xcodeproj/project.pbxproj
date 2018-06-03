@@ -15,29 +15,29 @@
 		7426E28F20BF29DB005A1900 /* FavoriteParksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */; };
 		7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */; };
 		7436E7BC20ADE70A00FC4F5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7436E7BB20ADE70A00FC4F5B /* Weather.swift */; };
-		745FB7C820BC864A00EC3B47 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C720BC60D700EC3B47 /* OpenSans-Bold.ttf */; };
-		745FB7C920BC864A00EC3B47 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C220BC60D200EC3B47 /* OpenSans-BoldItalic.ttf */; };
-		745FB7CA20BC864A00EC3B47 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C420BC60D400EC3B47 /* OpenSans-ExtraBold.ttf */; };
-		745FB7CB20BC864A00EC3B47 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C120BC60D100EC3B47 /* OpenSans-ExtraBoldItalic.ttf */; };
-		745FB7CC20BC864A00EC3B47 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C620BC60D600EC3B47 /* OpenSans-Italic.ttf */; };
-		745FB7CD20BC864A00EC3B47 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C020BC60D000EC3B47 /* OpenSans-Light.ttf */; };
-		745FB7CE20BC864A00EC3B47 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7BE20BC60CE00EC3B47 /* OpenSans-LightItalic.ttf */; };
-		745FB7CF20BC864A00EC3B47 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C520BC60D500EC3B47 /* OpenSans-Regular.ttf */; };
-		745FB7D020BC864A00EC3B47 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C320BC60D300EC3B47 /* OpenSans-SemiBold.ttf */; };
-		745FB7D120BC864A00EC3B47 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7BF20BC60CF00EC3B47 /* OpenSans-SemiBoldItalic.ttf */; };
-		745FB7DA20BCC3E200EC3B47 /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D220BCC3DA00EC3B47 /* Ubuntu-Regular.ttf */; };
-		745FB7DB20BCC3E200EC3B47 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D320BCC3DB00EC3B47 /* Ubuntu-BoldItalic.ttf */; };
-		745FB7DC20BCC3E200EC3B47 /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D420BCC3DC00EC3B47 /* Ubuntu-Bold.ttf */; };
-		745FB7DD20BCC3E200EC3B47 /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D520BCC3DD00EC3B47 /* Ubuntu-Italic.ttf */; };
-		745FB7DE20BCC3E200EC3B47 /* Ubuntu-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D620BCC3DE00EC3B47 /* Ubuntu-LightItalic.ttf */; };
-		745FB7DF20BCC3E200EC3B47 /* Ubuntu-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D720BCC3DF00EC3B47 /* Ubuntu-Medium.ttf */; };
-		745FB7E020BCC3E200EC3B47 /* Ubuntu-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D820BCC3E000EC3B47 /* Ubuntu-MediumItalic.ttf */; };
-		745FB7E120BCC3E200EC3B47 /* Ubuntu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D920BCC3E100EC3B47 /* Ubuntu-Light.ttf */; };
 		745FB7E320BDF87700EC3B47 /* AllParksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB7E220BDF87700EC3B47 /* AllParksVC.swift */; };
 		746EF43120AA7A600087169A /* ListOfStatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43020AA7A600087169A /* ListOfStatesVC.swift */; };
 		746EF43320AA7B7B0087169A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43220AA7B7B0087169A /* Service.swift */; };
 		746EF43820AA7DA10087169A /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43620AA7DA10087169A /* StateCell.swift */; };
 		7470F31720AE0B540005FFF1 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7470F31620AE0B540005FFF1 /* WebViewVC.swift */; };
+		7494DCE220C4943A0032EC02 /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D420BCC3DC00EC3B47 /* Ubuntu-Bold.ttf */; };
+		7494DCE320C4943A0032EC02 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D320BCC3DB00EC3B47 /* Ubuntu-BoldItalic.ttf */; };
+		7494DCE420C4943A0032EC02 /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D520BCC3DD00EC3B47 /* Ubuntu-Italic.ttf */; };
+		7494DCE520C4943A0032EC02 /* Ubuntu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D920BCC3E100EC3B47 /* Ubuntu-Light.ttf */; };
+		7494DCE620C4943A0032EC02 /* Ubuntu-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D620BCC3DE00EC3B47 /* Ubuntu-LightItalic.ttf */; };
+		7494DCE720C4943A0032EC02 /* Ubuntu-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D720BCC3DF00EC3B47 /* Ubuntu-Medium.ttf */; };
+		7494DCE820C4943A0032EC02 /* Ubuntu-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D820BCC3E000EC3B47 /* Ubuntu-MediumItalic.ttf */; };
+		7494DCE920C4943A0032EC02 /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D220BCC3DA00EC3B47 /* Ubuntu-Regular.ttf */; };
+		7494DCEA20C4943A0032EC02 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C720BC60D700EC3B47 /* OpenSans-Bold.ttf */; };
+		7494DCEB20C4943A0032EC02 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C220BC60D200EC3B47 /* OpenSans-BoldItalic.ttf */; };
+		7494DCEC20C4943A0032EC02 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C420BC60D400EC3B47 /* OpenSans-ExtraBold.ttf */; };
+		7494DCED20C4943A0032EC02 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C120BC60D100EC3B47 /* OpenSans-ExtraBoldItalic.ttf */; };
+		7494DCEE20C4943A0032EC02 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C620BC60D600EC3B47 /* OpenSans-Italic.ttf */; };
+		7494DCEF20C4943A0032EC02 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C020BC60D000EC3B47 /* OpenSans-Light.ttf */; };
+		7494DCF020C4943A0032EC02 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7BE20BC60CE00EC3B47 /* OpenSans-LightItalic.ttf */; };
+		7494DCF120C4943A0032EC02 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C520BC60D500EC3B47 /* OpenSans-Regular.ttf */; };
+		7494DCF220C4943A0032EC02 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C320BC60D300EC3B47 /* OpenSans-SemiBold.ttf */; };
+		7494DCF320C4943A0032EC02 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7BF20BC60CF00EC3B47 /* OpenSans-SemiBoldItalic.ttf */; };
 		749F8BFB20AB618B0023354F /* ParkCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */; };
 		749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFC20AB625A0023354F /* ParkByStateCell.swift */; };
 		749F8BFF20ABBB530023354F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749F8BFE20ABBB530023354F /* Assets.xcassets */; };
@@ -295,28 +295,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				745FB7CC20BC864A00EC3B47 /* OpenSans-Italic.ttf in Resources */,
-				745FB7C920BC864A00EC3B47 /* OpenSans-BoldItalic.ttf in Resources */,
+				7494DCE920C4943A0032EC02 /* Ubuntu-Regular.ttf in Resources */,
+				7494DCE220C4943A0032EC02 /* Ubuntu-Bold.ttf in Resources */,
 				741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */,
-				745FB7DE20BCC3E200EC3B47 /* Ubuntu-LightItalic.ttf in Resources */,
-				745FB7E120BCC3E200EC3B47 /* Ubuntu-Light.ttf in Resources */,
-				745FB7DA20BCC3E200EC3B47 /* Ubuntu-Regular.ttf in Resources */,
-				745FB7CA20BC864A00EC3B47 /* OpenSans-ExtraBold.ttf in Resources */,
-				745FB7DF20BCC3E200EC3B47 /* Ubuntu-Medium.ttf in Resources */,
+				7494DCE320C4943A0032EC02 /* Ubuntu-BoldItalic.ttf in Resources */,
+				7494DCE420C4943A0032EC02 /* Ubuntu-Italic.ttf in Resources */,
+				7494DCE620C4943A0032EC02 /* Ubuntu-LightItalic.ttf in Resources */,
+				7494DCEF20C4943A0032EC02 /* OpenSans-Light.ttf in Resources */,
+				7494DCE520C4943A0032EC02 /* Ubuntu-Light.ttf in Resources */,
+				7494DCF320C4943A0032EC02 /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				7494DCED20C4943A0032EC02 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				7494DCE720C4943A0032EC02 /* Ubuntu-Medium.ttf in Resources */,
+				7494DCF120C4943A0032EC02 /* OpenSans-Regular.ttf in Resources */,
 				741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */,
-				745FB7CE20BC864A00EC3B47 /* OpenSans-LightItalic.ttf in Resources */,
-				745FB7DC20BCC3E200EC3B47 /* Ubuntu-Bold.ttf in Resources */,
-				745FB7D020BC864A00EC3B47 /* OpenSans-SemiBold.ttf in Resources */,
-				745FB7DB20BCC3E200EC3B47 /* Ubuntu-BoldItalic.ttf in Resources */,
 				74A813DC20A8D7DA00CAD469 /* parks.json in Resources */,
-				745FB7C820BC864A00EC3B47 /* OpenSans-Bold.ttf in Resources */,
-				745FB7E020BCC3E200EC3B47 /* Ubuntu-MediumItalic.ttf in Resources */,
+				7494DCEB20C4943A0032EC02 /* OpenSans-BoldItalic.ttf in Resources */,
+				7494DCEA20C4943A0032EC02 /* OpenSans-Bold.ttf in Resources */,
+				7494DCEE20C4943A0032EC02 /* OpenSans-Italic.ttf in Resources */,
+				7494DCF220C4943A0032EC02 /* OpenSans-SemiBold.ttf in Resources */,
+				7494DCF020C4943A0032EC02 /* OpenSans-LightItalic.ttf in Resources */,
 				749F8BFF20ABBB530023354F /* Assets.xcassets in Resources */,
-				745FB7DD20BCC3E200EC3B47 /* Ubuntu-Italic.ttf in Resources */,
-				745FB7CD20BC864A00EC3B47 /* OpenSans-Light.ttf in Resources */,
-				745FB7CF20BC864A00EC3B47 /* OpenSans-Regular.ttf in Resources */,
-				745FB7D120BC864A00EC3B47 /* OpenSans-SemiBoldItalic.ttf in Resources */,
-				745FB7CB20BC864A00EC3B47 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				7494DCE820C4943A0032EC02 /* Ubuntu-MediumItalic.ttf in Resources */,
+				7494DCEC20C4943A0032EC02 /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

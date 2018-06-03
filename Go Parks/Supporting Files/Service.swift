@@ -48,32 +48,32 @@ class Service {
     // iPhone SE, 5s
     if screenWidth == 320 {
       cellWidth = 300
-      cellHeight = 215
+      cellHeight = 170
     }
     // iPhone 6, 7, 8
     if screenWidth == 375 {
       cellWidth = 350
-      cellHeight = 215
+      cellHeight = 200
     }
     //iPhone 6+, 7+, 8+
     if screenWidth == 414 {
       cellWidth = 390
-      cellHeight = 215
+      cellHeight = 220
     }
     //iPad, AIR, Pro 9.7
     if screenWidth == 768 {
       cellWidth = 746
-      cellHeight = 460
+      cellHeight = 420
     }
     //iPadPro 10.5
     if screenWidth == 834 {
       cellWidth = 812
-      cellHeight = 460
+      cellHeight = 455
     }
     //iPadPro 12
     if screenWidth == 1024 {
       cellWidth = 1002
-      cellHeight = 460
+      cellHeight = 565
     }
     return (cellWidth, cellHeight)
   }

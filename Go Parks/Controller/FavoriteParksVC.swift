@@ -25,7 +25,7 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
   override func viewWillAppear(_ animated: Bool) {
     
     if service.parksArray.filter({ $0.isFavorite == true }).count < 1 {
-      favoriteLabel.text = "List is Empty"
+      favoriteLabel.text = "Favorites is Empty"
     } else {
       favoriteLabel.text = "Favorites"
     }
@@ -75,7 +75,7 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
           print("\(self.service.parksArray[i].name) \(self.service.parksArray[i].isFavorite)")
         }
         if service.parksArray.filter({ $0.isFavorite == true }).count < 1 {
-          favoriteLabel.text = "List is Empty"
+          favoriteLabel.text = "Favorites is Empty"
         }
         self.service.saveParks()
         DispatchQueue.main.async {
