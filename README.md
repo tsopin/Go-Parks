@@ -8,3 +8,7 @@ Explore all US National Parks to plan your next trip
 - View the park on a map
 - Get directions from your door to the park
 - Navigate to the park’s official web page for more information
+
+![alt text](https://github.com/tsopin/Go-Parks/blob/master/X%20Main.png)
+![alt text](https://github.com/tsopin/Go-Parks/blob/master/X%20Details.png)
+![alt text](https://github.com/tsopin/Go-Parks/blob/master/X%20List.png)
