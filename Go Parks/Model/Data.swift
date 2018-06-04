@@ -24,7 +24,7 @@ struct ParksData : Codable {
   let weatherInfo : String
   let name : String
   var isFavorite : Bool
-
+  
 }
 
 struct State {
