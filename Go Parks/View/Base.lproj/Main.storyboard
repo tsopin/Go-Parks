@@ -1056,7 +1056,7 @@
         <image name="Acadia" width="960" height="640"/>
         <image name="Big Bend" width="960" height="547"/>
         <image name="MainBackground" width="375" height="811"/>
-        <image name="backColor" width="187" height="406"/>
+        <image name="backColor" width="1024" height="1024"/>
         <image name="button:2I3-YK-KFL:backgroundImage" width="42" height="37">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
@@ -1271,7 +1271,7 @@ AAAAAAAAAAAALwk
         <image name="dots" width="5" height="28"/>
         <image name="heartGrey" width="42" height="37"/>
         <image name="info" width="24" height="24"/>
-        <image name="logo" width="386" height="278"/>
+        <image name="logo" width="464" height="334"/>
         <image name="mainHeart" width="30" height="26"/>
         <image name="right-arrow" width="15" height="10"/>
         <image name="weatherBackground" width="101" height="45"/>

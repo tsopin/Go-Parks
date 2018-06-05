@@ -33,10 +33,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationUsageDescription</key>
-	<string>We need your location to obtain your weather condition</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to obtain your weather condition</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-SemiBoldItalic.ttf</string>
@@ -58,20 +54,23 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIRequiresFullScreen~ipad</key>
 	<false/>
 </dict>
 </plist>
