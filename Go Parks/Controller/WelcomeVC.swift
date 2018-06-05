@@ -13,8 +13,11 @@ class WelcomeVC: UIViewController {
   var parkToGo = Int()
   let service = Service.instance
   
-  @IBOutlet weak var logoConstraint: NSLayoutConstraint!
+  @IBOutlet weak var logoRightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var logoLeftConstraint: NSLayoutConstraint!
+  @IBOutlet weak var logoBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var bottomFavoriteConstraint: NSLayoutConstraint!
+  @IBOutlet weak var logoTopConstraint: NSLayoutConstraint!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,12 +53,12 @@ class WelcomeVC: UIViewController {
     let screenSize : CGRect = UIScreen.main.bounds
     
     if screenSize.width == 320 {
-      logoConstraint.constant = 15
+      logoBottomConstraint.constant = 15
     } else if screenSize.width == 1024 {
-      logoConstraint.constant = 130
+      logoBottomConstraint.constant = 130
       bottomFavoriteConstraint.constant = 100
     } else if screenSize.width == 375 && screenSize.height == 812 {
-      logoConstraint.constant = 70
+      logoBottomConstraint.constant = 70
       bottomFavoriteConstraint.constant = 60
     }
   }

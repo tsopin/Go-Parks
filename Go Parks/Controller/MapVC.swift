@@ -29,10 +29,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   
   //Constraints
   @IBOutlet weak var mapMaxConstraint: NSLayoutConstraint!
+
   @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var parkPhotoHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var parkNametoPhotoConstraint: NSLayoutConstraint!
-  @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
+
+  @IBOutlet weak var mapMinConstraint: NSLayoutConstraint!
+
   
   var data : ParksData?
   let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -90,44 +91,58 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     getLocatin(forLatitude: goLat, forLongitude: goLong)
     
     if screenSize.width == 834  { // iPadPro 10.5
-      
-      parkNametoPhotoConstraint.constant = 30
-      toolbarBottomConstraint.constant = 30
-      mapMaxConstraint.constant = 250
-      descriptionViewHeightConstraint.constant = 300
-      parkName.font = UIFont(name: "Ubuntu-Bold", size: 42)
-      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 20)
+
+      iPadViewAdjust(name: 42, description: 20)
       
     } else if screenSize.width == 768 { // iPad 5th Gen, Air, PRO 9.7
       
-      parkNametoPhotoConstraint.constant = 30
-      toolbarBottomConstraint.constant = 30
-      descriptionViewHeightConstraint.constant = 200
-      parkName.font = UIFont(name: "Ubuntu-Bold", size: 36)
-      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 18)
+
+      iPadViewAdjust(name: 36, description: 18)
       
     } else if screenSize.width == 1024 { //iPadPro 12.9
-      
-      parkNametoPhotoConstraint.constant = 30
-      toolbarBottomConstraint.constant = 30
-      mapMaxConstraint.constant = 250
-      descriptionViewHeightConstraint.constant = 300
-      parkName.font = UIFont(name: "Ubuntu-Bold", size: 50)
-      parkDescription.font = UIFont(name: "OpenSans-Regular", size: 24)
+
+
+      iPadViewAdjust(name: 50, description: 24)
       
     } else if screenSize.width == 375 && screenSize.height == 812 { // iPhone X
       
-      mapMaxConstraint.constant = 200
-      parkPhotoHeightConstraint.constant = 270
-      descriptionViewHeightConstraint.constant = -70
+      mapMinConstraint.constant = 170
+      descriptionViewHeightConstraint.constant = -60
       
     } else if screenSize.width == 375 { // iPhone 6, 7, 8
       
       mapMaxConstraint.constant = 200
-      parkPhotoHeightConstraint.constant = 270
       descriptionViewHeightConstraint.constant = 0
       
     } 
+  }
+  
+  func iPadViewAdjust(name: CGFloat, description: CGFloat) {
+    
+//    let padding : CGFloat  = 40.0
+    
+    parkName.font = UIFont(name: "Ubuntu-Bold", size: name)
+    parkDescription.font = UIFont(name: "OpenSans-Regular", size: description)
+    
+//    heartTop.constant = padding
+//    heartLeading.constant = padding
+//    heartWidth.constant = 45
+//    heartHeight.constant = 39
+//    weatherLeading.constant = padding
+//    weatherBottom.constant = padding
+    
+//    nameTrailing.constant = padding
+//    descriptionLeading.constant = padding
+//    descriptionTrailing.constant = padding
+    
+//    parkNametoPhotoConstraint.constant = padding
+//    toolbarBottomConstraint.constant = padding
+    
+    mapMinConstraint.constant = screenSize.width * 0.29
+    descriptionViewHeightConstraint.constant = screenSize.width * 0.28
+    
+//    toolbarLeading.constant = padding
+//    toolbarTrailing.constant = padding
   }
   
   func getLocatin(forLatitude: Double, forLongitude: Double) {
