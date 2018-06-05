@@ -28,13 +28,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   @IBOutlet weak var unitsLabel: UILabel!
   
   //Constraints
-  @IBOutlet weak var mapMaxConstraint: NSLayoutConstraint!
-
   @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
-
   @IBOutlet weak var mapMinConstraint: NSLayoutConstraint!
 
-  
   var data : ParksData?
   let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
   let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
@@ -111,7 +107,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       
     } else if screenSize.width == 375 { // iPhone 6, 7, 8
       
-      mapMaxConstraint.constant = 200
       descriptionViewHeightConstraint.constant = 0
       
     } 
@@ -119,30 +114,12 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   
   func iPadViewAdjust(name: CGFloat, description: CGFloat) {
     
-//    let padding : CGFloat  = 40.0
-    
     parkName.font = UIFont(name: "Ubuntu-Bold", size: name)
     parkDescription.font = UIFont(name: "OpenSans-Regular", size: description)
-    
-//    heartTop.constant = padding
-//    heartLeading.constant = padding
-//    heartWidth.constant = 45
-//    heartHeight.constant = 39
-//    weatherLeading.constant = padding
-//    weatherBottom.constant = padding
-    
-//    nameTrailing.constant = padding
-//    descriptionLeading.constant = padding
-//    descriptionTrailing.constant = padding
-    
-//    parkNametoPhotoConstraint.constant = padding
-//    toolbarBottomConstraint.constant = padding
-    
+
     mapMinConstraint.constant = screenSize.width * 0.29
     descriptionViewHeightConstraint.constant = screenSize.width * 0.28
-    
-//    toolbarLeading.constant = padding
-//    toolbarTrailing.constant = padding
+
   }
   
   func getLocatin(forLatitude: Double, forLongitude: Double) {
