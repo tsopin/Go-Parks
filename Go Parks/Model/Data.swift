@@ -28,12 +28,14 @@ struct ParksData : Codable {
 }
 
 struct State {
+  let fullName: String
   let stateName: String
   let stateFlag: UIImage
   
-  init(name: String, flag: UIImage ) {
+  init(name: String, full: String, flag: UIImage ) {
     self.stateName = name
     self.stateFlag = flag
+    self.fullName = full
   }
 }
 

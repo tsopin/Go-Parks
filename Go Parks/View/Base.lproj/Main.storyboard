@@ -582,9 +582,16 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="M1P-h1-yGJ">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="lDM-DC-QUi" id="5TU-y9-68w"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomConstraint" destination="lXd-XL-ImP" id="E8G-6s-yCB"/>
                         <outlet property="statesTableView" destination="5Bh-01-bCZ" id="rjx-ea-Vkb"/>
+                        <outlet property="topConstraint" destination="82M-qH-7UF" id="aVb-SJ-YRq"/>
                         <segue destination="NfZ-MY-HD7" kind="show" identifier="parkByState" id="STX-OW-Zel"/>
                     </connections>
                 </viewController>
