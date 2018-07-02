@@ -19,11 +19,14 @@ class WelcomeVC: UIViewController {
   
   @IBOutlet weak var logoHeight: NSLayoutConstraint!
   @IBOutlet weak var heartTop: NSLayoutConstraint!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     service.getListOfParks()
-    service.loadParks()
+//    service.loadParks()
     adjustMainScreen()
+    print(service.parksArray.count)
   }
   
   override func viewWillAppear(_ animated: Bool) {

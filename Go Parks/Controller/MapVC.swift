@@ -26,6 +26,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   @IBOutlet weak var weatherInfoButton: UIButton!
   @IBOutlet weak var descriptionButton: UIButton!
   @IBOutlet weak var unitsLabel: UILabel!
+  @IBOutlet weak var statesLabel: UILabel!
   
   //Constraints
   @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
@@ -44,6 +45,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   var goLong = Double()
   var sentUrl = String()
   var manager = CLLocationManager()
+  var states = String()
   
   override func viewWillAppear(_ animated: Bool) {
     
@@ -75,6 +77,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
     isCelsius = defaults.bool(forKey: "isCelsius")
     parkDescription.dataDetectorTypes = .all
+    
+    for state in (data?.states)! {
+      states.append("\(state),  ")
+    }
+    states.removeLast(2)
+    print(states)
+    statesLabel.text = states
     
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }

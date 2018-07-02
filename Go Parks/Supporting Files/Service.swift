@@ -27,6 +27,7 @@ class Service {
       for park in parks {
         parksArray.append(park)
       }
+      parksArray = parksArray.sorted { $0.name < $1.name }
       
     } catch {
       print("eerrro")
@@ -38,9 +39,9 @@ class Service {
     var cellWidth = CGFloat()
     var cellHeight = CGFloat()
     
-    cellWidth = screenWidth - 20
+    cellWidth = screenWidth - screenWidth*0.07
     cellHeight = cellWidth / 1.78
-
+    
     return (cellWidth, cellHeight)
   }
   
@@ -89,40 +90,40 @@ class Service {
     "AZ",
     "CA",
     "CO",
-    //                 "CT",
+    "CT",
     "DC",
-    //                 "DE",
+    "DE",
     "FL",
-    //                 "GA",
+    "GA",
     "HI",
-    //                 "IA",
+    "IA",
     "ID",
-    //                 "IL",
-    //                 "IN",
-    //                 "KS",
+    "IL",
+    "IN",
+    "KS",
     "KY",
-    //                 "LA",
-    //                 "MA",
-    //                 "MD",
+    "LA",
+    "MA",
+    "MD",
     "ME",
     "MI",
     "MN",
-    //                 "MO",
-    //                 "MS",
+    "MO",
+    "MS",
     "MT",
     "NC",
-    //                 "ND",
-    //                 "NE",
-    //                 "NH",
-    //                 "NJ",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
     "NM",
     "NV",
     "NY",
     "OH",
-    //                 "OK",
+    "OK",
     "OR",
-    //                 "PA",
-    //                 "RI",
+    "PA",
+    "RI",
     "SC",
     "SD",
     "TN",
@@ -130,10 +131,25 @@ class Service {
     "UT",
     "VA",
     "VI",
-    //                 "VT",
+    "VT",
     "WA",
-    //                 "WI",
-    //                 "WV",
+    "WI",
+    "WV",
     "WY"]
   
 }
+
+
+
+
+
+
+
+
+
+//Isle Royale,
+
+
+
+
+

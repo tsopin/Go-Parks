@@ -15,6 +15,7 @@
 		7426E28F20BF29DB005A1900 /* FavoriteParksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */; };
 		7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */; };
 		7436E7BC20ADE70A00FC4F5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7436E7BB20ADE70A00FC4F5B /* Weather.swift */; };
+		744DBFEE20EA8D1B009991B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 744DBFED20EA8D1B009991B6 /* Assets.xcassets */; };
 		745FB7E320BDF87700EC3B47 /* AllParksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB7E220BDF87700EC3B47 /* AllParksVC.swift */; };
 		746EF43120AA7A600087169A /* ListOfStatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43020AA7A600087169A /* ListOfStatesVC.swift */; };
 		746EF43320AA7B7B0087169A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43220AA7B7B0087169A /* Service.swift */; };
@@ -40,7 +41,6 @@
 		7494DCF320C4943A0032EC02 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7BF20BC60CF00EC3B47 /* OpenSans-SemiBoldItalic.ttf */; };
 		749F8BFB20AB618B0023354F /* ParkCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */; };
 		749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFC20AB625A0023354F /* ParkByStateCell.swift */; };
-		749F8BFF20ABBB530023354F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749F8BFE20ABBB530023354F /* Assets.xcassets */; };
 		749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8C0220ABD2080023354F /* AllParksCell.swift */; };
 		74A813DC20A8D7DA00CAD469 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = 74A813DB20A8D7DA00CAD469 /* parks.json */; };
 		74A813E220A8DAC000CAD469 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* Data.swift */; };
@@ -59,6 +59,7 @@
 		7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteParksVC.swift; sourceTree = "<group>"; };
 		7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteParksCell.swift; sourceTree = "<group>"; };
 		7436E7BB20ADE70A00FC4F5B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		744DBFED20EA8D1B009991B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		745FB7BE20BC60CE00EC3B47 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		745FB7BF20BC60CF00EC3B47 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		745FB7C020BC60D000EC3B47 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -84,7 +85,6 @@
 		7470F31620AE0B540005FFF1 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCollectionVC.swift; sourceTree = "<group>"; };
 		749F8BFC20AB625A0023354F /* ParkByStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateCell.swift; sourceTree = "<group>"; };
-		749F8BFE20ABBB530023354F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		749F8C0220ABD2080023354F /* AllParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParksCell.swift; sourceTree = "<group>"; };
 		74A813DB20A8D7DA00CAD469 /* parks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
 		74A813E020A8DAC000CAD469 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -149,6 +149,7 @@
 				74A813DE20A8DAAD00CAD469 /* View */,
 				74A813E520A8FA5600CAD469 /* Controller */,
 				741A48D22097E0DC00B4688F /* Info.plist */,
+				744DBFED20EA8D1B009991B6 /* Assets.xcassets */,
 			);
 			path = "Go Parks";
 			sourceTree = "<group>";
@@ -213,7 +214,6 @@
 		74A813DE20A8DAAD00CAD469 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				749F8BFE20ABBB530023354F /* Assets.xcassets */,
 				746EF43520AA7D7C0087169A /* Cells */,
 				741A48CA2097E0DB00B4688F /* Main.storyboard */,
 				741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */,
@@ -297,6 +297,7 @@
 			files = (
 				7494DCE920C4943A0032EC02 /* Ubuntu-Regular.ttf in Resources */,
 				7494DCE220C4943A0032EC02 /* Ubuntu-Bold.ttf in Resources */,
+				744DBFEE20EA8D1B009991B6 /* Assets.xcassets in Resources */,
 				741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */,
 				7494DCE320C4943A0032EC02 /* Ubuntu-BoldItalic.ttf in Resources */,
 				7494DCE420C4943A0032EC02 /* Ubuntu-Italic.ttf in Resources */,
@@ -314,7 +315,6 @@
 				7494DCEE20C4943A0032EC02 /* OpenSans-Italic.ttf in Resources */,
 				7494DCF220C4943A0032EC02 /* OpenSans-SemiBold.ttf in Resources */,
 				7494DCF020C4943A0032EC02 /* OpenSans-LightItalic.ttf in Resources */,
-				749F8BFF20ABBB530023354F /* Assets.xcassets in Resources */,
 				7494DCE820C4943A0032EC02 /* Ubuntu-MediumItalic.ttf in Resources */,
 				7494DCEC20C4943A0032EC02 /* OpenSans-ExtraBold.ttf in Resources */,
 			);

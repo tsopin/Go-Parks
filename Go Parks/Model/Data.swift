@@ -36,3 +36,9 @@ struct State {
     self.stateFlag = flag
   }
 }
+
+extension State: Equatable {
+  static func == (lhs: State, rhs: State) -> Bool {
+    return lhs.stateName == rhs.stateName
+  }
+}

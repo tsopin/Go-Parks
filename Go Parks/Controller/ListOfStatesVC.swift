@@ -36,6 +36,7 @@ class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var count = Int()
     var parksCount = String()
     
+    
     for _ in Service.instance.parksArray.filter({ $0.states.contains(state.stateName) }) {
       count = count + 1
     }

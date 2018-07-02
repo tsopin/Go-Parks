@@ -14,6 +14,7 @@ protocol FavoriteParksCellDelegate: class {
 
 class FavoriteParksCell: UICollectionViewCell {
   static let ID = "FavoriteParksCell"
+  
   var delegate: FavoriteParksCellDelegate?
   let service = Service()
   
