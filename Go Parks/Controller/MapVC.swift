@@ -27,6 +27,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   @IBOutlet weak var descriptionButton: UIButton!
   @IBOutlet weak var unitsLabel: UILabel!
   @IBOutlet weak var statesLabel: UILabel!
+  @IBOutlet weak var designationLabel: UILabel!
   
   //Constraints
   @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
@@ -79,11 +80,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     parkDescription.dataDetectorTypes = .all
     
     for state in (data?.states)! {
-      states.append("\(state),  ")
+      states.append("\(state) ")
     }
-    states.removeLast(2)
-    print(states)
     statesLabel.text = states
+    designationLabel.text = data?.designation
     
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }
