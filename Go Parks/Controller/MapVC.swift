@@ -125,6 +125,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     
     parkName.font = UIFont(name: "Ubuntu-Bold", size: name)
     parkDescription.font = UIFont(name: "OpenSans-Regular", size: description)
+    designationLabel.font = UIFont(name: "OpenSans-Italic", size: description)
 
     mapMinConstraint.constant = screenSize.width * 0.29
     descriptionViewHeightConstraint.constant = screenSize.width * 0.28
