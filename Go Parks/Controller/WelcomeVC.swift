@@ -24,7 +24,7 @@ class WelcomeVC: UIViewController {
     super.viewDidLoad()
     
     service.getListOfParks()
-//    service.loadParks()
+    service.loadParks()
     adjustMainScreen()
     print(service.parksArray.count)
   }

@@ -60,6 +60,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     parkDescription.text = data?.description
     weatherInfoButton.isEnabled = true
     descriptionButton.isEnabled = false
+    
+    print("Received \(data?.name) \(data?.isFavorite)")
   }
   
   override func viewDidLayoutSubviews() {
@@ -186,7 +188,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       
       response in
       if response.result.isSuccess {
-        print("Sucess")
+//        print("Sucess")
         
         let weatherJSON : JSON = JSON(response.result.value!)
         self.updateWeatherData(json: weatherJSON)
@@ -277,6 +279,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       let destinationVC = segue.destination as! WebViewVC
       destinationVC.receivedUrl = sentUrl
     }
+  }
+  
+  deinit {
+    print("deinit called")
   }
 }
 

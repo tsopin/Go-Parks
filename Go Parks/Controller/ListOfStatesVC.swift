@@ -40,6 +40,7 @@ class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     searchController.searchBar.placeholder = "Find State by Name or Code"
   }
   
+
   // MARK: Search
   
   func updateSearchResults(for searchController: UISearchController) {

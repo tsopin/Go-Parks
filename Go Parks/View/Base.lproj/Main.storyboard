@@ -470,9 +470,15 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="BUe-AY-XfM">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="k7T-Ib-mMx" id="vZr-1v-05v"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="allParksCollectionView" destination="up5-1M-Snu" id="tov-kK-DHA"/>
+                        <outlet property="bottomConstraint" destination="tA5-8Y-CQU" id="SeX-Vi-tX2"/>
                         <segue destination="35c-Sk-8py" kind="show" identifier="parkDetailFromPhoto" id="JLJ-3X-zor"/>
                     </connections>
                 </viewController>
@@ -582,7 +588,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="M1P-h1-yGJ">
+                        <barButtonItem key="rightBarButtonItem" image="search" id="M1P-h1-yGJ">
                             <connections>
                                 <action selector="searchButtonPressed:" destination="lDM-DC-QUi" id="5TU-y9-68w"/>
                             </connections>
@@ -1449,9 +1455,10 @@ AAAAAAAAAAAALwk
         <image name="logo" width="464" height="334"/>
         <image name="mainHeart" width="30" height="26"/>
         <image name="right-arrow" width="25" height="17"/>
+        <image name="search" width="30" height="30"/>
         <image name="weatherBackground" width="101" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NyT-fw-aPk"/>
+        <segue reference="JLJ-3X-zor"/>
     </inferredMetricsTieBreakers>
 </document>

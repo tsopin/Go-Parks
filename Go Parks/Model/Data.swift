@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ParksData : Codable {
+struct ParksData : Codable, Equatable {
   
   let states : [String]
   let lat : String
@@ -24,6 +24,10 @@ struct ParksData : Codable {
   let weatherInfo : String
   let name : String
   var isFavorite : Bool
+  
+  static func == (lhs: ParksData, rhs: ParksData) -> Bool {
+    return lhs.fullName == rhs.fullName
+  }
   
 }
 
@@ -44,3 +48,5 @@ extension State: Equatable {
     return lhs.stateName == rhs.stateName
   }
 }
+
+
