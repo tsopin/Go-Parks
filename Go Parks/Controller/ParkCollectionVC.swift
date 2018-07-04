@@ -8,15 +8,15 @@
 
 import UIKit
 
-class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ParkByStateCellDelegate {
+class ParkCollectionVC: UIViewController, ParkByStateCellDelegate {
   
-  @IBOutlet weak var stateNameLabel: UILabel!
-  @IBOutlet weak var parkByStateCollectionView: UICollectionView!
+  @IBOutlet weak private var stateNameLabel: UILabel!
+  @IBOutlet weak private var parkByStateCollectionView: UICollectionView!
   
   var chosenState : String?
-  var selectedItem = Int()
-  let service = Service.instance
-  var chosenPark = Int()
+  private var selectedItem = Int()
+  private let service = Service.instance
+  private var chosenPark = Int()
   
   override func viewWillAppear(_ animated: Bool) {
     stateNameLabel.text = chosenState?.longStateName()
@@ -28,48 +28,6 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
   override func viewDidLoad() {
     super.viewDidLoad()
     self.parkByStateCollectionView.delaysContentTouches = false
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return service.parksArray.filter({ $0.states.contains("\(chosenState!)") }).count
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkByStateCell.ID, for: indexPath) as! ParkByStateCell
-    let park = service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[indexPath.row]
-    
-    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
-    
-    cell.delegate = self
-    return cell
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    selectedItem = indexPath.row
-    
-    for i in 0..<service.parksArray.count {
-      if service.parksArray[i].name == service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[selectedItem].name {
-        chosenPark = i
-
-      }
-    }
-    
-    DispatchQueue.main.async {
-      self.performSegue(withIdentifier: "parkDetails", sender: Any?.self)
-    }
-  }
-  
-  
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
-    let screenSize : CGRect = UIScreen.main.bounds
-    
-    let width = service.collectionItemsResize(screenWidth: screenSize.width).0
-    let height = service.collectionItemsResize(screenWidth: screenSize.width).1
-    
-    return CGSize(width: width, height: height)
-    
   }
   
   func favoritePressed(cell: ParkByStateCell) {
@@ -100,13 +58,57 @@ class ParkCollectionVC: UIViewController, UICollectionViewDelegate, UICollection
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "parkDetails" {
-      
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = service.parksArray[chosenPark]
-
     }
+  }
+  
+  deinit {
+    print("Park by State deinit")
   }
 }
 
+//MARK: - UICollectionView Methods
 
+extension ParkCollectionVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return service.parksArray.filter({ $0.states.contains("\(chosenState!)") }).count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkByStateCell.ID, for: indexPath) as! ParkByStateCell
+    let park = service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[indexPath.row]
+    
+    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
+    
+    cell.delegate = self
+    return cell
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    selectedItem = indexPath.row
+    
+    for i in 0..<service.parksArray.count {
+      if service.parksArray[i].name == service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[selectedItem].name {
+        chosenPark = i
+      }
+    }
+    
+    DispatchQueue.main.async {
+      self.performSegue(withIdentifier: "parkDetails", sender: Any?.self)
+    }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
+    let screenSize : CGRect = UIScreen.main.bounds
+    let width = service.collectionItemsResize(screenWidth: screenSize.width).width
+    let height = service.collectionItemsResize(screenWidth: screenSize.width).height
+    
+    return CGSize(width: width, height: height)
+    
+  }
+  
+}
 

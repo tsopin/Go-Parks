@@ -13,40 +13,40 @@ import SwiftyJSON
 
 class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   
-  @IBOutlet weak var favorite: UIButton!
-  @IBOutlet weak var mapView: MKMapView!
-  @IBOutlet weak var parkName: UILabel!
-  @IBOutlet weak var photoImageView: UIImageView!
-  @IBOutlet weak var parkDescription: UITextView!
-  @IBOutlet weak var weatherIcon: UIImageView!
-  @IBOutlet weak var favoriteBtn: UIButton!
-  @IBOutlet weak var temperatureLabel: UILabel!
-  @IBOutlet weak var changeUnitsBtn: UIButton!
-  @IBOutlet weak var weatherActivity: UIActivityIndicatorView!
-  @IBOutlet weak var weatherInfoButton: UIButton!
-  @IBOutlet weak var descriptionButton: UIButton!
-  @IBOutlet weak var unitsLabel: UILabel!
-  @IBOutlet weak var statesLabel: UILabel!
-  @IBOutlet weak var designationLabel: UILabel!
+  @IBOutlet weak private var favorite: UIButton!
+  @IBOutlet weak private var mapView: MKMapView!
+  @IBOutlet weak private var parkName: UILabel!
+  @IBOutlet weak private var photoImageView: UIImageView!
+  @IBOutlet weak private var parkDescription: UITextView!
+  @IBOutlet weak private var weatherIcon: UIImageView!
+  @IBOutlet weak private var favoriteBtn: UIButton!
+  @IBOutlet weak private var temperatureLabel: UILabel!
+  @IBOutlet weak private var changeUnitsBtn: UIButton!
+  @IBOutlet weak private var weatherActivity: UIActivityIndicatorView!
+  @IBOutlet weak private var weatherInfoButton: UIButton!
+  @IBOutlet weak private var descriptionButton: UIButton!
+  @IBOutlet weak private var unitsLabel: UILabel!
+  @IBOutlet weak private var statesLabel: UILabel!
+  @IBOutlet weak private var designationLabel: UILabel!
   
   //Constraints
-  @IBOutlet weak var descriptionViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var mapMinConstraint: NSLayoutConstraint!
-
-  var data : ParksData?
-  let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
-  let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
-  let weatherDataModel = WeatherDataModel()
-  let service = Service.instance
-  let defaults = UserDefaults()
-  let screenSize : CGRect = UIScreen.main.bounds
+  @IBOutlet weak private var descriptionViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var mapMinConstraint: NSLayoutConstraint!
   
-  var isCelsius = false
-  var goLat = Double()
-  var goLong = Double()
-  var sentUrl = String()
-  var manager = CLLocationManager()
-  var states = String()
+  var data : ParksData?
+  private let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+  private let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
+  private let weatherDataModel = WeatherDataModel()
+  private let service = Service.instance
+  private let defaults = UserDefaults()
+  private let screenSize : CGRect = UIScreen.main.bounds
+  
+  private var isCelsius = false
+  private var goLat = Double()
+  private var goLong = Double()
+  private var sentUrl = String()
+  private var manager = CLLocationManager()
+  private var states = String()
   
   override func viewWillAppear(_ animated: Bool) {
     
@@ -56,12 +56,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
     }
     
+    statesLabel.text = states
+    designationLabel.text = data?.designation
+    photoImageView.image = UIImage(named: (data?.name)!)
     parkName.text = data?.name
     parkDescription.text = data?.description
     weatherInfoButton.isEnabled = true
     descriptionButton.isEnabled = false
-    
-    print("Received \(data?.name) \(data?.isFavorite)")
   }
   
   override func viewDidLayoutSubviews() {
@@ -72,21 +73,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    for state in (data?.states)! {
+      states.append("\(state) ")
+    }
+    
     self.parkDescription.delegate = self
     parkDescription.textContainer.lineFragmentPadding = 0
     parkDescription.textContainerInset = .zero
     weatherActivity.hidesWhenStopped = true
-    photoImageView.image = UIImage(named: (data?.name)!)
+    
     descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
     isCelsius = defaults.bool(forKey: "isCelsius")
     parkDescription.dataDetectorTypes = .all
-    
-    for state in (data?.states)! {
-      states.append("\(state) ")
-    }
-    statesLabel.text = states
-    designationLabel.text = data?.designation
-    
+   
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }
     
@@ -96,100 +95,74 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     let params : [String : String] = ["lat" : lat, "lon" : long, "appid" : API_KEY]
     getWeatherData(url: WEATHER_URL, parametrs: params)
     getLocatin(forLatitude: goLat, forLongitude: goLong)
-    
-    if screenSize.width == 834  { // iPadPro 10.5
-
-      iPadViewAdjust(name: 42, description: 20)
-      
-    } else if screenSize.width == 768 { // iPad 5th Gen, Air, PRO 9.7
-      
-
-      iPadViewAdjust(name: 36, description: 18)
-      
-    } else if screenSize.width == 1024 { //iPadPro 12.9
-
-
-      iPadViewAdjust(name: 50, description: 24)
-      
-    } else if screenSize.width == 375 && screenSize.height == 812 { // iPhone X
-      
-      mapMinConstraint.constant = 170
-      descriptionViewHeightConstraint.constant = -60
-      
-    } else if screenSize.width == 375 { // iPhone 6, 7, 8
-      
-      descriptionViewHeightConstraint.constant = 0
-      
-    } 
+    ajustScreen()
   }
   
-  func iPadViewAdjust(name: CGFloat, description: CGFloat) {
-    
+  private func ajustScreen() {
+    if screenSize.width == 834  { // iPadPro 10.5
+      iPadViewAdjust(name: 42, description: 20)
+    } else if screenSize.width == 768 { // iPad 5th Gen, Air, PRO 9.7
+      iPadViewAdjust(name: 36, description: 18)
+    } else if screenSize.width == 1024 { //iPadPro 12.9
+      iPadViewAdjust(name: 50, description: 24)
+    } else if screenSize.width == 375 && screenSize.height == 812 { // iPhone X
+      mapMinConstraint.constant = 170
+      descriptionViewHeightConstraint.constant = -60
+    } else if screenSize.width == 375 { // iPhone 6, 7, 8
+      descriptionViewHeightConstraint.constant = 0
+    }
+  }
+  
+  private func iPadViewAdjust(name: CGFloat, description: CGFloat) {
     parkName.font = UIFont(name: "Ubuntu-Bold", size: name)
     parkDescription.font = UIFont(name: "OpenSans-Regular", size: description)
     designationLabel.font = UIFont(name: "OpenSans-Italic", size: description)
-
     mapMinConstraint.constant = screenSize.width * 0.29
     descriptionViewHeightConstraint.constant = screenSize.width * 0.28
-
   }
   
-  func getLocatin(forLatitude: Double, forLongitude: Double) {
+  private func getLocatin(forLatitude: Double, forLongitude: Double) {
     let span = MKCoordinateSpanMake(0.4, 0.4)
     let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: forLatitude, longitude: forLongitude), span: span)
-    
-    mapView.setRegion(region, animated: true)
-    
     let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(forLatitude, forLongitude)
     let pinObject = MKPointAnnotation()
     
+    mapView.setRegion(region, animated: true)
     pinObject.coordinate = pinLocation
     pinObject.title = data?.fullName
-    
     self.mapView.addAnnotation(pinObject)
   }
   
-  @IBAction func infoButton(_ sender: Any) {
+  @IBAction private func infoButton(_ sender: Any) {
     sentUrl = (data?.url)!
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
     }
   }
   
-  @IBAction func weatherInfoBtnPressed(_ sender: UIButton) {
-    
+  @IBAction private func weatherInfoBtnPressed(_ sender: UIButton) {
     parkDescription.text = data?.weatherInfo
     weatherInfoButton.setBackgroundImage(UIImage(named: "cloudyGrey"), for: .normal)
     descriptionButton.setBackgroundImage(UIImage(named: "info"), for: .normal)
     weatherInfoButton.isEnabled = false
     descriptionButton.isEnabled = true
-    
   }
   
-  @IBAction func descriptionButtonPressed(_ sender: UIButton) {
-    
+  @IBAction private func  descriptionButtonPressed(_ sender: UIButton) {
     parkDescription.text = data?.description
     weatherInfoButton.isEnabled = true
     descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
     weatherInfoButton.setBackgroundImage(UIImage(named: "cloudy"), for: .normal)
     descriptionButton.isEnabled = false
-    
   }
-  
-  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-    return true
-  }
-  
-  func getWeatherData(url: String, parametrs: [String: String]) {
+ 
+  private func getWeatherData(url: String, parametrs: [String: String]) {
     weatherActivity.startAnimating()
     changeUnitsBtn.isEnabled = false
     
-    Alamofire.request(url, method: .get, parameters: parametrs).responseJSON {
+    Alamofire.request(url, method: .get, parameters: parametrs).responseJSON { response in
       
-      response in
       if response.result.isSuccess {
-//        print("Sucess")
-        
         let weatherJSON : JSON = JSON(response.result.value!)
         self.updateWeatherData(json: weatherJSON)
         self.weatherActivity.stopAnimating()
@@ -200,18 +173,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     }
   }
   
-  @IBAction func favoriteButton(_ sender: UIButton) {
-    
+  @IBAction private func favoriteButton(_ sender: UIButton) {
     service.animateButton(sender)
     addToFavorite()
-    
   }
   
-  @IBAction func changeTempUnits(_ sender: Any) {
-    
+  @IBAction private func changeTempUnits(_ sender: Any) {
+    changeInits()
+  }
+  
+  private func changeInits() {
     let k = Double(weatherDataModel.temperatupre)
     let f = Int( 1.8 * (k - 273) + 32)
-
+    
     if (unitsLabel.text?.contains("C"))! {
       temperatureLabel.text = "\(f)"
       unitsLabel.text = "F"
@@ -221,11 +195,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       unitsLabel.text = "C"
       isCelsius = true
     }
-    
     defaults.set(isCelsius, forKey: "isCelsius")
   }
   
-  func addToFavorite() {
+  private func addToFavorite() {
     for i in 0..<service.parksArray.count {
       
       if service.parksArray[i].name == data?.name {
@@ -243,8 +216,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     }
   }
   
-  func updateWeatherData (json: JSON) {
-    
+  private func updateWeatherData (json: JSON) {
     if let tempResults = json["main"]["temp"].double {
       weatherDataModel.temperatupre = Int(tempResults)
       weatherDataModel.city = json["name"].stringValue
@@ -252,10 +224,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
       updateUIwithWeatherData()
     } else {
+      print("JSON Error")
     }
   }
   
-  func updateUIwithWeatherData() {
+  private func updateUIwithWeatherData() {
     let k = Double(weatherDataModel.temperatupre)
     let f = Int( 1.8 * (k - 273) + 32 )
     
@@ -269,8 +242,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
   }
   
-  @IBAction func directionButton(_ sender: Any) {
-    
+  @IBAction private func directionButton(_ sender: Any) {
     UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
   }
   
@@ -281,8 +253,12 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     }
   }
   
+  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    return true
+  }
+  
   deinit {
-    print("deinit called")
+    print("Map Deinit")
   }
 }
 

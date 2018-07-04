@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class ListOfStatesVC: UIViewController {
   
   @IBOutlet weak var statesTableView: UITableView!
   @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var topConstraint: NSLayoutConstraint!
   
-  var statesArray = [State]()
-  var filtredStatesArray = [State]()
-  var selectedRow = Int()
-  let searchController = UISearchController(searchResultsController: nil)
+  private var statesArray = [State]()
+  private var filtredStatesArray = [State]()
+  private var selectedRow = Int()
+  private let searchController = UISearchController(searchResultsController: nil)
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,26 +39,52 @@ class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.placeholder = "Find State by Name or Code"
   }
-  
-
-  // MARK: Search
-  
-  func updateSearchResults(for searchController: UISearchController) {
-    filterContentForSearchText(searchController.searchBar.text!)
-  }
-  
-  func filterContentForSearchText(_ searchText: String, scope: String = "All") {
  
-    filtredStatesArray = statesArray.filter({ (state: State) -> Bool in
-      return state.stateName.lowercased().contains(searchText.lowercased()) || state.fullName.lowercased().contains(searchText.lowercased())
-    })
-    statesTableView.reloadData()
-    scrollToTop()
+  @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+    print("SEARCH")
+    if navigationItem.searchController?.searchBar.isFirstResponder == false {
+      navigationItem.searchController?.searchBar.becomeFirstResponder()
+    }
   }
   
-  func isFiltering() -> Bool {
-    return searchController.isActive && !(searchController.searchBar.text?.isEmpty)!
+  //  Move UItableView above a keyboard
+  @objc func keyboardWillShow(notification : NSNotification) {
+    
+    let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
+    self.bottomConstraint.constant = keyboardSize.height
+    UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in })
   }
+  
+  @objc func keyboardWillHide(notification : NSNotification) {
+    self.bottomConstraint.constant = 0
+  }
+  
+  private func scrollToTop() {
+    
+    if self.filtredStatesArray.count - 1 <= 0 {
+      return
+    }
+    let indexPath = IndexPath(item: 0, section: 0)
+    DispatchQueue.main.async {
+      self.statesTableView?.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "parkByState" {
+      let destinationVC = segue.destination as! ParkCollectionVC
+      destinationVC.chosenState = Service.instance.stateNamesArray[selectedRow]
+      print("Chosen State \(Service.instance.stateNamesArray[selectedRow].longStateName())")
+    }
+  }
+  
+  deinit {
+    print("List Of States Deinit")
+  }
+}
+
+//MARK: - UITableView Methods
+extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if isFiltering() {
@@ -70,7 +96,7 @@ class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = statesTableView.dequeueReusableCell(withIdentifier: StateCell.ID) as! StateCell
-   
+    
     let state = isFiltering() ? filtredStatesArray[indexPath.row] : statesArray[indexPath.row]
     var count = Int()
     var parksCount = String()
@@ -97,50 +123,29 @@ class ListOfStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.performSegue(withIdentifier: "parkByState", sender: Any?.self)
     }
   }
-  
-  @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
-    print("SEARCH")
-    if navigationItem.searchController?.searchBar.isFirstResponder == false {
-      navigationItem.searchController?.searchBar.becomeFirstResponder()
-    }
-  }
-  
-  //  Move UItableView above a keyboard
-  @objc func keyboardWillShow(notification : NSNotification) {
-    
-    let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
-    self.bottomConstraint.constant = keyboardSize.height
-    UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
-      
-    })
-  }
-  
-  @objc func keyboardWillHide(notification : NSNotification) {
-    self.bottomConstraint.constant = 0
-  }
-  
-  func scrollToTop() {
-    
-    if self.filtredStatesArray.count - 1 <= 0 {
-      return
-    }
-    let indexPath = IndexPath(item: 0, section: 0)
-    DispatchQueue.main.async {
-      self.statesTableView?.scrollToRow(at: indexPath, at: .top, animated: true)
-    }
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "parkByState" {
-      let destinationVC = segue.destination as! ParkCollectionVC
-      destinationVC.chosenState = Service.instance.stateNamesArray[selectedRow]
-      print("Chosen State \(Service.instance.stateNamesArray[selectedRow].longStateName())")
-    }
-  }
 }
 
-
-
+// MARK: UISearch Methods
+extension ListOfStatesVC: UISearchResultsUpdating {
+  
+  func updateSearchResults(for searchController: UISearchController) {
+    filterContentForSearchText(searchController.searchBar.text!)
+  }
+  
+  func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    
+    filtredStatesArray = statesArray.filter({ (state: State) -> Bool in
+      return state.stateName.lowercased().contains(searchText.lowercased()) || state.fullName.lowercased().contains(searchText.lowercased())
+    })
+    statesTableView.reloadData()
+    scrollToTop()
+  }
+  
+  func isFiltering() -> Bool {
+    return searchController.isActive && !(searchController.searchBar.text?.isEmpty)!
+  }
+  
+}
 
 
 

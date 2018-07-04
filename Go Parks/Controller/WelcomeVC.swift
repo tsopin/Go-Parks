@@ -10,19 +10,17 @@ import UIKit
 
 class WelcomeVC: UIViewController {
   
-  var parkToGo = Int()
-  let service = Service.instance
+  private var parkToGo = Int()
+  private let service = Service.instance
   
-  @IBOutlet weak var logoBottomConstraint: NSLayoutConstraint!
-  @IBOutlet weak var bottomFavoriteConstraint: NSLayoutConstraint!
-  @IBOutlet weak var logoTopConstraint: NSLayoutConstraint!
-  
-  @IBOutlet weak var logoHeight: NSLayoutConstraint!
-  @IBOutlet weak var heartTop: NSLayoutConstraint!
+  @IBOutlet weak private var logoBottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var bottomFavoriteConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var logoTopConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var logoHeight: NSLayoutConstraint!
+  @IBOutlet weak private var heartTop: NSLayoutConstraint!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     service.getListOfParks()
     service.loadParks()
     adjustMainScreen()
@@ -32,26 +30,24 @@ class WelcomeVC: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = true
     UIApplication.shared.statusBarStyle = .lightContent
-    
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = false
     UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-    
   }
   
   override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
     goAhead()
   }
   
-  func goAhead() {
+  private func goAhead() {
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "goAhead", sender: Any?.self)
     }
   }
   
-  func adjustMainScreen() {
+  private func adjustMainScreen() {
     let screenSize : CGRect = UIScreen.main.bounds
     
     print("\(screenSize.width) \(screenSize.height)")

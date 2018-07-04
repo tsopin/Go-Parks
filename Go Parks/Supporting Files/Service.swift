@@ -11,38 +11,33 @@ import UIKit
 class Service {
   
   static let instance = Service()
-  let defaults = UserDefaults()
   
+  let defaults = UserDefaults()
   var parksArray = [ParksData]()
   let parksFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Parks.plist")
   
   func getListOfParks(){
     let decoder = JSONDecoder()
     let file = Bundle.main.url(forResource: "parks", withExtension: "json")
-    
     do {
-      
       let data = try Data(contentsOf: file!)
       let parks = try decoder.decode([ParksData].self, from: data)
       for park in parks {
         parksArray.append(park)
       }
       parksArray = parksArray.sorted { $0.name < $1.name }
-      
     } catch {
       print("eerrro")
     }
   }
   
-  func collectionItemsResize(screenWidth: CGFloat) -> (CGFloat,CGFloat) {
-    
+  func collectionItemsResize(screenWidth: CGFloat) -> (width: CGFloat, height: CGFloat) {
     var cellWidth = CGFloat()
     var cellHeight = CGFloat()
-    
     cellWidth = screenWidth - screenWidth*0.07
     cellHeight = cellWidth / 1.78
     
-    return (cellWidth, cellHeight)
+    return (width: cellWidth, height: cellHeight)
   }
   
   //Save User Currencies using PropertyListEncoder
@@ -51,10 +46,8 @@ class Service {
     let encoder = PropertyListEncoder()
     
     do {
-      
       let data = try encoder.encode(parksArray)
       try data.write(to: parksFilePath!)
-      
     } catch {
       print("error \(error)")
     }
@@ -136,18 +129,8 @@ class Service {
 //    "WI",
     "WV",
     "WY"]
-  
 }
 
-
-
-
-
-
-
-
-
-//Isle Royale,
 
 
 

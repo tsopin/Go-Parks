@@ -33,10 +33,8 @@ class AllParksCell: UICollectionViewCell {
     
     if isFavorite {
       favoriteButton.setBackgroundImage(UIImage(named: "heartGreen"), for: .normal)
-      print("Green Set")
     } else {
       favoriteButton.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
-      print("Grey Set")
     }
   }
 }

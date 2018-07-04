@@ -11,13 +11,12 @@ import WebKit
 
 class WebViewVC: UIViewController, UIWebViewDelegate {
   
-  @IBOutlet weak var progressBar: UIProgressView!
-  @IBOutlet weak var loadingPage: UIActivityIndicatorView!
-  @IBOutlet weak var webView: WKWebView!
-  @IBOutlet weak var refreshBtn: UIBarButtonItem!
+  @IBOutlet weak private var progressBar: UIProgressView!
+  @IBOutlet weak private var loadingPage: UIActivityIndicatorView!
+  @IBOutlet weak private var webView: WKWebView!
+  @IBOutlet weak private var refreshBtn: UIBarButtonItem!
   
   var receivedUrl : String?
- 
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,7 +29,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     
     let url = URL(string: receivedUrl!)
     let request = URLRequest(url: url!)
-    
+
     webView.load(request)
   }
   
@@ -46,22 +45,26 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     }
   }
   
-  @IBAction func refreshPressed(_ sender: Any) {
+  @IBAction private func refreshPressed(_ sender: Any) {
     webView.reload()
   }
   
-  @IBAction func dismissButton(_ sender: Any) {
+  @IBAction private func dismissButton(_ sender: Any) {
     dismissVC()
   }
   
-  @IBAction func edgeGesture(_ sender: Any) {
+  @IBAction private func edgeGesture(_ sender: Any) {
     dismissVC()
   }
   
   func dismissVC() {
     DispatchQueue.main.async {
-    self.navigationController?.popViewController(animated: true)
-    self.dismiss(animated: true, completion: nil)
+      self.navigationController?.popViewController(animated: true)
+      self.dismiss(animated: true, completion: nil)
     }
+  }
+  
+  deinit {
+    print("Web Deinit")
   }
 }

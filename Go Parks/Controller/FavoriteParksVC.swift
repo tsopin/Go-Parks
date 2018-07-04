@@ -8,14 +8,14 @@
 
 import UIKit
 
-class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FavoriteParksCellDelegate {
+class FavoriteParksVC: UIViewController, FavoriteParksCellDelegate {
   
-  @IBOutlet weak var favoriteLabel: UILabel!
-  @IBOutlet weak var favoriteParksCollectionView: UICollectionView!
+  @IBOutlet weak private var favoriteLabel: UILabel!
+  @IBOutlet weak private var favoriteParksCollectionView: UICollectionView!
   
-  let service = Service.instance
-  var selectedItem = Int()
-  var chosenPark = Int()
+  private let service = Service.instance
+  private var selectedItem = Int()
+  private var chosenPark = Int()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,25 +34,7 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
       self.favoriteParksCollectionView.reloadData()
     }
   }
-  
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    
-    return service.parksArray.filter({ $0.isFavorite == true }).count
-    
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteParksCell.ID, for: indexPath) as! FavoriteParksCell
-    let park = service.parksArray.filter({ $0.isFavorite == true })[indexPath.row]
-    
-    cell.delegate = self
-    
-    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
-    
-    return cell
-  }
-  
+ 
   func favoritePressed(cell: FavoriteParksCell) {
     guard let indexPath = self.favoriteParksCollectionView.indexPath(for: cell) else {
       return
@@ -103,8 +85,8 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
     
     let screenSize : CGRect = UIScreen.main.bounds
     
-    let width = service.collectionItemsResize(screenWidth: screenSize.width).0
-    let height = service.collectionItemsResize(screenWidth: screenSize.width).1
+    let width = service.collectionItemsResize(screenWidth: screenSize.width).width
+    let height = service.collectionItemsResize(screenWidth: screenSize.width).height
     
     return CGSize(width: width, height: height)
   }
@@ -120,4 +102,31 @@ class FavoriteParksVC: UIViewController, UICollectionViewDelegate, UICollectionV
       print("Chosen Park \(park[chosenPark].fullName)")
     }
   }
+  
+  deinit {
+    print("Favorite Parks Deinit")
+  }
+}
+
+//MARK: - UICollectionView Methods
+extension FavoriteParksVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    return service.parksArray.filter({ $0.isFavorite == true }).count
+    
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteParksCell.ID, for: indexPath) as! FavoriteParksCell
+    let park = service.parksArray.filter({ $0.isFavorite == true })[indexPath.row]
+    
+    cell.delegate = self
+    
+    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
+    
+    return cell
+  }
+  
 }
