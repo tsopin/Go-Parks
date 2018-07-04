@@ -211,7 +211,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
           service.parksArray[i].isFavorite = false
           favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
         }
-        service.saveParks()
+        service.saveParks(isFirstRun: false)
       }
     }
   }

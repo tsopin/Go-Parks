@@ -14,17 +14,25 @@ class Service {
   
   let defaults = UserDefaults()
   var parksArray = [ParksData]()
+  var clearParks =  [ParksData]()
   let parksFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Parks.plist")
   
-  func getListOfParks(){
+  func getListOfParks(isFirstRun: Bool) {
+    
     let decoder = JSONDecoder()
     let file = Bundle.main.url(forResource: "parks", withExtension: "json")
+    
     do {
       let data = try Data(contentsOf: file!)
       let parks = try decoder.decode([ParksData].self, from: data)
       for park in parks {
-        parksArray.append(park)
+        if isFirstRun {
+          clearParks.append(park)
+        } else {
+          parksArray.append(park)
+        }
       }
+      clearParks = clearParks.sorted { $0.name < $1.name }
       parksArray = parksArray.sorted { $0.name < $1.name }
     } catch {
       print("eerrro")
@@ -41,12 +49,16 @@ class Service {
   }
   
   //Save User Currencies using PropertyListEncoder
-  func saveParks() {
-    
+  func saveParks(isFirstRun: Bool) {
     let encoder = PropertyListEncoder()
     
     do {
-      let data = try encoder.encode(parksArray)
+      var data = Data()
+      if isFirstRun {
+        data = try encoder.encode(clearParks)
+      } else {
+        data = try encoder.encode(parksArray)
+      }
       try data.write(to: parksFilePath!)
     } catch {
       print("error \(error)")
@@ -54,7 +66,6 @@ class Service {
   }
   
   func loadParks() {
-    
     if let data = try? Data(contentsOf: parksFilePath!) {
       let decoder = PropertyListDecoder()
       do {
@@ -62,6 +73,21 @@ class Service {
       } catch {
         print("Error \(error)")
       }
+    }
+  }
+  
+  func firstRun() {
+    
+    let firstRun = defaults.bool(forKey: "firstRun")
+    
+    if firstRun  {
+      print("Not first run, load User Parks")
+      loadParks()
+    } else {
+      print("First run, Clear Old Data")
+      defaults.set(true, forKey: "firstRun")
+      getListOfParks(isFirstRun: true)
+      saveParks(isFirstRun: true)
     }
   }
   
@@ -108,7 +134,7 @@ class Service {
     "ND",
     "NE",
     //        "NH",
-    "NJ",
+    //    "NJ",
     "NM",
     "NV",
     "NY",

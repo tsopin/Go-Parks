@@ -46,7 +46,7 @@ class ParkCollectionVC: UIViewController, ParkByStateCellDelegate {
         } else if parkInCell.isFavorite == true {
           self.service.parksArray[i].isFavorite = false
         }
-        self.service.saveParks()
+        self.service.saveParks(isFirstRun: false)
       }
     }
     

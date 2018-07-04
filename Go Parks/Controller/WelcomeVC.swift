@@ -21,8 +21,8 @@ class WelcomeVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    service.getListOfParks()
-    service.loadParks()
+    service.getListOfParks(isFirstRun: false)
+    service.firstRun()
     adjustMainScreen()
   }
   
