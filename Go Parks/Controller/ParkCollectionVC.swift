@@ -63,9 +63,7 @@ class ParkCollectionVC: UIViewController, ParkByStateCellDelegate {
     }
   }
   
-  deinit {
-    print("Park by State deinit")
-  }
+  deinit {}
 }
 
 //MARK: - UICollectionView Methods
@@ -109,6 +107,5 @@ extension ParkCollectionVC: UICollectionViewDelegate, UICollectionViewDataSource
     return CGSize(width: width, height: height)
     
   }
-  
 }
 

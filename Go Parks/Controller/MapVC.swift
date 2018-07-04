@@ -85,7 +85,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
     isCelsius = defaults.bool(forKey: "isCelsius")
     parkDescription.dataDetectorTypes = .all
-   
+    
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }
     
@@ -155,7 +155,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     weatherInfoButton.setBackgroundImage(UIImage(named: "cloudy"), for: .normal)
     descriptionButton.isEnabled = false
   }
- 
+  
   private func getWeatherData(url: String, parametrs: [String: String]) {
     weatherActivity.startAnimating()
     changeUnitsBtn.isEnabled = false
@@ -257,9 +257,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     return true
   }
   
-  deinit {
-    print("Map Deinit")
-  }
+  deinit {}
 }
 
 

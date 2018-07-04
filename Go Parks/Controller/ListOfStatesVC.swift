@@ -18,6 +18,8 @@ class ListOfStatesVC: UIViewController {
   private var filtredStatesArray = [State]()
   private var selectedRow = Int()
   private let searchController = UISearchController(searchResultsController: nil)
+  let service = Service.instance
+  var chosenState = Int()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,7 +29,7 @@ class ListOfStatesVC: UIViewController {
     NotificationCenter.default.addObserver(self, selector:#selector(ListOfStatesVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector:#selector(ListOfStatesVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     
-    for i in Service.instance.stateNamesArray {
+    for i in service.stateNamesArray {
       statesArray.append(State.init(name: i, full: i.longStateName(), flag: UIImage(named: i)!))
     }
     
@@ -39,11 +41,13 @@ class ListOfStatesVC: UIViewController {
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.placeholder = "Find State by Name or Code"
   }
- 
+  
   @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
-    print("SEARCH")
-    if navigationItem.searchController?.searchBar.isFirstResponder == false {
+    
+    if !(navigationItem.searchController?.searchBar.isFirstResponder)! {
       navigationItem.searchController?.searchBar.becomeFirstResponder()
+    } else {
+      navigationItem.searchController?.searchBar.resignFirstResponder()
     }
   }
   
@@ -73,14 +77,11 @@ class ListOfStatesVC: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "parkByState" {
       let destinationVC = segue.destination as! ParkCollectionVC
-      destinationVC.chosenState = Service.instance.stateNamesArray[selectedRow]
-      print("Chosen State \(Service.instance.stateNamesArray[selectedRow].longStateName())")
+      destinationVC.chosenState = service.stateNamesArray[chosenState]
     }
   }
   
-  deinit {
-    print("List Of States Deinit")
-  }
+  deinit {}
 }
 
 //MARK: - UITableView Methods
@@ -101,7 +102,7 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
     var count = Int()
     var parksCount = String()
     
-    for _ in Service.instance.parksArray.filter({ $0.states.contains(state.stateName) }) {
+    for _ in service.parksArray.filter({ $0.states.contains(state.stateName) }) {
       count = count + 1
     }
     
@@ -118,6 +119,19 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     selectedRow = indexPath.row
+    
+    
+    if isFiltering() {
+      
+      for i in 0..<statesArray.count {
+        
+        if filtredStatesArray[selectedRow].stateName == statesArray[i].stateName {
+          chosenState = i
+        }
+      }
+    } else {
+      chosenState = selectedRow
+    }
     
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "parkByState", sender: Any?.self)
@@ -144,7 +158,6 @@ extension ListOfStatesVC: UISearchResultsUpdating {
   func isFiltering() -> Bool {
     return searchController.isActive && !(searchController.searchBar.text?.isEmpty)!
   }
-  
 }
 
 

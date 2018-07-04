@@ -28,7 +28,6 @@ struct ParksData : Codable, Equatable {
   static func == (lhs: ParksData, rhs: ParksData) -> Bool {
     return lhs.fullName == rhs.fullName
   }
-  
 }
 
 struct State {

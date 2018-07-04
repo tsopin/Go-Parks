@@ -24,7 +24,6 @@ class WelcomeVC: UIViewController {
     service.getListOfParks()
     service.loadParks()
     adjustMainScreen()
-    print(service.parksArray.count)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +60,6 @@ class WelcomeVC: UIViewController {
       print("X")
       logoBottomConstraint.constant = 50
       bottomFavoriteConstraint.constant = 60
-      
     } else if screenSize.width == 768 || screenSize.width == 834  {
       print("PRO 12.9")
       bottomFavoriteConstraint.constant = 50
@@ -74,7 +72,6 @@ class WelcomeVC: UIViewController {
       print("PRO 8")
       logoBottomConstraint.constant = 50
     }
-    
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

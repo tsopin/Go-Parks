@@ -29,13 +29,12 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     
     let url = URL(string: receivedUrl!)
     let request = URLRequest(url: url!)
-
+    
     webView.load(request)
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     if keyPath == "estimatedProgress" {
-      print(self.webView.estimatedProgress)
       self.progressBar.progress = Float(self.webView.estimatedProgress)
     }
     if self.webView.estimatedProgress == 1.0 {
@@ -64,7 +63,5 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     }
   }
   
-  deinit {
-    print("Web Deinit")
-  }
+  deinit {}
 }

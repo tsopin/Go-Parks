@@ -34,7 +34,7 @@ class FavoriteParksVC: UIViewController, FavoriteParksCellDelegate {
       self.favoriteParksCollectionView.reloadData()
     }
   }
- 
+  
   func favoritePressed(cell: FavoriteParksCell) {
     guard let indexPath = self.favoriteParksCollectionView.indexPath(for: cell) else {
       return
@@ -49,12 +49,9 @@ class FavoriteParksVC: UIViewController, FavoriteParksCellDelegate {
         if parkInCell.isFavorite == false {
           self.service.parksArray[i].isFavorite = true
           parkInCell.isFavorite = true
-          print("\(self.service.parksArray[i].name) \(self.service.parksArray[i].isFavorite)")
-          
         } else if parkInCell.isFavorite == true {
           self.service.parksArray[i].isFavorite = false
           parkInCell.isFavorite = false
-          print("\(self.service.parksArray[i].name) \(self.service.parksArray[i].isFavorite)")
         }
         if service.parksArray.filter({ $0.isFavorite == true }).count < 1 {
           favoriteLabel.text = "Favorites is Empty"
@@ -99,13 +96,10 @@ class FavoriteParksVC: UIViewController, FavoriteParksCellDelegate {
       let destinationVC = segue.destination as! MapVC
       destinationVC.data = park[chosenPark]
       
-      print("Chosen Park \(park[chosenPark].fullName)")
     }
   }
   
-  deinit {
-    print("Favorite Parks Deinit")
-  }
+  deinit {}
 }
 
 //MARK: - UICollectionView Methods
@@ -128,5 +122,4 @@ extension FavoriteParksVC: UICollectionViewDelegate, UICollectionViewDataSource,
     
     return cell
   }
-  
 }

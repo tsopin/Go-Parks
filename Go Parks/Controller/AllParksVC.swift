@@ -74,7 +74,6 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
           } else if parkInCell.isFavorite == true {
             self.service.parksArray[i].isFavorite = false
           }
-          
         }
       }
     }
@@ -87,6 +86,7 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
   }
   
   @IBAction private func searchButtonPressed(_ sender: UIBarButtonItem) {
+    
     if !(navigationItem.searchController?.searchBar.isFirstResponder)! {
       navigationItem.searchController?.searchBar.becomeFirstResponder()
     } else {
@@ -106,16 +106,16 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
   }
   
   private func scrollToTop() {
-    
-    if self.filtredParks.count - 1 <= 0 {
-      return
-    }
-    
-    let indexPath = IndexPath(item: 0, section: 0)
-    
-    DispatchQueue.main.async {
-      self.allParksCollectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
-    }
+//
+//    if self.filtredParks.count - 1 <= 0 {
+//      return
+//    }
+//
+//    let indexPath = IndexPath(item: 0, section: 0)
+//
+//    DispatchQueue.main.async {
+//      self.allParksCollectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
+//    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,9 +128,7 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
     }
   }
   
-  deinit {
-    print("deinit called")
-  }
+  deinit {}
 }
 
 //MARK: - UICollectionView Methods

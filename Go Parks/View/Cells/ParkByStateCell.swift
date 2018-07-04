@@ -14,6 +14,7 @@ protocol ParkByStateCellDelegate: class {
 
 class ParkByStateCell: UICollectionViewCell {
   static let ID = "ParkCollectionCell"
+  
   var delegate: ParkByStateCellDelegate?
   let service = Service()
   let screenSize : CGRect = UIScreen.main.bounds

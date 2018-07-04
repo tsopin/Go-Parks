@@ -6,7 +6,7 @@
 //  Copyright © 2018 Timofei Sopin. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class WeatherDataModel {
   
@@ -21,37 +21,26 @@ class WeatherDataModel {
       
     case 0...300 :
       return "thunderstorm"
-      
     case 301...500 :
       return "lightRain"
-      
     case 501...600 :
       return "showers"
-      
     case 601...700 :
       return "lightSnow"
-      
     case 701...771 :
       return "fog"
-      
     case 772...799 :
       return "thunderstorm"
-      
     case 800 :
       return "sunny"
-      
     case 801...804 :
       return "fewClouds"
-      
     case 900...903, 905...1000  :
       return "thunderstorm"
-      
     case 903 :
       return "snow"
-      
     case 904 :
       return "sunny"
-      
     default :
       return "dunno"
       
