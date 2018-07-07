@@ -112,7 +112,7 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
       parksCount = "\(count) parks"
     }
     
-    cell.configeureCell(stateName: state.stateName.longStateName(), stateFlag: state.stateFlag, parksCount: parksCount )
+    cell.configureCell(stateName: state.stateName.longStateName(), stateFlag: state.stateFlag, parksCount: parksCount )
     return cell
   }
   

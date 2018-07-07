@@ -15,7 +15,7 @@ class StateCell: UITableViewCell {
   @IBOutlet weak var stateFlagImage: UIImageView!
   @IBOutlet weak var numberOfParks: UILabel!
   
-  func configeureCell(stateName: String, stateFlag: UIImage, parksCount: String) {
+  func configureCell(stateName: String, stateFlag: UIImage, parksCount: String) {
     
     self.stateFlagImage.layer.borderColor = UIColor(rgb: 0xEBEBEB).cgColor
     self.stateFlagImage.layer.borderWidth = 1

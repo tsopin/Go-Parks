@@ -150,7 +150,7 @@ extension AllParksVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     cell.delegate = self
     
-    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
+    cell.configureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
     
     return cell
   }

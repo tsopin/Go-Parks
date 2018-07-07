@@ -27,7 +27,7 @@ class AllParksCell: UICollectionViewCell {
     service.animateButton(sender)
   }
   
-  func configeureCell(name: String, photo: UIImage, isFavorite: Bool) {
+  func configureCell(name: String, photo: UIImage, isFavorite: Bool) {
     self.parkName.text = name
     self.parkPhoto.image = photo
     

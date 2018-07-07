@@ -78,7 +78,7 @@ extension ParkCollectionVC: UICollectionViewDelegate, UICollectionViewDataSource
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkByStateCell.ID, for: indexPath) as! ParkByStateCell
     let park = service.parksArray.filter({ $0.states.contains("\(chosenState!)") })[indexPath.row]
     
-    cell.configeureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
+    cell.configureCell(name: park.name, photo: UIImage(named: park.name)!, isFavorite: park.isFavorite)
     
     cell.delegate = self
     return cell
