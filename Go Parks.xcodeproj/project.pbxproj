@@ -39,7 +39,7 @@
 		7494DCF120C4943A0032EC02 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C520BC60D500EC3B47 /* OpenSans-Regular.ttf */; };
 		7494DCF220C4943A0032EC02 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7C320BC60D300EC3B47 /* OpenSans-SemiBold.ttf */; };
 		7494DCF320C4943A0032EC02 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7BF20BC60CF00EC3B47 /* OpenSans-SemiBoldItalic.ttf */; };
-		749F8BFB20AB618B0023354F /* ParkCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */; };
+		749F8BFB20AB618B0023354F /* ParkByStateCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFA20AB618B0023354F /* ParkByStateCollectionVC.swift */; };
 		749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFC20AB625A0023354F /* ParkByStateCell.swift */; };
 		749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8C0220ABD2080023354F /* AllParksCell.swift */; };
 		74A813DC20A8D7DA00CAD469 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = 74A813DB20A8D7DA00CAD469 /* parks.json */; };
@@ -83,7 +83,7 @@
 		746EF43220AA7B7B0087169A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		746EF43620AA7DA10087169A /* StateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
 		7470F31620AE0B540005FFF1 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
-		749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCollectionVC.swift; sourceTree = "<group>"; };
+		749F8BFA20AB618B0023354F /* ParkByStateCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateCollectionVC.swift; sourceTree = "<group>"; };
 		749F8BFC20AB625A0023354F /* ParkByStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateCell.swift; sourceTree = "<group>"; };
 		749F8C0220ABD2080023354F /* AllParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParksCell.swift; sourceTree = "<group>"; };
 		74A813DB20A8D7DA00CAD469 /* parks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 				745FB7E220BDF87700EC3B47 /* AllParksVC.swift */,
 				746EF43020AA7A600087169A /* ListOfStatesVC.swift */,
 				7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */,
-				749F8BFA20AB618B0023354F /* ParkCollectionVC.swift */,
+				749F8BFA20AB618B0023354F /* ParkByStateCollectionVC.swift */,
 				74A813E620A8FA7000CAD469 /* MapVC.swift */,
 				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
 			);
@@ -368,7 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				749F8BFB20AB618B0023354F /* ParkCollectionVC.swift in Sources */,
+				749F8BFB20AB618B0023354F /* ParkByStateCollectionVC.swift in Sources */,
 				74A813E920A90DF000CAD469 /* Extensions.swift in Sources */,
 				746EF43320AA7B7B0087169A /* Service.swift in Sources */,
 				7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */,

@@ -25,6 +25,7 @@ class ListOfStatesVC: UIViewController {
     super.viewDidLoad()
     statesTableView.delegate = self
     statesTableView.dataSource = self
+    statesTableView.delaysContentTouches = false
     
     NotificationCenter.default.addObserver(self, selector:#selector(ListOfStatesVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector:#selector(ListOfStatesVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -76,7 +77,7 @@ class ListOfStatesVC: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "parkByState" {
-      let destinationVC = segue.destination as! ParkCollectionVC
+      let destinationVC = segue.destination as! ParkByStateCollectionVC
       destinationVC.chosenState = service.stateNamesArray[chosenState]
     }
   }

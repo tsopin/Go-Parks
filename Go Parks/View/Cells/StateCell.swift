@@ -25,6 +25,16 @@ class StateCell: UITableViewCell {
     self.stateFlagImage.image = stateFlag
     self.numberOfParks.text = parksCount
   }
+  
+  override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    super.setHighlighted(highlighted, animated: animated)
+    
+    if highlighted == true {
+      self.backgroundColor = UIColor.init(rgb: 0xEBEBEB)
+    } else {
+      self.backgroundColor = .white
+    }
+  }
 }
 
 

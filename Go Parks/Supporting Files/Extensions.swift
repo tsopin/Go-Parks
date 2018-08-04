@@ -9,6 +9,7 @@
 import UIKit
 
 extension String {
+  
   func longStateName() -> String {
     
     guard self.count == 2 else { return self }

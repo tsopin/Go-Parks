@@ -38,4 +38,5 @@ class ParkByStateCell: UICollectionViewCell {
       favoriteButton.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
     }
   }
+
 }

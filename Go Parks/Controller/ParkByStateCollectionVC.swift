@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParkCollectionVC: UIViewController, ParkByStateCellDelegate {
+class ParkByStateCollectionVC: UIViewController, ParkByStateCellDelegate {
   
   @IBOutlet weak private var stateNameLabel: UILabel!
   @IBOutlet weak private var parkByStateCollectionView: UICollectionView!
@@ -68,7 +68,7 @@ class ParkCollectionVC: UIViewController, ParkByStateCellDelegate {
 
 //MARK: - UICollectionView Methods
 
-extension ParkCollectionVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ParkByStateCollectionVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return service.parksArray.filter({ $0.states.contains("\(chosenState!)") }).count
