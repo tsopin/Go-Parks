@@ -77,12 +77,12 @@ class ListOfStatesVC: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "parkByState" {
-      let destinationVC = segue.destination as! ParkByStateCollectionVC
+      let destinationVC = segue.destination as! ParkByStateVC
       destinationVC.chosenState = service.stateNamesArray[chosenState]
     }
   }
   
-  deinit {}
+//  deinit {}
 }
 
 //MARK: - UITableView Methods
@@ -100,12 +100,8 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
     let cell = statesTableView.dequeueReusableCell(withIdentifier: StateCell.ID) as! StateCell
     
     let state = isFiltering() ? filtredStatesArray[indexPath.row] : statesArray[indexPath.row]
-    var count = Int()
+    let count = service.parksArray.filter({ $0.states.contains(state.stateName) }).count
     var parksCount = String()
-    
-    for _ in service.parksArray.filter({ $0.states.contains(state.stateName) }) {
-      count = count + 1
-    }
     
     if count == 1 {
       parksCount = "\(count) park"

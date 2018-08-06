@@ -164,7 +164,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
       
       if response.result.isSuccess {
         let weatherJSON : JSON = JSON(response.result.value!)
-        self.updateWeatherData(json: weatherJSON)
+        self.getWeatherData(json: weatherJSON)
         self.weatherActivity.stopAnimating()
         self.changeUnitsBtn.isEnabled = true
       } else {
@@ -216,7 +216,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     }
   }
   
-  private func updateWeatherData (json: JSON) {
+  private func getWeatherData (json: JSON) {
     if let tempResults = json["main"]["temp"].double {
       weatherData.temperatupre = Int(tempResults)
       weatherData.condition = json["weather"][0]["id"].intValue
@@ -242,7 +242,11 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   }
   
   @IBAction private func directionButton(_ sender: Any) {
-    UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")!, options: [:], completionHandler: nil)
+    
+    //    let googleUrl = URL(string: "comgooglemaps://?saddr=&daddr=\(goLat),\(goLong)&directionsmode=driving")
+    let appleUrl = URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")
+    
+    UIApplication.shared.open(appleUrl!, options: [:])
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -256,7 +260,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     return true
   }
   
-  deinit {}
+  //  deinit {}
 }
 
 

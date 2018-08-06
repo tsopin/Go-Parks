@@ -99,7 +99,7 @@ class FavoriteParksVC: UIViewController, FavoriteParksCellDelegate {
     }
   }
   
-  deinit {}
+  //  deinit {}
 }
 
 //MARK: - UICollectionView Methods

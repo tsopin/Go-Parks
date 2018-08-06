@@ -63,5 +63,5 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     }
   }
   
-  deinit {}
+  //  deinit {}
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParkByStateCollectionVC: UIViewController, ParkByStateCellDelegate {
+class ParkByStateVC: UIViewController, ParkByStateCellDelegate {
   
   @IBOutlet weak private var stateNameLabel: UILabel!
   @IBOutlet weak private var parkByStateCollectionView: UICollectionView!
@@ -63,12 +63,12 @@ class ParkByStateCollectionVC: UIViewController, ParkByStateCellDelegate {
     }
   }
   
-  deinit {}
+  //  deinit {}
 }
 
 //MARK: - UICollectionView Methods
 
-extension ParkByStateCollectionVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ParkByStateVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return service.parksArray.filter({ $0.states.contains("\(chosenState!)") }).count
@@ -101,6 +101,7 @@ extension ParkByStateCollectionVC: UICollectionViewDelegate, UICollectionViewDat
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     let screenSize : CGRect = UIScreen.main.bounds
+    
     let width = service.collectionItemsResize(screenWidth: screenSize.width).width
     let height = service.collectionItemsResize(screenWidth: screenSize.width).height
     

@@ -104,20 +104,7 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
   @objc func keyboardWillHide(notification : NSNotification) {
     self.bottomConstraint.constant = 0
   }
-  
-  private func scrollToTop() {
-//
-//    if self.filtredParks.count - 1 <= 0 {
-//      return
-//    }
-//
-//    let indexPath = IndexPath(item: 0, section: 0)
-//
-//    DispatchQueue.main.async {
-//      self.allParksCollectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
-//    }
-  }
-  
+    
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "parkDetailFromPhoto" {
@@ -128,7 +115,6 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
     }
   }
   
-  deinit {}
 }
 
 //MARK: - UICollectionView Methods
@@ -201,7 +187,6 @@ extension AllParksVC: UISearchResultsUpdating {
     
     DispatchQueue.main.async {
       self.allParksCollectionView.reloadData()
-      self.scrollToTop()
     }
   }
   

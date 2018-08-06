@@ -68,7 +68,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="KhX-AB-FUT">
-                                        <rect key="frame" x="70" y="130.66666666666666" width="274" height="199.99999999999997"/>
+                                        <rect key="frame" x="70" y="131" width="274" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="DxT-d6-wsL">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="350"/>
@@ -76,7 +76,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="bmr-Wh-GkE">
-                                        <rect key="frame" x="125" y="395.66666666666669" width="164" height="237.33333333333331"/>
+                                        <rect key="frame" x="125" y="396" width="164" height="237"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="fBk-Fv-Jqr">
                                                 <rect key="frame" x="39" y="0.0" width="86" height="87.333333333333329"/>
@@ -94,10 +94,10 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots" translatesAutoresizingMaskIntoConstraints="NO" id="8if-vr-80e">
-                                                <rect key="frame" x="79.666666666666657" y="37.333333333333321" width="5" height="87.666666666666686"/>
+                                                <rect key="frame" x="79.666666666666657" y="37.333333333333307" width="5" height="87.333333333333314"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KIL-Pg-817">
-                                                <rect key="frame" x="10.666666666666657" y="75" width="143" height="87.333333333333314"/>
+                                                <rect key="frame" x="10.666666666666657" y="74.666666666666686" width="143" height="87.666666666666686"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="21"/>
                                                 <state key="normal" title="parks by state">
@@ -111,10 +111,10 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots" translatesAutoresizingMaskIntoConstraints="NO" id="uDl-0B-o5e">
-                                                <rect key="frame" x="79.666666666666657" y="112.33333333333331" width="5" height="87.666666666666686"/>
+                                                <rect key="frame" x="79.666666666666657" y="112.33333333333331" width="5" height="87.333333333333314"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Yra-z6-U3U">
-                                                <rect key="frame" x="0.0" y="149.99999999999994" width="164" height="87.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="149.66666666666663" width="164" height="87.333333333333314"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="21"/>
                                                 <state key="normal" title="I'm feeling lucky">
@@ -133,7 +133,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shake me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDY-qS-pIM">
-                                        <rect key="frame" x="165.66666666666666" y="608" width="83.666666666666657" height="20"/>
+                                        <rect key="frame" x="166" y="608" width="83.666666666666686" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="roi-xU-0Mg">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="30"/>
@@ -610,10 +610,10 @@
             </objects>
             <point key="canvasLocation" x="2866.666666666667" y="-518.47826086956525"/>
         </scene>
-        <!--Park By State CollectionVC-->
+        <!--Park By StateVC-->
         <scene sceneID="aRy-NK-urd">
             <objects>
-                <viewController id="NfZ-MY-HD7" customClass="ParkByStateCollectionVC" customModule="Go_Parks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NfZ-MY-HD7" customClass="ParkByStateVC" customModule="Go_Parks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QFT-cz-2Z7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
