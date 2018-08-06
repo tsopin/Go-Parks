@@ -42,7 +42,8 @@ class Service {
   func collectionItemsResize(screenWidth: CGFloat) -> (width: CGFloat, height: CGFloat) {
     var cellWidth = CGFloat()
     var cellHeight = CGFloat()
-    cellWidth = screenWidth - screenWidth*0.07
+    
+    cellWidth = screenWidth - screenWidth * 0.07
     cellHeight = cellWidth / 1.78
     
     return (width: cellWidth, height: cellHeight)
@@ -76,18 +77,20 @@ class Service {
     }
   }
   
-  func firstRun() {
+  //Checking if it is first run of app
+  func isFirstRun() {
     
-    let firstRun = defaults.bool(forKey: "firstRun")
+    let notFirstRun = defaults.bool(forKey: "notFirstRun")
     
-    if !firstRun  {
-      print("First run, Clear Old Data")
-      defaults.set(true, forKey: "firstRun")
+    if notFirstRun {
+      loadParks()
+      print("Not first run, Load user's parks")
+    } else {
+      defaults.set(true, forKey: "notFirstRun")
       getListOfParks(isFirstRun: true)
       saveParks(isFirstRun: true)
-    } else {
-      print("Not first run, load User Parks")
       loadParks()
+      print("First run, clear old data")
     }
   }
   

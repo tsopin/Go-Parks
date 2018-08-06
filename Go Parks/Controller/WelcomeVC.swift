@@ -23,12 +23,7 @@ class WelcomeVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let firstRun = defaults.bool(forKey: "firstRun")
-    
-    if !firstRun {
-    service.getListOfParks(isFirstRun: false)
-    }
-    service.firstRun()
+    service.isFirstRun()
     adjustMainScreen()
   }
   
