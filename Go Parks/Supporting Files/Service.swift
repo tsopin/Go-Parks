@@ -80,14 +80,14 @@ class Service {
     
     let firstRun = defaults.bool(forKey: "firstRun")
     
-    if firstRun  {
-      print("Not first run, load User Parks")
-      loadParks()
-    } else {
+    if !firstRun  {
       print("First run, Clear Old Data")
       defaults.set(true, forKey: "firstRun")
       getListOfParks(isFirstRun: true)
       saveParks(isFirstRun: true)
+    } else {
+      print("Not first run, load User Parks")
+      loadParks()
     }
   }
   

@@ -8,12 +8,11 @@
 
 import Foundation
 
-class WeatherDataModel {
+class WeatherData {
   
-  var temperatupre : Int = 0
-  var condition : Int = 0
-  var city : String = ""
-  var weatherIconName : String = ""
+  var temperatupre = Int()
+  var condition = Int()
+  var weatherIconName = String()
   
   func updateWeatherIcon(condition: Int) -> String {
     

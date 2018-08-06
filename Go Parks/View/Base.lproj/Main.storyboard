@@ -520,10 +520,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RKl-mv-0XU">
-                                                    <rect key="frame" x="98" y="15" width="224" height="49.5"/>
+                                                    <rect key="frame" x="98" y="15" width="449" height="49.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="HCp-P4-CuJ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="224" height="29"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="449" height="29"/>
                                                             <fontDescription key="fontDescription" name="Ubuntu-Medium" family="Ubuntu" pointSize="22"/>
                                                             <color key="textColor" red="0.1529411765" green="0.36470588240000001" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
@@ -532,7 +532,7 @@
                                                             </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14I-0P-FKC">
-                                                            <rect key="frame" x="0.0" y="32" width="224" height="17.5"/>
+                                                            <rect key="frame" x="0.0" y="32" width="449" height="17.5"/>
                                                             <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="13"/>
                                                             <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -755,10 +755,10 @@
             </objects>
             <point key="canvasLocation" x="3826.0869565217395" y="-519.29347826086962"/>
         </scene>
-        <!--MapVC-->
+        <!--Park DetailsVC-->
         <scene sceneID="97y-Di-Wkv">
             <objects>
-                <viewController id="35c-Sk-8py" customClass="MapVC" customModule="Go_Parks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="35c-Sk-8py" customClass="ParkDetailsVC" customModule="Go_Parks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UXC-aN-68c">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

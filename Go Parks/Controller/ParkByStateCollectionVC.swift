@@ -58,7 +58,7 @@ class ParkByStateCollectionVC: UIViewController, ParkByStateCellDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "parkDetails" {
-      let destinationVC = segue.destination as! MapVC
+      let destinationVC = segue.destination as! ParkDetailsVC
       destinationVC.data = service.parksArray[chosenPark]
     }
   }

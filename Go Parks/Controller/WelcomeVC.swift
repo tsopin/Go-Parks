@@ -12,6 +12,7 @@ class WelcomeVC: UIViewController {
   
   private var parkToGo = Int()
   private let service = Service.instance
+  private let defaults = UserDefaults()
   
   @IBOutlet weak private var logoBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak private var bottomFavoriteConstraint: NSLayoutConstraint!
@@ -21,7 +22,12 @@ class WelcomeVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let firstRun = defaults.bool(forKey: "firstRun")
+    
+    if !firstRun {
     service.getListOfParks(isFirstRun: false)
+    }
     service.firstRun()
     adjustMainScreen()
   }
@@ -77,7 +83,7 @@ class WelcomeVC: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "goAhead" {
       parkToGo = Int(Double.random(min: 0, max: 64))
-      let destinationVC = segue.destination as! MapVC
+      let destinationVC = segue.destination as! ParkDetailsVC
       destinationVC.data = Service.instance.parksArray[parkToGo]
     }
   }

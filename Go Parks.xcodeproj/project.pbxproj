@@ -44,7 +44,7 @@
 		749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8C0220ABD2080023354F /* AllParksCell.swift */; };
 		74A813DC20A8D7DA00CAD469 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = 74A813DB20A8D7DA00CAD469 /* parks.json */; };
 		74A813E220A8DAC000CAD469 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* Data.swift */; };
-		74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E620A8FA7000CAD469 /* MapVC.swift */; };
+		74A813E720A8FA7000CAD469 /* ParkDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */; };
 		74A813E920A90DF000CAD469 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E820A90DF000CAD469 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,7 +88,7 @@
 		749F8C0220ABD2080023354F /* AllParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParksCell.swift; sourceTree = "<group>"; };
 		74A813DB20A8D7DA00CAD469 /* parks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
 		74A813E020A8DAC000CAD469 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		74A813E620A8FA7000CAD469 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailsVC.swift; sourceTree = "<group>"; };
 		74A813E820A90DF000CAD469 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7B9EE93B53CD1F9288EC71C0 /* Pods_Go_Parks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Go_Parks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C539A13E005A44208A15B864 /* Pods-Go Parks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Go Parks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 				746EF43020AA7A600087169A /* ListOfStatesVC.swift */,
 				7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */,
 				749F8BFA20AB618B0023354F /* ParkByStateCollectionVC.swift */,
-				74A813E620A8FA7000CAD469 /* MapVC.swift */,
+				74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */,
 				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
 			);
 			path = Controller;
@@ -374,7 +374,7 @@
 				7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */,
 				741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */,
 				746EF43820AA7DA10087169A /* StateCell.swift in Sources */,
-				74A813E720A8FA7000CAD469 /* MapVC.swift in Sources */,
+				74A813E720A8FA7000CAD469 /* ParkDetailsVC.swift in Sources */,
 				741A48C72097E0DB00B4688F /* AppDelegate.swift in Sources */,
 				749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */,
 				745FB7E320BDF87700EC3B47 /* AllParksVC.swift in Sources */,

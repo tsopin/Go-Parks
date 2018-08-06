@@ -1,5 +1,5 @@
 //
-//  MapVC.swift
+//  ParkDetailsVC.swift
 //  Go Parks
 //
 //  Created by Timofei Sopin on 2018-05-13.
@@ -11,7 +11,7 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 
-class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
+class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   
   @IBOutlet weak private var favorite: UIButton!
   @IBOutlet weak private var mapView: MKMapView!
@@ -36,7 +36,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   var data : ParksData?
   private let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
   private let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
-  private let weatherDataModel = WeatherDataModel()
+  private let weatherData = WeatherData()
   private let service = Service.instance
   private let defaults = UserDefaults()
   private let screenSize : CGRect = UIScreen.main.bounds
@@ -94,7 +94,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     
     let params : [String : String] = ["lat" : lat, "lon" : long, "appid" : API_KEY]
     getWeatherData(url: WEATHER_URL, parametrs: params)
-    getLocatin(forLatitude: goLat, forLongitude: goLong)
+    getLocation (forLatitude: goLat, forLongitude: goLong)
     ajustScreen()
   }
   
@@ -121,7 +121,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
     descriptionViewHeightConstraint.constant = screenSize.width * 0.28
   }
   
-  private func getLocatin(forLatitude: Double, forLongitude: Double) {
+  private func getLocation (forLatitude: Double, forLongitude: Double) {
     let span = MKCoordinateSpanMake(0.4, 0.4)
     let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: forLatitude, longitude: forLongitude), span: span)
     let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(forLatitude, forLongitude)
@@ -183,7 +183,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   }
   
   private func changeInits() {
-    let k = Double(weatherDataModel.temperatupre)
+    let k = Double(weatherData.temperatupre)
     let f = Int( 1.8 * (k - 273) + 32)
     
     if (unitsLabel.text?.contains("C"))! {
@@ -191,7 +191,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
       unitsLabel.text = "F"
       isCelsius = false
     } else if (unitsLabel.text?.contains("F"))! {
-      temperatureLabel.text = String(weatherDataModel.temperatupre - 273)
+      temperatureLabel.text = String(weatherData.temperatupre - 273)
       unitsLabel.text = "C"
       isCelsius = true
     }
@@ -218,10 +218,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   
   private func updateWeatherData (json: JSON) {
     if let tempResults = json["main"]["temp"].double {
-      weatherDataModel.temperatupre = Int(tempResults)
-      weatherDataModel.city = json["name"].stringValue
-      weatherDataModel.condition = json["weather"][0]["id"].intValue
-      weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+      weatherData.temperatupre = Int(tempResults)
+      weatherData.condition = json["weather"][0]["id"].intValue
+      weatherData.weatherIconName = weatherData.updateWeatherIcon(condition: weatherData.condition)
       updateUIwithWeatherData()
     } else {
       print("JSON Error")
@@ -229,17 +228,17 @@ class MapVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
   }
   
   private func updateUIwithWeatherData() {
-    let k = Double(weatherDataModel.temperatupre)
+    let k = Double(weatherData.temperatupre)
     let f = Int( 1.8 * (k - 273) + 32 )
     
     if isCelsius {
-      temperatureLabel.text = String(weatherDataModel.temperatupre - 273)
+      temperatureLabel.text = String(weatherData.temperatupre - 273)
       unitsLabel.text = "C"
     } else {
       unitsLabel.text = "F"
       temperatureLabel.text = "\(f)"
     }
-    weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+    weatherIcon.image = UIImage(named: weatherData.weatherIconName)
   }
   
   @IBAction private func directionButton(_ sender: Any) {

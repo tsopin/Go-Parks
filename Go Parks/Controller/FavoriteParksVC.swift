@@ -93,7 +93,7 @@ class FavoriteParksVC: UIViewController, FavoriteParksCellDelegate {
     if segue.identifier == "parkDetailsFromFavorites" {
       
       let park = Service.instance.parksArray
-      let destinationVC = segue.destination as! MapVC
+      let destinationVC = segue.destination as! ParkDetailsVC
       destinationVC.data = park[chosenPark]
       
     }

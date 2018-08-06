@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ParkByStateCellDelegate: class {
+protocol ParkByStateCellDelegate {
   func favoritePressed(cell: ParkByStateCell)
 }
 

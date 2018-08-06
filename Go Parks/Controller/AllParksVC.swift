@@ -123,7 +123,7 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
     if segue.identifier == "parkDetailFromPhoto" {
       
       let park = Service.instance.parksArray
-      let destinationVC = segue.destination as! MapVC
+      let destinationVC = segue.destination as! ParkDetailsVC
       destinationVC.data = park[chosenPark]
     }
   }
