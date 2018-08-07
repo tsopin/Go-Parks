@@ -9,7 +9,7 @@ Explore all US National Parks to plan your next trip
 - Get directions from your door to the park
 - Navigate to the park’s official web page for more information
 
-![AppStore](https://itunes.apple.com/app/id1391449122)
+[AppStore](https://itunes.apple.com/app/id1391449122)
 
 Demo Video
 
