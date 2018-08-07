@@ -56,7 +56,7 @@ class FavoriteParksVC: UIViewController, FavoriteParksCellDelegate {
         if service.parksArray.filter({ $0.isFavorite == true }).count < 1 {
           favoriteLabel.text = "Favorites is Empty"
         }
-        self.service.saveParks(isFirstRun: false)
+        self.service.saveParks()
         DispatchQueue.main.async {
           self.favoriteParksCollectionView.reloadData()
         }

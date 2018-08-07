@@ -78,7 +78,7 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
       }
     }
     
-    self.service.saveParks(isFirstRun: false)
+    self.service.saveParks()
     
     DispatchQueue.main.async {
       self.allParksCollectionView.reloadItems(at: [indexPath])

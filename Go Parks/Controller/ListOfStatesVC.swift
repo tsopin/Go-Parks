@@ -31,7 +31,7 @@ class ListOfStatesVC: UIViewController {
     NotificationCenter.default.addObserver(self, selector:#selector(ListOfStatesVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     
     for i in service.stateNamesArray {
-      statesArray.append(State.init(name: i, full: i.longStateName(), flag: UIImage(named: i)!))
+      statesArray.append(State.init(code: i, full: i.longStateName(), flag: UIImage(named: i)!))
     }
     
     navigationItem.searchController = searchController
@@ -100,7 +100,7 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
     let cell = statesTableView.dequeueReusableCell(withIdentifier: StateCell.ID) as! StateCell
     
     let state = isFiltering() ? filtredStatesArray[indexPath.row] : statesArray[indexPath.row]
-    let count = service.parksArray.filter({ $0.states.contains(state.stateName) }).count
+    let count = service.parksArray.filter({ $0.states.contains(state.stateCode) }).count
     var parksCount = String()
     
     if count == 1 {
@@ -109,7 +109,7 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
       parksCount = "\(count) parks"
     }
     
-    cell.configureCell(stateName: state.stateName.longStateName(), stateFlag: state.stateFlag, parksCount: parksCount )
+    cell.configureCell(stateName: state.stateCode.longStateName(), stateFlag: state.stateFlag, parksCount: parksCount )
     return cell
   }
   
@@ -122,7 +122,7 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
       
       for i in 0..<statesArray.count {
         
-        if filtredStatesArray[selectedRow].stateName == statesArray[i].stateName {
+        if filtredStatesArray[selectedRow].stateCode == statesArray[i].stateCode {
           chosenState = i
         }
       }
@@ -146,7 +146,7 @@ extension ListOfStatesVC: UISearchResultsUpdating {
   func filterContentForSearchText(_ searchText: String, scope: String = "All") {
     
     filtredStatesArray = statesArray.filter({ (state: State) -> Bool in
-      return state.stateName.lowercased().contains(searchText.lowercased()) || state.fullName.lowercased().contains(searchText.lowercased())
+      return state.stateCode.lowercased().contains(searchText.lowercased()) || state.fullName.lowercased().contains(searchText.lowercased())
     })
     statesTableView.reloadData()
     scrollToTop()

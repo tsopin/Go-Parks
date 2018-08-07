@@ -31,12 +31,12 @@ struct ParksData : Codable, Equatable {
 }
 
 struct State {
+  let stateCode: String
   let fullName: String
-  let stateName: String
   let stateFlag: UIImage
   
-  init(name: String, full: String, flag: UIImage ) {
-    self.stateName = name
+  init(code: String, full: String, flag: UIImage) {
+    self.stateCode = code
     self.stateFlag = flag
     self.fullName = full
   }
@@ -44,7 +44,7 @@ struct State {
 
 extension State: Equatable {
   static func == (lhs: State, rhs: State) -> Bool {
-    return lhs.stateName == rhs.stateName
+    return lhs.stateCode == rhs.stateCode
   }
 }
 

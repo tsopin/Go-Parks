@@ -13,11 +13,10 @@ class Service {
   static let instance = Service()
   
   let defaults = UserDefaults()
-  var parksArray = [ParksData]()
-  var clearParks =  [ParksData]()
   let parksFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Parks.plist")
+  var parksArray = [ParksData]()
   
-  func getListOfParks(isFirstRun: Bool) {
+  func getListOfParks() {
     
     let decoder = JSONDecoder()
     let file = Bundle.main.url(forResource: "parks", withExtension: "json")
@@ -25,14 +24,11 @@ class Service {
     do {
       let data = try Data(contentsOf: file!)
       let parks = try decoder.decode([ParksData].self, from: data)
+      
       for park in parks {
-        if isFirstRun {
-          clearParks.append(park)
-        } else {
-          parksArray.append(park)
-        }
+        parksArray.append(park)
       }
-      clearParks = clearParks.sorted { $0.name < $1.name }
+      
       parksArray = parksArray.sorted { $0.name < $1.name }
     } catch {
       print("eerrro")
@@ -50,16 +46,12 @@ class Service {
   }
   
   //Save User Currencies using PropertyListEncoder
-  func saveParks(isFirstRun: Bool) {
+  func saveParks() {
     let encoder = PropertyListEncoder()
     
     do {
       var data = Data()
-      if isFirstRun {
-        data = try encoder.encode(clearParks)
-      } else {
-        data = try encoder.encode(parksArray)
-      }
+      data = try encoder.encode(parksArray)
       try data.write(to: parksFilePath!)
     } catch {
       print("error \(error)")
@@ -77,7 +69,7 @@ class Service {
     }
   }
   
-  //Checking if it is first run of app
+  //Check whether it’s the first time running the app
   func isFirstRun() {
     
     let notFirstRun = defaults.bool(forKey: "notFirstRun")
@@ -87,9 +79,8 @@ class Service {
       print("Not first run, Load user's parks")
     } else {
       defaults.set(true, forKey: "notFirstRun")
-      getListOfParks(isFirstRun: true)
-      saveParks(isFirstRun: true)
-      loadParks()
+      getListOfParks()
+      saveParks()
       print("First run, clear old data")
     }
   }

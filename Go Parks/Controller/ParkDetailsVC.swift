@@ -164,7 +164,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
       
       if response.result.isSuccess {
         let weatherJSON : JSON = JSON(response.result.value!)
-        self.getWeatherData(json: weatherJSON)
+        self.parseWeatherWith(json: weatherJSON)
         self.weatherActivity.stopAnimating()
         self.changeUnitsBtn.isEnabled = true
       } else {
@@ -211,12 +211,12 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
           service.parksArray[i].isFavorite = false
           favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
         }
-        service.saveParks(isFirstRun: false)
+        service.saveParks()
       }
     }
   }
   
-  private func getWeatherData (json: JSON) {
+  private func parseWeatherWith(json: JSON) {
     if let tempResults = json["main"]["temp"].double {
       weatherData.temperatupre = Int(tempResults)
       weatherData.condition = json["weather"][0]["id"].intValue
