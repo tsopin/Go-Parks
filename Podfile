@@ -8,6 +8,9 @@ target 'Go Parks' do
   # Pods for Go Parks
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'Firebase/Core'
+  
+
   
 
 end

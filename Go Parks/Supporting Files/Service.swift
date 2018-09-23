@@ -15,6 +15,10 @@ class Service {
   let defaults = UserDefaults()
   let parksFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Parks.plist")
   var parksArray = [ParksData]()
+  var alertsArray = [AlertData]()
+  var campgroundsArray = [CampgroundData]()
+  
+  private let API_KEY = "nRMNVDjegzk22LYILxiB2vN4ddayxQqJUkWMGQcU"
   
   func getListOfParks() {
     
@@ -33,6 +37,72 @@ class Service {
     } catch {
       print("eerrro")
     }
+  }
+  
+  func getAlerts(for park: String, handler: @escaping (_ returnedAlerts: [AlertData]) -> ()) {
+  
+    guard let API_URL = URL(string: "https://api.nps.gov/api/v1/alerts?parkCode=&parkCode=\(park)&limit=100&api_key=\(API_KEY)")  else { return }
+    
+    URLSession.shared.dataTask(with: API_URL) { (data, urlResponse, error) in
+      
+      DispatchQueue.main.async {
+        
+        guard let dataToDecode = data, error == nil, urlResponse != nil else {return}
+        
+        do {
+          let decoder = JSONDecoder()
+          
+          let alerts = try decoder.decode(GetAlertData.self, from: dataToDecode)
+          self.alertsArray.removeAll()
+          
+          for i in alerts.data! {
+            self.alertsArray.append(i)
+          }
+          handler(self.alertsArray)
+          
+        } catch {
+          print("eerrro")
+        }
+      }
+      }.resume()
+  }
+  
+  func getCampgrounds(for park: String, handler: @escaping (_ returnedCampgrounds: (data: [CampgroundData], success: Bool)) -> ()) {
+    guard let API_URL = URL(string: "https://api.nps.gov/api/v1/campgrounds?parkCode=&parkCode=\(park)&limit=100&api_key=\(API_KEY)")  else { return }
+    
+    print("\(API_URL)")
+    
+    URLSession.shared.dataTask(with: API_URL) { (data, urlResponse, error) in
+      
+      DispatchQueue.main.async {
+        
+        guard let dataToDecode = data, error == nil, urlResponse != nil else {return}
+        
+        do {
+          
+          let decoder = JSONDecoder()
+          
+          let campgrounds = try decoder.decode(GetCampgroundData.self, from: dataToDecode)
+          self.campgroundsArray.removeAll()
+          
+          for i in campgrounds.data! {
+            self.campgroundsArray.append(i)
+          }
+          
+          if campgrounds.data!.count > 0 {
+            print("Camp Success")
+             handler((self.campgroundsArray, true))
+          } else {
+            print("Camp Zero")
+            handler((self.campgroundsArray, false))
+          }
+          
+        } catch {
+          handler((self.campgroundsArray, false))
+          print("Camp Error")
+        }
+      }
+      }.resume()
   }
   
   func collectionItemsResize(screenWidth: CGFloat) -> (width: CGFloat, height: CGFloat) {
@@ -150,9 +220,6 @@ class Service {
     "WV",
     "WY"]
 }
-
-
-
 
 
 

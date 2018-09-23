@@ -11,8 +11,17 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 
-class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate {
+class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate, AlertCellDelegate {
+
   
+  
+  @IBOutlet weak var weatherView: UIView!
+  @IBOutlet weak var closeAlertViewButton: UIButton!
+  @IBOutlet weak var campgroundsButton: UIButton!
+  @IBOutlet weak var alertsTableView: UITableView!
+  @IBOutlet weak var alertView: UIView!
+  @IBOutlet weak var alertButton: UIButton!
+  @IBOutlet weak var alertHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak private var favorite: UIButton!
   @IBOutlet weak private var mapView: MKMapView!
   @IBOutlet weak private var parkName: UILabel!
@@ -28,32 +37,70 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   @IBOutlet weak private var unitsLabel: UILabel!
   @IBOutlet weak private var statesLabel: UILabel!
   @IBOutlet weak private var designationLabel: UILabel!
+  @IBOutlet weak var alertNotificationImage: UIImageView!
+  @IBOutlet weak var alertNotificationCount: UILabel!
   
   //Constraints
+  @IBOutlet weak var alertViewConstraint: NSLayoutConstraint!
   @IBOutlet weak private var descriptionViewHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak private var mapMinConstraint: NSLayoutConstraint!
   
   var data : ParksData?
+  var alertUrl : String?
   private let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
   private let API_KEY = "5f42b2e58ddbe20022e7fde8f06c0960"
   private let weatherData = WeatherData()
   private let service = Service.instance
+  private let analytics = FirebaseAnalytics.instance
   private let defaults = UserDefaults()
   private let screenSize : CGRect = UIScreen.main.bounds
+  private var alertsArray = [AlertData]()
+  var campgrounds: [CampgroundData]?
   
   private var isCelsius = false
   private var goLat = Double()
   private var goLong = Double()
   private var sentUrl = String()
+  var sentLabel = String()
   private var manager = CLLocationManager()
   private var states = String()
   
   override func viewWillAppear(_ animated: Bool) {
     
+    campgroundsButton.isHidden = true
+    getCampgroundData()
+    
+    self.alertNotificationImage.isHidden = true
+    self.alertNotificationCount.isHidden = true
+    self.alertButton.isHidden = true
+    
+    self.alertsTableView.delegate = self
+    self.alertsTableView.dataSource = self
+    
     if (data?.isFavorite)! {
       favoriteBtn.setBackgroundImage(UIImage(named: "heartGreen"), for: .normal)
     } else {
       favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
+    }
+    
+    DispatchQueue.main.async {
+      
+      self.service.getAlerts(for: (self.data?.parkCode)!) { returnedAlerts in
+        
+        self.alertsArray = returnedAlerts
+        
+        if self.alertsArray.count == 0 {
+          self.alertNotificationImage.isHidden = true
+          self.alertNotificationCount.isHidden = true
+          self.alertButton.isHidden = true
+        } else {
+          self.alertNotificationImage.isHidden = false
+          self.alertNotificationCount.isHidden = false
+          self.alertButton.isHidden = false
+          self.alertNotificationCount.text = "\(self.alertsArray.count)"
+          self.alertsTableView.reloadData()
+        }
+      }
     }
     
     statesLabel.text = states
@@ -63,6 +110,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     parkDescription.text = data?.description
     weatherInfoButton.isEnabled = true
     descriptionButton.isEnabled = false
+//    weatherView.isHidden = true
   }
   
   override func viewDidLayoutSubviews() {
@@ -85,6 +133,14 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     descriptionButton.setBackgroundImage(UIImage(named: "infoGrey"), for: .normal)
     isCelsius = defaults.bool(forKey: "isCelsius")
     parkDescription.dataDetectorTypes = .all
+    
+    alertsTableView.estimatedRowHeight = 130
+    alertsTableView.rowHeight = UITableViewAutomaticDimension
+    
+    self.closeAlertViewButton.layer.shadowColor = UIColor.lightGray.cgColor
+    self.closeAlertViewButton.layer.shadowOpacity = 1
+    self.closeAlertViewButton.layer.shadowOffset = CGSize(width: 1, height: 1)
+    self.closeAlertViewButton.layer.shadowRadius = 1
     
     guard let lat = data?.lat else { return }
     guard let long = data?.long else { return }
@@ -135,9 +191,11 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   
   @IBAction private func infoButton(_ sender: Any) {
     sentUrl = (data?.url)!
+    sentLabel = (data?.name)!
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
     }
+    analytics.logWebView(park: (data?.name)!)
   }
   
   @IBAction private func weatherInfoBtnPressed(_ sender: UIButton) {
@@ -156,6 +214,86 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     descriptionButton.isEnabled = false
   }
   
+  @IBAction func alertButtonPressed(_ sender: Any) {
+    analytics.alertsOpen(park: (data?.name)!)
+    
+    if alertViewConstraint.constant < 0 {
+      
+      showAlertView()
+    } else {
+      hideAlertView()
+      
+    }
+  }
+  
+  @IBAction func hideAlertViewButtonPressed(_ sender: UIButton) {
+    hideAlertView()
+  }
+  
+  
+  @IBAction func campgroundButtonPressed(_ sender: Any) {
+    getCampgroundData()
+    DispatchQueue.main.async {
+      self.performSegue(withIdentifier: "campgroundInfo", sender: Any?.self)
+    }
+  }
+  
+  func getCampgroundData() {
+    service.getCampgrounds(for: (data?.parkCode)!) { (campground) in
+      if campground.success {
+        self.campgroundsButton.isHidden = false
+        self.campgrounds = campground.data
+      }
+    }
+  }
+  
+  func showAlertView() {
+    print("Show \(alertsArray.count)")
+    self.view.addSubview(alertView)
+
+    self.alertsTableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+    
+    alertHeightConstraint.constant = screenSize.height 
+    alertViewConstraint.constant = 0
+    
+    UIView.animate(withDuration: 0.3) {
+      self.navigationController?.isNavigationBarHidden = true
+      self.view.layoutIfNeeded()
+    }
+    DispatchQueue.main.async {
+      self.alertsTableView.reloadData()
+    }
+    
+  }
+  
+  func hideAlertView() {
+    print("Hide")
+    alertViewConstraint.constant = -(screenSize.height + 64)
+    
+    UIView.animate(withDuration: 0.3) {
+      self.navigationController?.isNavigationBarHidden = false
+      self.view.layoutIfNeeded()
+      
+    }
+    
+  }
+
+  func openAlertUrl(cell: AlertCell) {
+  
+    guard let index = alertsTableView.indexPath(for: cell)?.row else {
+      return
+    }
+    sentUrl = alertsArray[index].url!
+    sentLabel = alertsArray[index].title!
+    print("SENT URL \(sentUrl)")
+    
+    DispatchQueue.main.async {
+      self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
+    }
+   
+  }
+  
+  
   private func getWeatherData(url: String, parametrs: [String: String]) {
     weatherActivity.startAnimating()
     changeUnitsBtn.isEnabled = false
@@ -167,6 +305,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
         self.parseWeatherWith(json: weatherJSON)
         self.weatherActivity.stopAnimating()
         self.changeUnitsBtn.isEnabled = true
+//        self.weatherView.isHidden = false
       } else {
         print("Error \(String(describing: response.result.error))")
       }
@@ -206,6 +345,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
         if service.parksArray[i].isFavorite == false {
           service.parksArray[i].isFavorite = true
           favoriteBtn.setBackgroundImage(UIImage(named: "heartGreen"), for: .normal)
+          self.analytics.addedToFavorite(park: "\(data?.name ?? "err")", screen: "Park Details")
           
         } else if service.parksArray[i].isFavorite == true {
           service.parksArray[i].isFavorite = false
@@ -247,12 +387,17 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     let appleUrl = URL(string: "http://maps.apple.com/maps?daddr=\(goLat),\(goLong)")
     
     UIApplication.shared.open(appleUrl!, options: [:])
+    analytics.directions(park: (data?.name)!)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "openUrl" {
       let destinationVC = segue.destination as! WebViewVC
       destinationVC.receivedUrl = sentUrl
+      destinationVC.label = sentLabel
+    } else if segue.identifier == "campgroundInfo" {
+      let destinationVC = segue.destination as! CampgroundsVC
+      destinationVC.recievedPark = campgrounds
     }
   }
   
@@ -262,5 +407,39 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   
   //  deinit {}
 }
+extension ParkDetailsVC: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return alertsArray.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = alertsTableView.dequeueReusableCell(withIdentifier: AlertCell.ID, for: indexPath) as! AlertCell
+    cell.delegate = self
+    
+    if alertsArray.count > 0 {
+      let alert = alertsArray[indexPath.row]
+      print("\(alert.url!)")
+      cell.configureCell(category: alert.category!, title: alert.title!, description: alert.description!, url: alert.url)
+      return cell
+    } else {
+      return cell
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 

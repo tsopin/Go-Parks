@@ -16,10 +16,13 @@ class ParkByStateVC: UIViewController, ParkByStateCellDelegate {
   var chosenState : String?
   private var selectedItem = Int()
   private let service = Service.instance
+  private let analytics = FirebaseAnalytics.instance
   private var chosenPark = Int()
   
   override func viewWillAppear(_ animated: Bool) {
     stateNameLabel.text = chosenState?.longStateName()
+    analytics.byState(state: (chosenState?.longStateName())!)
+      
     DispatchQueue.main.async {
       self.parkByStateCollectionView.reloadData()
     }
@@ -42,7 +45,9 @@ class ParkByStateVC: UIViewController, ParkByStateCellDelegate {
       if service.parksArray[i].name == parkInCell.name {
         
         if parkInCell.isFavorite == false {
-          self.service.parksArray[i].isFavorite = true          
+          self.service.parksArray[i].isFavorite = true
+          let p = service.parksArray[i].name
+          self.analytics.addedToFavorite(park: "\(p)", screen: "ParkByState")
         } else if parkInCell.isFavorite == true {
           self.service.parksArray[i].isFavorite = false
         }

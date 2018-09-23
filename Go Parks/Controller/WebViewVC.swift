@@ -15,8 +15,10 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
   @IBOutlet weak private var loadingPage: UIActivityIndicatorView!
   @IBOutlet weak private var webView: WKWebView!
   @IBOutlet weak private var refreshBtn: UIBarButtonItem!
+  @IBOutlet weak var toolbarLabel: UILabel!
   
   var receivedUrl : String?
+  var label: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,6 +28,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
     loadingPage.hidesWhenStopped = true
     loadingPage.startAnimating()
     refreshBtn.isEnabled = false
+    toolbarLabel.text = label
     
     let url = URL(string: receivedUrl!)
     let request = URLRequest(url: url!)

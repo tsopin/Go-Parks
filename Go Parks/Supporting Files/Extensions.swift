@@ -122,6 +122,12 @@ extension UIColor {
   }
 }
 
+extension UISearchBar {
+  var textField: UITextField? {
+    return subviews.first?.subviews.first(where: { $0.isKind(of: UITextField.self) }) as? UITextField
+  }
+}
+
 
 
 

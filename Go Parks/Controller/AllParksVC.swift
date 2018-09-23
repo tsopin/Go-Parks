@@ -14,6 +14,7 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
   @IBOutlet weak private var bottomConstraint: NSLayoutConstraint!
   
   private let service = Service.instance
+  private let analytics = FirebaseAnalytics.instance
   private var selectedItem = Int()
   private let searchController = UISearchController(searchResultsController: nil)
   private var filtredParks = [ParksData]()
@@ -25,6 +26,28 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    searchController.searchBar.searchBarStyle = .default
+    searchController.searchBar.tintColor = UIColor(rgb: 0x67DC79)
+    
+    for view in self.view.subviews {
+      if view is UIScrollView {
+        (view as? UIScrollView)!.delaysContentTouches = false
+      }
+    }
+    
+    for i in searchController.searchBar.subviews {
+      for s in i.subviews {
+        if s is UITextField {
+          s.layer.borderWidth = 1.5
+          s.layer.cornerRadius = 18.0
+          s.layer.masksToBounds = true
+          s.layer.backgroundColor = UIColor.white.cgColor
+          s.layer.borderColor = UIColor(rgb: 0x67DC79).cgColor
+        }
+      }
+    }
+    
     self.allParksCollectionView.delaysContentTouches = false
     
     NotificationCenter.default.addObserver(self, selector:#selector(AllParksVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -57,10 +80,13 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
           if service.parksArray[i].isFavorite == false {
             service.parksArray[i].isFavorite = true
             filtredParks[indexPath.row].isFavorite = true
+            let p = service.parksArray[i].name
+            self.analytics.addedToFavorite(park: "\(p)", screen: "All Parks. Filtered.")
           } else if service.parksArray[i].isFavorite == true {
             service.parksArray[i].isFavorite = false
             filtredParks[indexPath.row].isFavorite = false
           }
+          
         }
       }
     } else {
@@ -71,9 +97,11 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
           
           if parkInCell.isFavorite == false {
             self.service.parksArray[i].isFavorite = true
+            analytics.addedToFavorite(park: service.parksArray[i].name, screen: "All Parks")
           } else if parkInCell.isFavorite == true {
             self.service.parksArray[i].isFavorite = false
           }
+          
         }
       }
     }
@@ -104,7 +132,7 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
   @objc func keyboardWillHide(notification : NSNotification) {
     self.bottomConstraint.constant = 0
   }
-    
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "parkDetailFromPhoto" {
@@ -155,6 +183,7 @@ extension AllParksVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     } else {
       chosenPark = selectedItem
     }
+    analytics.allParks(park: service.parksArray[chosenPark].name)
     
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "parkDetailFromPhoto", sender: Any?.self)

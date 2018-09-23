@@ -12,6 +12,7 @@ class WelcomeVC: UIViewController {
   
   private var parkToGo = Int()
   private let service = Service.instance
+  private let analytics = FirebaseAnalytics.instance
   private let defaults = UserDefaults()
   
   @IBOutlet weak private var logoBottomConstraint: NSLayoutConstraint!
@@ -30,6 +31,7 @@ class WelcomeVC: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = true
     UIApplication.shared.statusBarStyle = .lightContent
+    
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -42,6 +44,7 @@ class WelcomeVC: UIViewController {
   }
   
   private func goAhead() {
+    analytics.lucky()
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "goAhead", sender: Any?.self)
     }

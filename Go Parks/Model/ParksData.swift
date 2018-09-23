@@ -1,5 +1,5 @@
 //
-//  Data.swift
+//  ParksData.swift
 //  Go Parks
 //
 //  Created by Timofei Sopin on 2018-04-30.
@@ -47,5 +47,6 @@ extension State: Equatable {
     return lhs.stateCode == rhs.stateCode
   }
 }
+
 
 

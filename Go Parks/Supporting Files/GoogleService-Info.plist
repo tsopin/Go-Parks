@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>310267080831-30jcn2aeq5lj32q62ers5pt82eebqtmg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.310267080831-30jcn2aeq5lj32q62ers5pt82eebqtmg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDY0q64-nQrTrkecIYb0dGGFRuzr4YPjM0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>310267080831</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>in.timsop.Go-Parks</string>
+	<key>PROJECT_ID</key>
+	<string>goparks-e02fb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>goparks-e02fb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:310267080831:ios:f03e824a2d4e4d2a</string>
+	<key>DATABASE_URL</key>
+	<string>https://goparks-e02fb.firebaseio.com</string>
+</dict>
+</plist>

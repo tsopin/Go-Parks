@@ -12,6 +12,8 @@
 		741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A48C82097E0DB00B4688F /* WelcomeVC.swift */; };
 		741A48CC2097E0DB00B4688F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CA2097E0DB00B4688F /* Main.storyboard */; };
 		741A48D12097E0DC00B4688F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */; };
+		7426B5E4212BB26F00267FAC /* AlertDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426B5E2212BB26F00267FAC /* AlertDataModel.swift */; };
+		7426B5E5212BB26F00267FAC /* GetAlertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426B5E3212BB26F00267FAC /* GetAlertData.swift */; };
 		7426E28F20BF29DB005A1900 /* FavoriteParksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */; };
 		7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */; };
 		7436E7BC20ADE70A00FC4F5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7436E7BB20ADE70A00FC4F5B /* Weather.swift */; };
@@ -21,6 +23,8 @@
 		746EF43320AA7B7B0087169A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43220AA7B7B0087169A /* Service.swift */; };
 		746EF43820AA7DA10087169A /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF43620AA7DA10087169A /* StateCell.swift */; };
 		7470F31720AE0B540005FFF1 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7470F31620AE0B540005FFF1 /* WebViewVC.swift */; };
+		74751B8B213386170003E1B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74751B8A213386170003E1B0 /* GoogleService-Info.plist */; };
+		74751B8D213387C60003E1B0 /* Analitycs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74751B8C213387C60003E1B0 /* Analitycs.swift */; };
 		7494DCE220C4943A0032EC02 /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D420BCC3DC00EC3B47 /* Ubuntu-Bold.ttf */; };
 		7494DCE320C4943A0032EC02 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D320BCC3DB00EC3B47 /* Ubuntu-BoldItalic.ttf */; };
 		7494DCE420C4943A0032EC02 /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 745FB7D520BCC3DD00EC3B47 /* Ubuntu-Italic.ttf */; };
@@ -43,9 +47,16 @@
 		749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8BFC20AB625A0023354F /* ParkByStateCell.swift */; };
 		749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F8C0220ABD2080023354F /* AllParksCell.swift */; };
 		74A813DC20A8D7DA00CAD469 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = 74A813DB20A8D7DA00CAD469 /* parks.json */; };
-		74A813E220A8DAC000CAD469 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* Data.swift */; };
+		74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* ParksData.swift */; };
 		74A813E720A8FA7000CAD469 /* ParkDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */; };
 		74A813E920A90DF000CAD469 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E820A90DF000CAD469 /* Extensions.swift */; };
+		74EC8389212D0B0000255948 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC8388212D0B0000255948 /* AlertCell.swift */; };
+		74EC838F212E45C200255948 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC838A212E45C100255948 /* Accessibility.swift */; };
+		74EC8390212E45C200255948 /* Campsites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC838B212E45C100255948 /* Campsites.swift */; };
+		74EC8391212E45C200255948 /* GetCampgroundData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC838C212E45C200255948 /* GetCampgroundData.swift */; };
+		74EC8392212E45C200255948 /* CampgroundData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC838D212E45C200255948 /* CampgroundData.swift */; };
+		74EC8393212E45C200255948 /* Amenities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC838E212E45C200255948 /* Amenities.swift */; };
+		74EC8395212E490C00255948 /* CampgroundsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC8394212E490C00255948 /* CampgroundsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +67,8 @@
 		741A48CB2097E0DB00B4688F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		741A48D02097E0DC00B4688F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741A48D22097E0DC00B4688F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7426B5E2212BB26F00267FAC /* AlertDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDataModel.swift; sourceTree = "<group>"; };
+		7426B5E3212BB26F00267FAC /* GetAlertData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAlertData.swift; sourceTree = "<group>"; };
 		7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteParksVC.swift; sourceTree = "<group>"; };
 		7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteParksCell.swift; sourceTree = "<group>"; };
 		7436E7BB20ADE70A00FC4F5B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -83,13 +96,22 @@
 		746EF43220AA7B7B0087169A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		746EF43620AA7DA10087169A /* StateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
 		7470F31620AE0B540005FFF1 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
+		74751B8A213386170003E1B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		74751B8C213387C60003E1B0 /* Analitycs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analitycs.swift; sourceTree = "<group>"; };
 		749F8BFA20AB618B0023354F /* ParkByStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateVC.swift; sourceTree = "<group>"; };
 		749F8BFC20AB625A0023354F /* ParkByStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkByStateCell.swift; sourceTree = "<group>"; };
 		749F8C0220ABD2080023354F /* AllParksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParksCell.swift; sourceTree = "<group>"; };
 		74A813DB20A8D7DA00CAD469 /* parks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
-		74A813E020A8DAC000CAD469 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		74A813E020A8DAC000CAD469 /* ParksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParksData.swift; sourceTree = "<group>"; };
 		74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailsVC.swift; sourceTree = "<group>"; };
 		74A813E820A90DF000CAD469 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		74EC8388212D0B0000255948 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
+		74EC838A212E45C100255948 /* Accessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
+		74EC838B212E45C100255948 /* Campsites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campsites.swift; sourceTree = "<group>"; };
+		74EC838C212E45C200255948 /* GetCampgroundData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCampgroundData.swift; sourceTree = "<group>"; };
+		74EC838D212E45C200255948 /* CampgroundData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampgroundData.swift; sourceTree = "<group>"; };
+		74EC838E212E45C200255948 /* Amenities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amenities.swift; sourceTree = "<group>"; };
+		74EC8394212E490C00255948 /* CampgroundsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampgroundsVC.swift; sourceTree = "<group>"; };
 		7B9EE93B53CD1F9288EC71C0 /* Pods_Go_Parks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Go_Parks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C539A13E005A44208A15B864 /* Pods-Go Parks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Go Parks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +208,7 @@
 				749F8BFC20AB625A0023354F /* ParkByStateCell.swift */,
 				749F8C0220ABD2080023354F /* AllParksCell.swift */,
 				7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */,
+				74EC8388212D0B0000255948 /* AlertCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -195,9 +218,11 @@
 			children = (
 				745FB7BD20BC60BA00EC3B47 /* Fonts */,
 				741A48C62097E0DB00B4688F /* AppDelegate.swift */,
+				74751B8C213387C60003E1B0 /* Analitycs.swift */,
 				74A813E820A90DF000CAD469 /* Extensions.swift */,
 				746EF43220AA7B7B0087169A /* Service.swift */,
 				74A813DB20A8D7DA00CAD469 /* parks.json */,
+				74751B8A213386170003E1B0 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -205,7 +230,14 @@
 		74A813DD20A8DAA600CAD469 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				74A813E020A8DAC000CAD469 /* Data.swift */,
+				74EC838C212E45C200255948 /* GetCampgroundData.swift */,
+				74EC838D212E45C200255948 /* CampgroundData.swift */,
+				74EC838A212E45C100255948 /* Accessibility.swift */,
+				74EC838E212E45C200255948 /* Amenities.swift */,
+				74EC838B212E45C100255948 /* Campsites.swift */,
+				7426B5E3212BB26F00267FAC /* GetAlertData.swift */,
+				7426B5E2212BB26F00267FAC /* AlertDataModel.swift */,
+				74A813E020A8DAC000CAD469 /* ParksData.swift */,
 				7436E7BB20ADE70A00FC4F5B /* Weather.swift */,
 			);
 			path = Model;
@@ -230,6 +262,7 @@
 				7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */,
 				749F8BFA20AB618B0023354F /* ParkByStateVC.swift */,
 				74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */,
+				74EC8394212E490C00255948 /* CampgroundsVC.swift */,
 				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
 			);
 			path = Controller;
@@ -314,6 +347,7 @@
 				7494DCEA20C4943A0032EC02 /* OpenSans-Bold.ttf in Resources */,
 				7494DCEE20C4943A0032EC02 /* OpenSans-Italic.ttf in Resources */,
 				7494DCF220C4943A0032EC02 /* OpenSans-SemiBold.ttf in Resources */,
+				74751B8B213386170003E1B0 /* GoogleService-Info.plist in Resources */,
 				7494DCF020C4943A0032EC02 /* OpenSans-LightItalic.ttf in Resources */,
 				7494DCE820C4943A0032EC02 /* Ubuntu-MediumItalic.ttf in Resources */,
 				7494DCEC20C4943A0032EC02 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -331,12 +365,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -370,18 +408,28 @@
 			files = (
 				749F8BFB20AB618B0023354F /* ParkByStateVC.swift in Sources */,
 				74A813E920A90DF000CAD469 /* Extensions.swift in Sources */,
+				74EC838F212E45C200255948 /* Accessibility.swift in Sources */,
+				74EC8390212E45C200255948 /* Campsites.swift in Sources */,
 				746EF43320AA7B7B0087169A /* Service.swift in Sources */,
 				7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */,
 				741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */,
+				74EC8389212D0B0000255948 /* AlertCell.swift in Sources */,
+				74751B8D213387C60003E1B0 /* Analitycs.swift in Sources */,
 				746EF43820AA7DA10087169A /* StateCell.swift in Sources */,
+				74EC8393212E45C200255948 /* Amenities.swift in Sources */,
 				74A813E720A8FA7000CAD469 /* ParkDetailsVC.swift in Sources */,
 				741A48C72097E0DB00B4688F /* AppDelegate.swift in Sources */,
 				749F8C0320ABD2080023354F /* AllParksCell.swift in Sources */,
 				745FB7E320BDF87700EC3B47 /* AllParksVC.swift in Sources */,
+				74EC8392212E45C200255948 /* CampgroundData.swift in Sources */,
 				7436E7BC20ADE70A00FC4F5B /* Weather.swift in Sources */,
+				74EC8395212E490C00255948 /* CampgroundsVC.swift in Sources */,
 				7426E28F20BF29DB005A1900 /* FavoriteParksVC.swift in Sources */,
-				74A813E220A8DAC000CAD469 /* Data.swift in Sources */,
+				74EC8391212E45C200255948 /* GetCampgroundData.swift in Sources */,
+				74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */,
+				7426B5E4212BB26F00267FAC /* AlertDataModel.swift in Sources */,
 				7470F31720AE0B540005FFF1 /* WebViewVC.swift in Sources */,
+				7426B5E5212BB26F00267FAC /* GetAlertData.swift in Sources */,
 				746EF43120AA7A600087169A /* ListOfStatesVC.swift in Sources */,
 				749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */,
 			);

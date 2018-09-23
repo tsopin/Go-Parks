@@ -19,6 +19,7 @@ class ListOfStatesVC: UIViewController {
   private var selectedRow = Int()
   private let searchController = UISearchController(searchResultsController: nil)
   let service = Service.instance
+  private let analytics = FirebaseAnalytics.instance
   var chosenState = Int()
   
   override func viewDidLoad() {
@@ -130,6 +131,7 @@ extension ListOfStatesVC: UITableViewDelegate, UITableViewDataSource {
       chosenState = selectedRow
     }
     
+    analytics.byState(state: statesArray[chosenState].fullName)
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "parkByState", sender: Any?.self)
     }
