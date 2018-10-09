@@ -23,4 +23,11 @@ struct GetCampgroundData : Codable {
     case start = "start"
   }
   
+  init(total: Int, data: [CampgroundData], limit: Int, start: Int) {
+    self.total = total
+    self.data = data
+    self.limit = limit
+    self.start = start
+    
+  }
 }

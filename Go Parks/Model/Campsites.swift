@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-struct Campsites : Codable {
-  
+
   struct Campsites : Codable {
-    let other : Int?
-    let group : Int?
-    let horse : Int?
-    let totalSites : Int?
-    let tentOnly : Int?
-    let electricalHookups : Int?
-    let rvOnly : Int?
-    let walkBoatTo : Int?
+    
+    var other : Int?
+    var group : Int?
+    var horse : Int?
+    var totalSites : Int?
+    var tentOnly : Int?
+    var electricalHookups : Int?
+    var rvOnly : Int?
+    var walkBoatTo : Int? 
     
     enum CodingKeys: String, CodingKey {
       
@@ -32,17 +33,20 @@ struct Campsites : Codable {
       case walkBoatTo = "walkBoatTo"
     }
     
-//    init(from decoder: Decoder) throws {
-//      let values = try decoder.container(keyedBy: CodingKeys.self)
-//      other = try values.decodeIfPresent(Int.self, forKey: .other)
-//      group = try values.decodeIfPresent(Int.self, forKey: .group)
-//      horse = try values.decodeIfPresent(Int.self, forKey: .horse)
-//      totalSites = try values.decodeIfPresent(Int.self, forKey: .totalSites)
-//      tentOnly = try values.decodeIfPresent(Int.self, forKey: .tentOnly)
-//      electricalHookups = try values.decodeIfPresent(Int.self, forKey: .electricalHookups)
-//      rvOnly = try values.decodeIfPresent(Int.self, forKey: .rvOnly)
-//      walkBoatTo = try values.decodeIfPresent(Int.self, forKey: .walkBoatTo)
-//    }
-//
-}
-}
+    static func getCampsitesFrom(_ dict: [String : JSON]) -> Campsites {
+      
+      var campsite = Campsites()
+      
+      campsite.other = dict["other"]?.intValue
+      campsite.group = dict["group"]?.intValue
+      campsite.horse = dict["horse"]?.intValue
+      campsite.totalSites = dict["totalSites"]?.intValue
+      campsite.tentOnly = dict["tentOnly"]?.intValue
+      campsite.electricalHookups = dict["electricalHookups"]?.intValue
+      campsite.rvOnly = dict["rvOnly"]?.intValue
+      campsite.walkBoatTo = dict["walkBoatTo"]?.intValue
+      
+      return campsite
+    }
+  }
+

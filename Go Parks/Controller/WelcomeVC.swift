@@ -39,7 +39,7 @@ class WelcomeVC: UIViewController {
     UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
   }
   
-  override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+  override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
     goAhead()
   }
   
@@ -55,16 +55,16 @@ class WelcomeVC: UIViewController {
     
     print("\(screenSize.width) \(screenSize.height)")
     
-    if screenSize.width == 320 {
+    if service.getDevice() == "SE" {
       print("SE")
       logoBottomConstraint.constant = 0
       logoHeight.constant = 140
       heartTop.constant = 20
-    } else if screenSize.width == 375 && screenSize.height == 812 {
+    } else if service.getDevice() == "X" {
       print("X")
       logoBottomConstraint.constant = 50
       bottomFavoriteConstraint.constant = 60
-    } else if screenSize.width == 768 || screenSize.width == 834  {
+    } else if service.getDevice() == "Pro12" {
       print("PRO 12.9")
       bottomFavoriteConstraint.constant = 50
     } else if screenSize.width == 1024 {

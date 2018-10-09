@@ -7,10 +7,37 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class Service {
   
+  func getDevice() -> String {
+    var device = String()
+    switch (Double(screenSize.width), Double(screenSize.height)) {
+    case (320, 568):
+      device = "SE"
+    case (375, 667):
+      device = "8"
+    case (414, 736):
+      device = "8P"
+    case (375, 812):
+      device = "X"
+    case (414, 896):
+      device = "XS Max"
+    case (768, 1024):
+      device = "Air"
+    case (834, 1112):
+      device = "Pro10"
+    case (1024, 1366):
+      device = "Pro12"
+    default:
+      break
+    }
+    return device
+  }
+  
   static let instance = Service()
+  let screenSize : CGRect = UIScreen.main.bounds
   
   let defaults = UserDefaults()
   let parksFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Parks.plist")
@@ -40,7 +67,7 @@ class Service {
   }
   
   func getAlerts(for park: String, handler: @escaping (_ returnedAlerts: [AlertData]) -> ()) {
-  
+    
     guard let API_URL = URL(string: "https://api.nps.gov/api/v1/alerts?parkCode=&parkCode=\(park)&limit=100&api_key=\(API_KEY)")  else { return }
     
     URLSession.shared.dataTask(with: API_URL) { (data, urlResponse, error) in
@@ -74,34 +101,56 @@ class Service {
     
     URLSession.shared.dataTask(with: API_URL) { (data, urlResponse, error) in
       
-      DispatchQueue.main.async {
-        
-        guard let dataToDecode = data, error == nil, urlResponse != nil else {return}
-        
-        do {
-          
-          let decoder = JSONDecoder()
-          
-          let campgrounds = try decoder.decode(GetCampgroundData.self, from: dataToDecode)
-          self.campgroundsArray.removeAll()
-          
-          for i in campgrounds.data! {
-            self.campgroundsArray.append(i)
-          }
-          
-          if campgrounds.data!.count > 0 {
-            print("Camp Success")
-             handler((self.campgroundsArray, true))
-          } else {
-            print("Camp Zero")
-            handler((self.campgroundsArray, false))
-          }
-          
-        } catch {
-          handler((self.campgroundsArray, false))
-          print("Camp Error")
-        }
-      }
+      let json = JSON(data as Any)
+//      var campgroundsArray = [CampgroundData]()
+      
+
+      let jsonArray = json["data"].arrayValue
+      self.campgroundsArray = jsonArray.map({ CampgroundData.getCampgroundFrom($0)})
+      
+//      for _ in jsonArray {
+//
+//        campgroundsArray.append(campground)
+//      }
+//      print("CAAAAM \(jsonArray)")
+//      for i in jsonArray {
+//
+//      }
+      
+      
+//      let adItems = jsonArray.map({ CampgroundData.getCampgroundFrom($0) })
+      
+      
+      
+      
+      //      DispatchQueue.main.async {
+      //
+      //        guard let dataToDecode = data, error == nil, urlResponse != nil else {return}
+      //
+      //        do {
+      //
+      //          let decoder = JSONDecoder()
+      //
+      //          let campgrounds = try decoder.decode(GetCampgroundData.self, from: dataToDecode)
+      //          self.campgroundsArray.removeAll()
+      //
+      //          for i in campgrounds.data! {
+      //            self.campgroundsArray.append(i)
+      //          }
+      //
+      //          if campgrounds.data!.count > 0 {
+      //            print("Camp Success")
+                  handler((self.campgroundsArray, true))
+      //          } else {
+      //            print("Camp Zero")
+      //            handler((self.campgroundsArray, false))
+      //          }
+      //
+      //        } catch {
+      //          handler((self.campgroundsArray, false))
+      //          print("Camp Error")
+      //        }
+      //      }
       }.resume()
   }
   
@@ -163,7 +212,7 @@ class Service {
                    delay: 0,
                    usingSpringWithDamping: CGFloat(0.30),
                    initialSpringVelocity: CGFloat(6.0),
-                   options: UIViewAnimationOptions.allowUserInteraction,
+                   options: UIView.AnimationOptions.allowUserInteraction,
                    animations: { sender.transform = CGAffineTransform.identity}, completion: { Void in() })
   }
   
@@ -219,6 +268,9 @@ class Service {
     //        "WI",
     "WV",
     "WY"]
+  
+  
+  
 }
 
 

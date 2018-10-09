@@ -50,8 +50,8 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
     
     self.allParksCollectionView.delaysContentTouches = false
     
-    NotificationCenter.default.addObserver(self, selector:#selector(AllParksVC.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector:#selector(AllParksVC.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.addObserver(self, selector:#selector(AllParksVC.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector:#selector(AllParksVC.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     
     navigationItem.searchController = searchController
     navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
@@ -124,9 +124,9 @@ class AllParksVC: UIViewController, AllParksCellDelegate  {
   
   //  Move UItableView above a keyboard
   @objc func keyboardWillShow(notification : NSNotification) {
-    let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
+    let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
     self.bottomConstraint.constant = keyboardSize.height
-    UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in })
+    UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in })
   }
   
   @objc func keyboardWillHide(notification : NSNotification) {

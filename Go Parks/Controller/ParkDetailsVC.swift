@@ -41,7 +41,9 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   @IBOutlet weak var alertNotificationCount: UILabel!
   
   //Constraints
+  @IBOutlet weak var photoTopConstraint: NSLayoutConstraint!
   @IBOutlet weak var alertViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak var safeAreaBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak private var descriptionViewHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak private var mapMinConstraint: NSLayoutConstraint!
   
@@ -64,11 +66,17 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   var sentLabel = String()
   private var manager = CLLocationManager()
   private var states = String()
+  var device = String()
   
   override func viewWillAppear(_ animated: Bool) {
-    
-    campgroundsButton.isHidden = true
+
     getCampgroundData()
+    
+    if service.getDevice() == "X" || service.getDevice() == "XS Max" {
+      safeAreaBottomConstraint.constant = 70
+    } else {
+      safeAreaBottomConstraint.constant = 0
+    }
     
     self.alertNotificationImage.isHidden = true
     self.alertNotificationCount.isHidden = true
@@ -120,7 +128,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     for state in (data?.states)! {
       states.append("\(state) ")
     }
@@ -135,7 +143,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     parkDescription.dataDetectorTypes = .all
     
     alertsTableView.estimatedRowHeight = 130
-    alertsTableView.rowHeight = UITableViewAutomaticDimension
+    alertsTableView.rowHeight = UITableView.automaticDimension
     
     self.closeAlertViewButton.layer.shadowColor = UIColor.lightGray.cgColor
     self.closeAlertViewButton.layer.shadowOpacity = 1
@@ -162,10 +170,10 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     } else if screenSize.width == 1024 { //iPadPro 12.9
       iPadViewAdjust(name: 50, description: 24)
     } else if screenSize.width == 375 && screenSize.height == 812 { // iPhone X
-      mapMinConstraint.constant = 170
-      descriptionViewHeightConstraint.constant = -60
+//      mapMinConstraint.constant = 170
+//      descriptionViewHeightConstraint.constant = -60
     } else if screenSize.width == 375 { // iPhone 6, 7, 8
-      descriptionViewHeightConstraint.constant = 0
+//      descriptionViewHeightConstraint.constant = 0
     }
   }
   
@@ -173,12 +181,12 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     parkName.font = UIFont(name: "Ubuntu-Bold", size: name)
     parkDescription.font = UIFont(name: "OpenSans-Regular", size: description)
     designationLabel.font = UIFont(name: "OpenSans-Italic", size: description)
-    mapMinConstraint.constant = screenSize.width * 0.29
-    descriptionViewHeightConstraint.constant = screenSize.width * 0.28
+//    mapMinConstraint.constant = screenSize.width * 0.29
+//    descriptionViewHeightConstraint.constant = screenSize.width * 0.28
   }
   
   private func getLocation (forLatitude: Double, forLongitude: Double) {
-    let span = MKCoordinateSpanMake(0.4, 0.4)
+    let span = MKCoordinateSpan.init(latitudeDelta: 0.4, longitudeDelta: 0.4)
     let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: forLatitude, longitude: forLongitude), span: span)
     let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(forLatitude, forLongitude)
     let pinObject = MKPointAnnotation()
@@ -241,7 +249,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   func getCampgroundData() {
     service.getCampgrounds(for: (data?.parkCode)!) { (campground) in
       if campground.success {
-        self.campgroundsButton.isHidden = false
+//        self.campgroundsButton.isHidden = false
         self.campgrounds = campground.data
       }
     }
@@ -397,7 +405,8 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
       destinationVC.label = sentLabel
     } else if segue.identifier == "campgroundInfo" {
       let destinationVC = segue.destination as! CampgroundsVC
-      destinationVC.recievedPark = campgrounds
+      destinationVC.recievedPark = data?.fullName
+      destinationVC.data = campgrounds
     }
   }
   
@@ -427,7 +436,7 @@ extension ParkDetailsVC: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
+    return UITableView.automaticDimension
   }
 }
 

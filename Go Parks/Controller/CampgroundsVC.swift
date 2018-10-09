@@ -9,36 +9,63 @@
 import UIKit
 
 class CampgroundsVC: UIViewController {
-
-  @IBOutlet weak var infoTextView: UITextView!
-  var recievedPark : [CampgroundData]?
+  
+  @IBOutlet weak var campgroundsTableView: UITableView!
+  
+  
+  var recievedPark : String?
+  var data : [CampgroundData]?
+  
+  var chosenPark = CampgroundData()
+  
+  var campgroundsArray = [CampgroundData]()
   
   
   override func viewDidLoad() {
         super.viewDidLoad()
+    navigationItem.title = recievedPark
+    
+    if (data?.count)! > 0 {
+      campgroundsArray = data!
+    }
+    self.campgroundsTableView.delegate = self
+    self.campgroundsTableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
   
    override func viewWillAppear(_ animated: Bool) {
     
-    infoTextView.text = recievedPark![0].name
+//    infoTextView.text = data
   }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "campgroundDetails" {
+      let destinationVC = segue.destination as! CampgroundDescriptionVC
+     destinationVC.data = chosenPark
     }
+  }
+
+}
+extension CampgroundsVC: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return data?.count ?? 0
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = campgroundsTableView.dequeueReusableCell(withIdentifier: "campgroundCell") as! CampgroundCell
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     let ololo = campgroundsArray[indexPath.row]
+    
+    cell.configureCell(name: ololo.name ?? "", totalSties: ololo.campsites?.totalSites ?? 0, rvSites: ololo.campsites?.rvOnly ?? 0, tentSites: ololo.campsites?.tentOnly ?? 0)
+    
+    return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    chosenPark = campgroundsArray[indexPath.row]
+    
+    performSegue(withIdentifier: "campgroundDetails", sender: Any?.self)
+  }
+  
 }

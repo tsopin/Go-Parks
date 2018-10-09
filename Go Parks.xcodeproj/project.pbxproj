@@ -50,6 +50,8 @@
 		74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E020A8DAC000CAD469 /* ParksData.swift */; };
 		74A813E720A8FA7000CAD469 /* ParkDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */; };
 		74A813E920A90DF000CAD469 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A813E820A90DF000CAD469 /* Extensions.swift */; };
+		74AF9E49216C2056009DA481 /* CampgroundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AF9E48216C2055009DA481 /* CampgroundCell.swift */; };
+		74AF9E4B216C25EF009DA481 /* CampgroundDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AF9E4A216C25EF009DA481 /* CampgroundDescriptionVC.swift */; };
 		74EC8389212D0B0000255948 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC8388212D0B0000255948 /* AlertCell.swift */; };
 		74EC838F212E45C200255948 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC838A212E45C100255948 /* Accessibility.swift */; };
 		74EC8390212E45C200255948 /* Campsites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC838B212E45C100255948 /* Campsites.swift */; };
@@ -105,6 +107,8 @@
 		74A813E020A8DAC000CAD469 /* ParksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParksData.swift; sourceTree = "<group>"; };
 		74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailsVC.swift; sourceTree = "<group>"; };
 		74A813E820A90DF000CAD469 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		74AF9E48216C2055009DA481 /* CampgroundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampgroundCell.swift; sourceTree = "<group>"; };
+		74AF9E4A216C25EF009DA481 /* CampgroundDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampgroundDescriptionVC.swift; sourceTree = "<group>"; };
 		74EC8388212D0B0000255948 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		74EC838A212E45C100255948 /* Accessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
 		74EC838B212E45C100255948 /* Campsites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campsites.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				749F8C0220ABD2080023354F /* AllParksCell.swift */,
 				7426E29020BF2B69005A1900 /* FavoriteParksCell.swift */,
 				74EC8388212D0B0000255948 /* AlertCell.swift */,
+				74AF9E48216C2055009DA481 /* CampgroundCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 		74A813DE20A8DAAD00CAD469 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				74AF9E47216C1778009DA481 /* Xibs */,
 				746EF43520AA7D7C0087169A /* Cells */,
 				741A48CA2097E0DB00B4688F /* Main.storyboard */,
 				741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */,
@@ -262,10 +268,18 @@
 				7426E28E20BF29DB005A1900 /* FavoriteParksVC.swift */,
 				749F8BFA20AB618B0023354F /* ParkByStateVC.swift */,
 				74A813E620A8FA7000CAD469 /* ParkDetailsVC.swift */,
-				74EC8394212E490C00255948 /* CampgroundsVC.swift */,
 				7470F31620AE0B540005FFF1 /* WebViewVC.swift */,
+				74EC8394212E490C00255948 /* CampgroundsVC.swift */,
+				74AF9E4A216C25EF009DA481 /* CampgroundDescriptionVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		74AF9E47216C1778009DA481 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +316,7 @@
 				TargetAttributes = {
 					741A48C22097E0DB00B4688F = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -363,7 +378,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -378,7 +393,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Go Parks/Pods-Go Parks-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AE6F08AE3E968E6DFC29F937 /* [CP] Check Pods Manifest.lock */ = {
@@ -411,6 +426,7 @@
 				74EC838F212E45C200255948 /* Accessibility.swift in Sources */,
 				74EC8390212E45C200255948 /* Campsites.swift in Sources */,
 				746EF43320AA7B7B0087169A /* Service.swift in Sources */,
+				74AF9E4B216C25EF009DA481 /* CampgroundDescriptionVC.swift in Sources */,
 				7426E29120BF2B69005A1900 /* FavoriteParksCell.swift in Sources */,
 				741A48C92097E0DB00B4688F /* WelcomeVC.swift in Sources */,
 				74EC8389212D0B0000255948 /* AlertCell.swift in Sources */,
@@ -429,6 +445,7 @@
 				74A813E220A8DAC000CAD469 /* ParksData.swift in Sources */,
 				7426B5E4212BB26F00267FAC /* AlertDataModel.swift in Sources */,
 				7470F31720AE0B540005FFF1 /* WebViewVC.swift in Sources */,
+				74AF9E49216C2056009DA481 /* CampgroundCell.swift in Sources */,
 				7426B5E5212BB26F00267FAC /* GetAlertData.swift in Sources */,
 				746EF43120AA7A600087169A /* ListOfStatesVC.swift in Sources */,
 				749F8BFD20AB625A0023354F /* ParkByStateCell.swift in Sources */,
@@ -586,7 +603,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "in.timsop.Go-Parks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -606,7 +623,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "in.timsop.Go-Parks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

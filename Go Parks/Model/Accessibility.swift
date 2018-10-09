@@ -7,22 +7,23 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Accessibility : Codable {
   
-  let wheelchairAccess : String?
-  let internetInfo : String?
-  let rvAllowed : Int?
-  let cellPhoneInfo : String?
-  let fireStovePolicy : String?
-  let rvMaxLength : Int?
-  let additionalInfo : String?
-  let trailerMaxLength : Int?
-  let adaInfo : String?
-  let rvInfo : String?
-  let accessRoads : [String]?
-  let trailerAllowed : Int?
-  let classifications : [String]?
+  var wheelchairAccess : String?
+  var internetInfo : String?
+  var rvAllowed : Int?
+  var cellPhoneInfo : String?
+  var fireStovePolicy : String?
+  var rvMaxLength : Int?
+  var additionalInfo : String?
+  var trailerMaxLength : Int?
+  var adaInfo : String?
+  var rvInfo : String?
+  var accessRoads : [String]?
+  var trailerAllowed : Int?
+  var classifications : [String]?
   
   enum CodingKeys: String, CodingKey {
     
@@ -41,21 +42,41 @@ struct Accessibility : Codable {
     case classifications = "classifications"
   }
   
-//  init(from decoder: Decoder) throws {
-//    let values = try decoder.container(keyedBy: CodingKeys.self)
-//    wheelchairAccess = try values.decodeIfPresent(String.self, forKey: .wheelchairAccess)
-//    internetInfo = try values.decodeIfPresent(String.self, forKey: .internetInfo)
-//    rvAllowed = try values.decodeIfPresent(Int.self, forKey: .rvAllowed)
-//    cellPhoneInfo = try values.decodeIfPresent(String.self, forKey: .cellPhoneInfo)
-//    fireStovePolicy = try values.decodeIfPresent(String.self, forKey: .fireStovePolicy)
-//    rvMaxLength = try values.decodeIfPresent(Int.self, forKey: .rvMaxLength)
-//    additionalInfo = try values.decodeIfPresent(String.self, forKey: .additionalInfo)
-//    trailerMaxLength = try values.decodeIfPresent(Int.self, forKey: .trailerMaxLength)
-//    adaInfo = try values.decodeIfPresent(String.self, forKey: .adaInfo)
-//    rvInfo = try values.decodeIfPresent(String.self, forKey: .rvInfo)
-//    accessRoads = try values.decodeIfPresent([String].self, forKey: .accessRoads)
-//    trailerAllowed = try values.decodeIfPresent(Int.self, forKey: .trailerAllowed)
-//    classifications = try values.decodeIfPresent([String].self, forKey: .classifications)
-//  }
+
+  static func getAccessibilityFrom(_ dict: [String : JSON]) -> Accessibility {
+    
+    var accessibility = Accessibility()
+    
+    let accessRoads = dict["accessRoads"]?.arrayValue
+    var accessRoadsArray = [String]()
+    
+    let classifications = dict["accessRoads"]?.arrayValue
+    var classificationsArray = [String]()
+    
+    
+    for i in accessRoads! {
+      accessRoadsArray.append(i.stringValue)
+    }
+    
+    for i in classifications! {
+      classificationsArray.append(i.stringValue)
+    }
+    
+    accessibility.wheelchairAccess = dict["wheelchairAccess"]?.stringValue
+    accessibility.internetInfo = dict["internetInfo"]?.stringValue
+    accessibility.rvAllowed = dict["rvAllowed"]?.intValue
+    accessibility.cellPhoneInfo = dict["cellPhoneInfo"]?.stringValue
+    accessibility.fireStovePolicy = dict["fireStovePolicy"]?.stringValue
+    accessibility.rvMaxLength = dict["rvMaxLength"]?.intValue
+    accessibility.additionalInfo = dict["additionalInfo"]?.stringValue
+    accessibility.trailerMaxLength = dict["trailerMaxLength"]?.intValue
+    accessibility.adaInfo = dict["adaInfo"]?.stringValue
+    accessibility.rvInfo = dict["rvInfo"]?.stringValue
+    accessibility.accessRoads = accessRoadsArray
+    accessibility.trailerAllowed = dict["trailerAllowed"]?.intValue
+    accessibility.classifications = classificationsArray
+    
+    return accessibility
+  }
 
 }
