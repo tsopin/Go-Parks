@@ -15,11 +15,11 @@ class WelcomeVC: UIViewController {
   private let analytics = FirebaseAnalytics.instance
   private let defaults = UserDefaults()
   
-  @IBOutlet weak private var logoBottomConstraint: NSLayoutConstraint!
-  @IBOutlet weak private var bottomFavoriteConstraint: NSLayoutConstraint!
-  @IBOutlet weak private var logoTopConstraint: NSLayoutConstraint!
-  @IBOutlet weak private var logoHeight: NSLayoutConstraint!
-  @IBOutlet weak private var heartTop: NSLayoutConstraint!
+ // @IBOutlet weak private var logoBottomConstraint: NSLayoutConstraint!
+  //@IBOutlet weak private var bottomFavoriteConstraint: NSLayoutConstraint!
+ // @IBOutlet weak private var logoTopConstraint: NSLayoutConstraint!
+ // @IBOutlet weak private var logoHeight: NSLayoutConstraint!
+ // @IBOutlet weak private var heartTop: NSLayoutConstraint!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -55,32 +55,33 @@ class WelcomeVC: UIViewController {
     
     print("\(screenSize.width) \(screenSize.height)")
     
-    if service.getDevice() == "SE" {
-      print("SE")
-      logoBottomConstraint.constant = 0
-      logoHeight.constant = 140
-      heartTop.constant = 20
-    } else if service.getDevice() == "X" {
-      print("X")
-      logoBottomConstraint.constant = 50
-      bottomFavoriteConstraint.constant = 60
-    } else if service.getDevice() == "Pro12" {
-      print("PRO 12.9")
-      bottomFavoriteConstraint.constant = 50
-    } else if screenSize.width == 1024 {
-      print("PRO 12.9")
-      logoTopConstraint.constant = 250
-      logoBottomConstraint.constant = 220
-      bottomFavoriteConstraint.constant = 50
-    } else if screenSize.width == 375 {
-      print("PRO 8")
-      logoBottomConstraint.constant = 50
-    }
+//    if service.getDevice() == "SE" {
+//      print("SE")
+//      logoBottomConstraint.constant = 0
+//      logoHeight.constant = 140
+//      heartTop.constant = 20
+//    } else if service.getDevice() == "X" {
+//      print("X")
+//      logoBottomConstraint.constant = 50
+//      bottomFavoriteConstraint.constant = 60
+//    } else if service.getDevice() == "Pro12" {
+//      print("PRO 12.9")
+//      bottomFavoriteConstraint.constant = 50
+//    } else if screenSize.width == 1024 {
+//      print("PRO 12.9")
+//      logoTopConstraint.constant = 250
+//      logoBottomConstraint.constant = 220
+//      bottomFavoriteConstraint.constant = 50
+//    } else if screenSize.width == 375 {
+//      print("PRO 8")
+//      logoBottomConstraint.constant = 50
+//    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "goAhead" {
-      parkToGo = Int(Double.random(min: 0, max: 64))
+      parkToGo = Int.random(in: 0..<service.parksArray.count - 1)
+      print(service.parksArray.count)
       let destinationVC = segue.destination as! ParkDetailsVC
       destinationVC.data = Service.instance.parksArray[parkToGo]
     }

@@ -75,8 +75,6 @@ struct CampgroundData : Codable {
     campground.id = rawData["id"].intValue
     campground.reservationsDescription = rawData["reservationsDescription"].stringValue
     
-    print("mmm \(campground)")
-    
     return campground
   }
 }

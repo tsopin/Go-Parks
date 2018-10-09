@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class CampgroundDescriptionVC: UIViewController {
   
@@ -76,5 +77,29 @@ class CampgroundDescriptionVC: UIViewController {
   let addInfo = "\(data?.accessibility?.additionalInfo ?? ""). \(data?.accessibility?.adaInfo ?? "") "
   addInfoLabel.text = addInfo
   }
+  
+  private func getCoordinate( addressString : String, completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void ) {
+    let geocoder = CLGeocoder()
+    geocoder.geocodeAddressString(addressString) { (placemarks, error) in
+      
+      if error == nil {
+        if let placemark = placemarks?[0] {
+          let location = placemark.location!
+          completionHandler(location.coordinate, nil)
+          return
+        }
+      }
+      completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+    }
+  }
 
+  @IBAction func directionsButtonPressed(_ sender: Any) {
+    getCoordinate(addressString: (data?.description)!) { (CLLocationCoordinate2D, error) in
+      
+      let appleUrl = URL(string: "http://maps.apple.com/maps?daddr=\(CLLocationCoordinate2D.latitude),\(CLLocationCoordinate2D.longitude)")
+      
+      UIApplication.shared.open(appleUrl!, options: [:])
+    }
+  }
+  
 }

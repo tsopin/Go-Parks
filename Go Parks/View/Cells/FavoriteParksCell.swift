@@ -23,8 +23,10 @@ class FavoriteParksCell: UICollectionViewCell {
   @IBOutlet weak var favoriteButton: UIButton!
   
   @IBAction func favoritePressed(_ sender: UIButton) {
-    self.delegate?.favoritePressed(cell: self)
-    service.animateButton(sender)
+    
+    service.animateButton(sender) { (success) in
+      self.delegate?.favoritePressed(cell: self)
+    }
   }
   
   func configureCell(name: String, photo: UIImage, isFavorite: Bool) {

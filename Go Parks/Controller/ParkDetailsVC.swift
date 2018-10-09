@@ -59,6 +59,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   private var alertsArray = [AlertData]()
   var campgrounds: [CampgroundData]?
   
+  
   private var isCelsius = false
   private var goLat = Double()
   private var goLong = Double()
@@ -69,8 +70,8 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   var device = String()
   
   override func viewWillAppear(_ animated: Bool) {
-
     getCampgroundData()
+    self.campgroundsButton.isHidden = true
     
     if service.getDevice() == "X" || service.getDevice() == "XS Max" {
       safeAreaBottomConstraint.constant = 70
@@ -118,7 +119,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     parkDescription.text = data?.description
     weatherInfoButton.isEnabled = true
     descriptionButton.isEnabled = false
-//    weatherView.isHidden = true
+    weatherView.isHidden = true
   }
   
   override func viewDidLayoutSubviews() {
@@ -249,7 +250,9 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   func getCampgroundData() {
     service.getCampgrounds(for: (data?.parkCode)!) { (campground) in
       if campground.success {
-//        self.campgroundsButton.isHidden = false
+        DispatchQueue.main.async {
+           self.campgroundsButton.isHidden = false
+        }
         self.campgrounds = campground.data
       }
     }
@@ -264,7 +267,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     alertHeightConstraint.constant = screenSize.height 
     alertViewConstraint.constant = 0
     
-    UIView.animate(withDuration: 0.3) {
+    UIView.animate(withDuration: 0.4) {
       self.navigationController?.isNavigationBarHidden = true
       self.view.layoutIfNeeded()
     }
@@ -278,7 +281,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     print("Hide")
     alertViewConstraint.constant = -(screenSize.height + 64)
     
-    UIView.animate(withDuration: 0.3) {
+    UIView.animate(withDuration: 0.4) {
       self.navigationController?.isNavigationBarHidden = false
       self.view.layoutIfNeeded()
       
@@ -313,7 +316,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
         self.parseWeatherWith(json: weatherJSON)
         self.weatherActivity.stopAnimating()
         self.changeUnitsBtn.isEnabled = true
-//        self.weatherView.isHidden = false
+        self.weatherView.isHidden = false
       } else {
         print("Error \(String(describing: response.result.error))")
       }
@@ -321,12 +324,14 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   }
   
   @IBAction private func favoriteButton(_ sender: UIButton) {
-    service.animateButton(sender)
-    addToFavorite()
+    service.animateButton(sender) { (success) in
+    }
+    self.addToFavorite()
   }
   
   @IBAction private func changeTempUnits(_ sender: Any) {
     changeInits()
+    service.impact.impactOccurred()
   }
   
   private func changeInits() {
@@ -342,6 +347,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
       unitsLabel.text = "C"
       isCelsius = true
     }
+
     defaults.set(isCelsius, forKey: "isCelsius")
   }
   
@@ -359,7 +365,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
           service.parksArray[i].isFavorite = false
           favoriteBtn.setBackgroundImage(UIImage(named: "heartGrey"), for: .normal)
         }
-        service.saveParks()
+        service.saveData()
       }
     }
   }

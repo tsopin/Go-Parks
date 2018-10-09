@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class Service {
   
+  let impact = UIImpactFeedbackGenerator()
+  
   func getDevice() -> String {
     var device = String()
     switch (Double(screenSize.width), Double(screenSize.height)) {
@@ -41,9 +43,11 @@ class Service {
   
   let defaults = UserDefaults()
   let parksFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Parks.plist")
+  let statesFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("States.plist")
   var parksArray = [ParksData]()
   var alertsArray = [AlertData]()
   var campgroundsArray = [CampgroundData]()
+  var stateNamesArray = [String]()
   
   private let API_KEY = "nRMNVDjegzk22LYILxiB2vN4ddayxQqJUkWMGQcU"
   
@@ -61,6 +65,15 @@ class Service {
       }
       
       parksArray = parksArray.sorted { $0.name < $1.name }
+      
+      for i in parksArray {
+        for state in i.states {
+          stateNamesArray.append(state)
+        }
+      }
+      
+      stateNamesArray = Array(Set(stateNamesArray)).sorted()
+      
     } catch {
       print("eerrro")
     }
@@ -102,55 +115,16 @@ class Service {
     URLSession.shared.dataTask(with: API_URL) { (data, urlResponse, error) in
       
       let json = JSON(data as Any)
-//      var campgroundsArray = [CampgroundData]()
       
-
       let jsonArray = json["data"].arrayValue
       self.campgroundsArray = jsonArray.map({ CampgroundData.getCampgroundFrom($0)})
+      self.campgroundsArray = self.campgroundsArray.sorted { $0.name! < $1.name! }
       
-//      for _ in jsonArray {
-//
-//        campgroundsArray.append(campground)
-//      }
-//      print("CAAAAM \(jsonArray)")
-//      for i in jsonArray {
-//
-//      }
-      
-      
-//      let adItems = jsonArray.map({ CampgroundData.getCampgroundFrom($0) })
-      
-      
-      
-      
-      //      DispatchQueue.main.async {
-      //
-      //        guard let dataToDecode = data, error == nil, urlResponse != nil else {return}
-      //
-      //        do {
-      //
-      //          let decoder = JSONDecoder()
-      //
-      //          let campgrounds = try decoder.decode(GetCampgroundData.self, from: dataToDecode)
-      //          self.campgroundsArray.removeAll()
-      //
-      //          for i in campgrounds.data! {
-      //            self.campgroundsArray.append(i)
-      //          }
-      //
-      //          if campgrounds.data!.count > 0 {
-      //            print("Camp Success")
-                  handler((self.campgroundsArray, true))
-      //          } else {
-      //            print("Camp Zero")
-      //            handler((self.campgroundsArray, false))
-      //          }
-      //
-      //        } catch {
-      //          handler((self.campgroundsArray, false))
-      //          print("Camp Error")
-      //        }
-      //      }
+      if json["total"].intValue > 0 {
+        handler((self.campgroundsArray, true))
+      } else {
+        handler((self.campgroundsArray, false))
+      }
       }.resume()
   }
   
@@ -165,23 +139,29 @@ class Service {
   }
   
   //Save User Currencies using PropertyListEncoder
-  func saveParks() {
+  func saveData() {
     let encoder = PropertyListEncoder()
     
     do {
-      var data = Data()
-      data = try encoder.encode(parksArray)
-      try data.write(to: parksFilePath!)
+      var parksData = Data()
+      var statesData = Data()
+      
+      parksData = try encoder.encode(parksArray)
+      statesData = try encoder.encode(stateNamesArray)
+      
+      try parksData.write(to: parksFilePath!)
+      try statesData.write(to: statesFilePath!)
     } catch {
       print("error \(error)")
     }
   }
   
-  func loadParks() {
-    if let data = try? Data(contentsOf: parksFilePath!) {
+  func loadData() {
+    if let parksData = try? Data(contentsOf: parksFilePath!), let statesData = try? Data(contentsOf: statesFilePath!) {
       let decoder = PropertyListDecoder()
       do {
-        parksArray = try decoder.decode([ParksData].self, from: data)
+        parksArray = try decoder.decode([ParksData].self, from: parksData)
+        stateNamesArray = try decoder.decode([String].self, from: statesData)
       } catch {
         print("Error \(error)")
       }
@@ -194,83 +174,30 @@ class Service {
     let notFirstRun = defaults.bool(forKey: "notFirstRun")
     
     if notFirstRun {
-      loadParks()
+      loadData()
       print("Not first run, Load user's parks")
     } else {
       defaults.set(true, forKey: "notFirstRun")
       getListOfParks()
-      saveParks()
+      saveData()
       print("First run, clear old data")
     }
   }
   
-  func animateButton(_ sender: UIButton) {
+  func animateButton(_ sender: UIButton, handler: @escaping (_ success: Bool) -> ()) {
     
     sender.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+    impact.impactOccurred()
     
-    UIView.animate(withDuration: 0.70,
+    UIView.animate(withDuration: 0.40,
                    delay: 0,
                    usingSpringWithDamping: CGFloat(0.30),
                    initialSpringVelocity: CGFloat(6.0),
                    options: UIView.AnimationOptions.allowUserInteraction,
-                   animations: { sender.transform = CGAffineTransform.identity}, completion: { Void in() })
+                   animations: { sender.transform = CGAffineTransform.identity}, completion: { Void in()
+                    handler(true)
+    })
   }
-  
-  let stateNamesArray = [
-    "AK",
-    "AR",
-    "AZ",
-    "CA",
-    "CO",
-    //        "CT",
-    "DC",
-    //        "DE",
-    "FL",
-    "GA",
-    "HI",
-    "IA",
-    "ID",
-    //        "IL",
-    //        "IN",
-    //        "KS",
-    "KY",
-    //        "LA",
-    //        "MA",
-    "MD",
-    "ME",
-    "MI",
-    "MN",
-    "MO",
-    //    "MS",
-    "MT",
-    "NC",
-    "ND",
-    "NE",
-    //        "NH",
-    //    "NJ",
-    "NM",
-    "NV",
-    "NY",
-    "OH",
-    //        "OK",
-    "OR",
-    "PA",
-    //        "RI",
-    "SC",
-    "SD",
-    "TN",
-    "TX",
-    "UT",
-    "VA",
-    "VI",
-    //        "VT",
-    "WA",
-    //        "WI",
-    "WV",
-    "WY"]
-  
-  
-  
 }
 
 

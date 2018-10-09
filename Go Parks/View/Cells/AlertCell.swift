@@ -19,6 +19,7 @@ class AlertCell: UITableViewCell {
   
   @IBOutlet weak var alertCategoryIcon: UIImageView!
   @IBOutlet weak var alertTitle: UILabel!
+  @IBOutlet weak var moreLabel: UILabel!
   @IBOutlet weak var alertDescription: UITextView!
   @IBOutlet weak var moreInfoButton: UIButton!
   @IBOutlet weak var alertCellView: UIView!
@@ -54,11 +55,11 @@ class AlertCell: UITableViewCell {
     self.alertCellView.layer.masksToBounds = true
     
     if url == "" {
-      self.moreInfoButton.isHidden = true
-      self.moreHeightConstraint.constant = 5
+      self.moreInfoButton.isUserInteractionEnabled = false
+      self.moreLabel.isHidden = true
     } else {
-      self.moreInfoButton.isHidden = false
-      self.moreHeightConstraint.constant = 30
+      self.moreInfoButton.isUserInteractionEnabled = true
+      self.moreLabel.isHidden = false
     }
 
   }
