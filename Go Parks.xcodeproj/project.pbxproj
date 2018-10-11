@@ -251,7 +251,6 @@
 		74A813DE20A8DAAD00CAD469 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				74AF9E47216C1778009DA481 /* Xibs */,
 				746EF43520AA7D7C0087169A /* Cells */,
 				741A48CA2097E0DB00B4688F /* Main.storyboard */,
 				741A48CF2097E0DC00B4688F /* LaunchScreen.storyboard */,
@@ -273,13 +272,6 @@
 				74AF9E4A216C25EF009DA481 /* CampgroundDescriptionVC.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		74AF9E47216C1778009DA481 /* Xibs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

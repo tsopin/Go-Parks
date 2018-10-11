@@ -12,16 +12,16 @@ import Alamofire
 import SwiftyJSON
 
 class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDelegate, AlertCellDelegate {
-
   
   
-  @IBOutlet weak var weatherView: UIView!
-  @IBOutlet weak var closeAlertViewButton: UIButton!
-  @IBOutlet weak var campgroundsButton: UIButton!
-  @IBOutlet weak var alertsTableView: UITableView!
-  @IBOutlet weak var alertView: UIView!
-  @IBOutlet weak var alertButton: UIButton!
-  @IBOutlet weak var alertHeightConstraint: NSLayoutConstraint!
+  
+  @IBOutlet weak private var weatherView: UIView!
+  @IBOutlet weak private var closeAlertViewButton: UIButton!
+  @IBOutlet weak private var campgroundsButton: UIButton!
+  @IBOutlet weak private var alertsTableView: UITableView!
+  @IBOutlet weak private var alertView: UIView!
+  @IBOutlet weak private var alertButton: UIButton!
+  @IBOutlet weak private var alertHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak private var favorite: UIButton!
   @IBOutlet weak private var mapView: MKMapView!
   @IBOutlet weak private var parkName: UILabel!
@@ -37,13 +37,13 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   @IBOutlet weak private var unitsLabel: UILabel!
   @IBOutlet weak private var statesLabel: UILabel!
   @IBOutlet weak private var designationLabel: UILabel!
-  @IBOutlet weak var alertNotificationImage: UIImageView!
-  @IBOutlet weak var alertNotificationCount: UILabel!
+  @IBOutlet weak private var alertNotificationImage: UIImageView!
+  @IBOutlet weak private var alertNotificationCount: UILabel!
   
   //Constraints
-  @IBOutlet weak var photoTopConstraint: NSLayoutConstraint!
-  @IBOutlet weak var alertViewConstraint: NSLayoutConstraint!
-  @IBOutlet weak var safeAreaBottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var photoTopConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var alertViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak private var safeAreaBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak private var descriptionViewHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak private var mapMinConstraint: NSLayoutConstraint!
   
@@ -57,17 +57,17 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   private let defaults = UserDefaults()
   private let screenSize : CGRect = UIScreen.main.bounds
   private var alertsArray = [AlertData]()
-  var campgrounds: [CampgroundData]?
+  private var campgrounds: [CampgroundData]?
   
   
   private var isCelsius = false
   private var goLat = Double()
   private var goLong = Double()
   private var sentUrl = String()
-  var sentLabel = String()
+  private var sentLabel = String()
   private var manager = CLLocationManager()
   private var states = String()
-  var device = String()
+  private var device = String()
   
   override func viewWillAppear(_ animated: Bool) {
     getCampgroundData()
@@ -129,7 +129,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     for state in (data?.states)! {
       states.append("\(state) ")
     }
@@ -171,10 +171,10 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     } else if screenSize.width == 1024 { //iPadPro 12.9
       iPadViewAdjust(name: 50, description: 24)
     } else if screenSize.width == 375 && screenSize.height == 812 { // iPhone X
-//      mapMinConstraint.constant = 170
-//      descriptionViewHeightConstraint.constant = -60
+      //      mapMinConstraint.constant = 170
+      //      descriptionViewHeightConstraint.constant = -60
     } else if screenSize.width == 375 { // iPhone 6, 7, 8
-//      descriptionViewHeightConstraint.constant = 0
+      //      descriptionViewHeightConstraint.constant = 0
     }
   }
   
@@ -182,8 +182,8 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     parkName.font = UIFont(name: "Ubuntu-Bold", size: name)
     parkDescription.font = UIFont(name: "OpenSans-Regular", size: description)
     designationLabel.font = UIFont(name: "OpenSans-Italic", size: description)
-//    mapMinConstraint.constant = screenSize.width * 0.29
-//    descriptionViewHeightConstraint.constant = screenSize.width * 0.28
+    //    mapMinConstraint.constant = screenSize.width * 0.29
+    //    descriptionViewHeightConstraint.constant = screenSize.width * 0.28
   }
   
   private func getLocation (forLatitude: Double, forLongitude: Double) {
@@ -223,7 +223,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     descriptionButton.isEnabled = false
   }
   
-  @IBAction func alertButtonPressed(_ sender: Any) {
+  @IBAction private func alertButtonPressed(_ sender: Any) {
     analytics.alertsOpen(park: (data?.name)!)
     
     if alertViewConstraint.constant < 0 {
@@ -235,12 +235,12 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     }
   }
   
-  @IBAction func hideAlertViewButtonPressed(_ sender: UIButton) {
+  @IBAction private func hideAlertViewButtonPressed(_ sender: UIButton) {
     hideAlertView()
   }
   
   
-  @IBAction func campgroundButtonPressed(_ sender: Any) {
+  @IBAction private func campgroundButtonPressed(_ sender: Any) {
     getCampgroundData()
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "campgroundInfo", sender: Any?.self)
@@ -251,17 +251,17 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     service.getCampgrounds(for: (data?.parkCode)!) { (campground) in
       if campground.success {
         DispatchQueue.main.async {
-           self.campgroundsButton.isHidden = false
+          self.campgroundsButton.isHidden = false
         }
         self.campgrounds = campground.data
       }
     }
   }
   
-  func showAlertView() {
+  private func showAlertView() {
     print("Show \(alertsArray.count)")
     self.view.addSubview(alertView)
-
+    
     self.alertsTableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
     
     alertHeightConstraint.constant = screenSize.height 
@@ -277,7 +277,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     
   }
   
-  func hideAlertView() {
+  private func hideAlertView() {
     print("Hide")
     alertViewConstraint.constant = -(screenSize.height + 64)
     
@@ -288,9 +288,9 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     }
     
   }
-
-  func openAlertUrl(cell: AlertCell) {
   
+  func openAlertUrl(cell: AlertCell) {
+    
     guard let index = alertsTableView.indexPath(for: cell)?.row else {
       return
     }
@@ -301,7 +301,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
     DispatchQueue.main.async {
       self.performSegue(withIdentifier: "openUrl", sender: Any?.self)
     }
-   
+    
   }
   
   
@@ -347,7 +347,7 @@ class ParkDetailsVC: UIViewController, CLLocationManagerDelegate, UITextViewDele
       unitsLabel.text = "C"
       isCelsius = true
     }
-
+    
     defaults.set(isCelsius, forKey: "isCelsius")
   }
   
